@@ -68,3 +68,27 @@ and Jev only under equivalent workloads. Diffusion's generation throughput advan
 translate to lower latency for very short decision outputs, especially with repair generations.
 
 No GPU results are checked in because the model has not been run in this development environment.
+
+## Question-count and concurrency sweep
+
+```sh
+uv run python scripts/benchmark_matrix.py \
+  --url http://127.0.0.1:8080 \
+  --questions 1 8 32 --concurrency 1 8 32 \
+  --state-bytes 1024 --warmup 32 --requests 256 \
+  --run-label 'hardware, image/model revisions, gateway settings' \
+  --output-dir /tmp/verifier-matrix
+```
+
+This generates a repeated three-class Choice workload with an ASCII state, warms each cell
+separately, and retains datasets, warmup results, measured raw rows and a summary. It is a closed-loop
+load test, not a representative quality dataset or an arrival-rate/SLO benchmark. Warmup failures
+stop the sweep; measured failures remain visible and cause a nonzero final exit code. Output paths
+are reused on subsequent runs, so choose a new directory to preserve each experiment.
+
+The same script can target a Jev-compatible service using `VERIFIER_API_KEY` and `--url`; doing so
+sends requests and may incur provider charges. Use the same workload and concurrency for comparisons,
+and record network location. Synthetic demo responses measure the whole HTTP fixture pipeline,
+including Docker networking and the fixture server, not isolated gateway overhead or GPU inference.
+
+See the [local synthetic baseline](benchmarks/2026-09-22/README.md) for measured results and limits.

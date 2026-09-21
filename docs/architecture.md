@@ -58,3 +58,40 @@ an application-specific layer if needed; this release does not include a fitted 
 - `/healthz` only checks process liveness. `/readyz` checks that the configured model is advertised
   by the engine, not whether a real generation succeeds; use the live smoke script for that.
 - Request cancellation closes HTTP work locally. Immediate GPU kernel cancellation is not guaranteed.
+
+## Relationship to vLLM routers
+
+[vLLM Router](https://github.com/vllm-project/router) forwards inference requests across workers.
+It provides load balancing, cache-aware policies, worker discovery and prefill/decode routing.
+This gateway instead translates typed decision requests into model prompts and verifies responses.
+It currently targets one configured upstream URL and implements no worker selection or discovery.
+
+[vLLM Semantic Router](https://github.com/vllm-project/semantic-router) uses request signals and
+policies to select models and processing paths. The shared concept is a decision layer in front of
+inference. This service exposes decisions to the caller; it does not route the caller's subsequent
+inference or execute actions. Neither router is a drop-in replacement for the Jev API adapter.
+
+For multiple inference replicas, the composition can be:
+
+```text
+Jev-compatible client -> vLLM Verifier -> vLLM Router -> vLLM workers
+```
+
+Set `VERIFIER_BASE_URL` to the router's OpenAI-compatible `/v1` endpoint. This composition is an
+integration option, not a tested deployment in this repository. The router must advertise the
+configured model through `/v1/models` for gateway readiness to pass.
+
+## Latency limits
+
+With Q questions, a valid response requires Q upstream completions; one repair per question can
+raise that to 2Q under the default configuration. Every prompt includes the state. Prefix caching
+may help if supported and enabled by the engine, but is not guaranteed by the gateway. Eight
+shared inference slots are available by default, so concurrent requests compete for that capacity.
+Vision adds an observation completion before any question can start.
+
+For similar-duration completions without repairs, a single request with Q questions needs roughly
+ceil(Q / available slots) waves of inference. Batching all questions into one prompt could reduce
+calls, but would change isolation and failure semantics; it is not an equivalent optimization.
+Diffusion token throughput alone therefore cannot establish Jev-like decision latency. Measure
+short-output latency, quality, repairs and concurrency on the actual model before selecting a
+backend or increasing the inference concurrency limit.

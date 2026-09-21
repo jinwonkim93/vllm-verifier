@@ -1,0 +1,290 @@
+[
+  {
+    "metadata": {
+      "dataset": "/private/tmp/verifier-benchmark-final/q1.jsonl",
+      "concurrency": 1,
+      "repeat": 256,
+      "run_label": "Synthetic upstream; Docker ARM64; 10 CPUs; 8217382912 bytes RAM; gateway 9024244; slots=8; admission=32",
+      "models": [
+        "demo-uniform"
+      ],
+      "demo": true
+    },
+    "requests": 256,
+    "successful": 256,
+    "wall_seconds": 0.6799182081595063,
+    "successful_requests_per_second": 376.5158763625041,
+    "successful_latency_seconds": {
+      "p50": 0.0026192909572273493,
+      "p95": 0.003883457975462079,
+      "p99": 0.004907499998807907
+    },
+    "errors": {},
+    "usage": {
+      "input_tokens": 0,
+      "output_tokens": 0
+    },
+    "classification_accuracy": null,
+    "mean_brier": null,
+    "score_mae": null,
+    "questions_per_request": 1,
+    "state_bytes": 1024,
+    "warmup_requests": 32
+  },
+  {
+    "metadata": {
+      "dataset": "/private/tmp/verifier-benchmark-final/q1.jsonl",
+      "concurrency": 8,
+      "repeat": 256,
+      "run_label": "Synthetic upstream; Docker ARM64; 10 CPUs; 8217382912 bytes RAM; gateway 9024244; slots=8; admission=32",
+      "models": [
+        "demo-uniform"
+      ],
+      "demo": true
+    },
+    "requests": 256,
+    "successful": 256,
+    "wall_seconds": 0.2644169998820871,
+    "successful_requests_per_second": 968.167705231356,
+    "successful_latency_seconds": {
+      "p50": 0.00796845811419189,
+      "p95": 0.012157583143562078,
+      "p99": 0.014391625067219138
+    },
+    "errors": {},
+    "usage": {
+      "input_tokens": 0,
+      "output_tokens": 0
+    },
+    "classification_accuracy": null,
+    "mean_brier": null,
+    "score_mae": null,
+    "questions_per_request": 1,
+    "state_bytes": 1024,
+    "warmup_requests": 32
+  },
+  {
+    "metadata": {
+      "dataset": "/private/tmp/verifier-benchmark-final/q1.jsonl",
+      "concurrency": 32,
+      "repeat": 256,
+      "run_label": "Synthetic upstream; Docker ARM64; 10 CPUs; 8217382912 bytes RAM; gateway 9024244; slots=8; admission=32",
+      "models": [
+        "demo-uniform"
+      ],
+      "demo": true
+    },
+    "requests": 256,
+    "successful": 256,
+    "wall_seconds": 1.0757251670584083,
+    "successful_requests_per_second": 237.9790004356197,
+    "successful_latency_seconds": {
+      "p50": 0.038808709010481834,
+      "p95": 0.044366832822561264,
+      "p99": 0.04975333297625184
+    },
+    "errors": {},
+    "usage": {
+      "input_tokens": 0,
+      "output_tokens": 0
+    },
+    "classification_accuracy": null,
+    "mean_brier": null,
+    "score_mae": null,
+    "questions_per_request": 1,
+    "state_bytes": 1024,
+    "warmup_requests": 32
+  },
+  {
+    "metadata": {
+      "dataset": "/private/tmp/verifier-benchmark-final/q8.jsonl",
+      "concurrency": 1,
+      "repeat": 256,
+      "run_label": "Synthetic upstream; Docker ARM64; 10 CPUs; 8217382912 bytes RAM; gateway 9024244; slots=8; admission=32",
+      "models": [
+        "demo-uniform"
+      ],
+      "demo": true
+    },
+    "requests": 256,
+    "successful": 256,
+    "wall_seconds": 1.5895363329909742,
+    "successful_requests_per_second": 161.0532547678818,
+    "successful_latency_seconds": {
+      "p50": 0.006098541896790266,
+      "p95": 0.007282250095158815,
+      "p99": 0.008818458067253232
+    },
+    "errors": {},
+    "usage": {
+      "input_tokens": 0,
+      "output_tokens": 0
+    },
+    "classification_accuracy": null,
+    "mean_brier": null,
+    "score_mae": null,
+    "questions_per_request": 8,
+    "state_bytes": 1024,
+    "warmup_requests": 32
+  },
+  {
+    "metadata": {
+      "dataset": "/private/tmp/verifier-benchmark-final/q8.jsonl",
+      "concurrency": 8,
+      "repeat": 256,
+      "run_label": "Synthetic upstream; Docker ARM64; 10 CPUs; 8217382912 bytes RAM; gateway 9024244; slots=8; admission=32",
+      "models": [
+        "demo-uniform"
+      ],
+      "demo": true
+    },
+    "requests": 256,
+    "successful": 256,
+    "wall_seconds": 1.4182584160007536,
+    "successful_requests_per_second": 180.5030713104289,
+    "successful_latency_seconds": {
+      "p50": 0.04193966602906585,
+      "p95": 0.05238579190336168,
+      "p99": 0.08516383310779929
+    },
+    "errors": {},
+    "usage": {
+      "input_tokens": 0,
+      "output_tokens": 0
+    },
+    "classification_accuracy": null,
+    "mean_brier": null,
+    "score_mae": null,
+    "questions_per_request": 8,
+    "state_bytes": 1024,
+    "warmup_requests": 32
+  },
+  {
+    "metadata": {
+      "dataset": "/private/tmp/verifier-benchmark-final/q8.jsonl",
+      "concurrency": 32,
+      "repeat": 256,
+      "run_label": "Synthetic upstream; Docker ARM64; 10 CPUs; 8217382912 bytes RAM; gateway 9024244; slots=8; admission=32",
+      "models": [
+        "demo-uniform"
+      ],
+      "demo": true
+    },
+    "requests": 256,
+    "successful": 256,
+    "wall_seconds": 1.515670208958909,
+    "successful_requests_per_second": 168.90217838077226,
+    "successful_latency_seconds": {
+      "p50": 0.18828908307477832,
+      "p95": 0.20106275007128716,
+      "p99": 0.20526299998164177
+    },
+    "errors": {},
+    "usage": {
+      "input_tokens": 0,
+      "output_tokens": 0
+    },
+    "classification_accuracy": null,
+    "mean_brier": null,
+    "score_mae": null,
+    "questions_per_request": 8,
+    "state_bytes": 1024,
+    "warmup_requests": 32
+  },
+  {
+    "metadata": {
+      "dataset": "/private/tmp/verifier-benchmark-final/q32.jsonl",
+      "concurrency": 1,
+      "repeat": 256,
+      "run_label": "Synthetic upstream; Docker ARM64; 10 CPUs; 8217382912 bytes RAM; gateway 9024244; slots=8; admission=32",
+      "models": [
+        "demo-uniform"
+      ],
+      "demo": true
+    },
+    "requests": 256,
+    "successful": 256,
+    "wall_seconds": 5.378999707987532,
+    "successful_requests_per_second": 47.592491893958176,
+    "successful_latency_seconds": {
+      "p50": 0.0207053329795599,
+      "p95": 0.02350916713476181,
+      "p99": 0.027569666039198637
+    },
+    "errors": {},
+    "usage": {
+      "input_tokens": 0,
+      "output_tokens": 0
+    },
+    "classification_accuracy": null,
+    "mean_brier": null,
+    "score_mae": null,
+    "questions_per_request": 32,
+    "state_bytes": 1024,
+    "warmup_requests": 32
+  },
+  {
+    "metadata": {
+      "dataset": "/private/tmp/verifier-benchmark-final/q32.jsonl",
+      "concurrency": 8,
+      "repeat": 256,
+      "run_label": "Synthetic upstream; Docker ARM64; 10 CPUs; 8217382912 bytes RAM; gateway 9024244; slots=8; admission=32",
+      "models": [
+        "demo-uniform"
+      ],
+      "demo": true
+    },
+    "requests": 256,
+    "successful": 256,
+    "wall_seconds": 5.291472875047475,
+    "successful_requests_per_second": 48.379724520028496,
+    "successful_latency_seconds": {
+      "p50": 0.1626384579576552,
+      "p95": 0.18180000013671815,
+      "p99": 0.19532066700048745
+    },
+    "errors": {},
+    "usage": {
+      "input_tokens": 0,
+      "output_tokens": 0
+    },
+    "classification_accuracy": null,
+    "mean_brier": null,
+    "score_mae": null,
+    "questions_per_request": 32,
+    "state_bytes": 1024,
+    "warmup_requests": 32
+  },
+  {
+    "metadata": {
+      "dataset": "/private/tmp/verifier-benchmark-final/q32.jsonl",
+      "concurrency": 32,
+      "repeat": 256,
+      "run_label": "Synthetic upstream; Docker ARM64; 10 CPUs; 8217382912 bytes RAM; gateway 9024244; slots=8; admission=32",
+      "models": [
+        "demo-uniform"
+      ],
+      "demo": true
+    },
+    "requests": 256,
+    "successful": 256,
+    "wall_seconds": 5.426424250006676,
+    "successful_requests_per_second": 47.176554615995066,
+    "successful_latency_seconds": {
+      "p50": 0.6721831671893597,
+      "p95": 0.7175595418084413,
+      "p99": 0.7214663340710104
+    },
+    "errors": {},
+    "usage": {
+      "input_tokens": 0,
+      "output_tokens": 0
+    },
+    "classification_accuracy": null,
+    "mean_brier": null,
+    "score_mae": null,
+    "questions_per_request": 32,
+    "state_bytes": 1024,
+    "warmup_requests": 32
+  }
+]
