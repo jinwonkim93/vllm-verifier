@@ -1,0 +1,41 @@
+[build-system]
+requires = ["hatchling>=1.27,<2"]
+build-backend = "hatchling.build"
+
+[project]
+name = "vllm-verifier"
+version = "0.1.0"
+description = "Jev-compatible typed decisions backed by DiffusionGemma and vLLM"
+readme = "README.md"
+requires-python = ">=3.11"
+license = "Apache-2.0"
+dependencies = [
+  "fastapi>=0.115,<1", "httpx>=0.28,<1", "pydantic>=2.10,<3",
+  "pydantic-settings>=2.7,<3", "uvicorn>=0.34,<1",
+  "prometheus-client>=0.21,<1", "pillow>=11.1,<13",
+]
+
+[project.scripts]
+vllm-verifier = "vllm_verifier.cli:main"
+
+[dependency-groups]
+dev = ["pytest>=8.3,<10", "pytest-asyncio>=0.25,<2", "pytest-cov>=6,<8", "ruff>=0.11,<1", "mypy>=1.15,<2", "typesafe-sdk>=0.7.1,<0.8", "build>=1.2,<2"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
+
+[tool.ruff]
+target-version = "py311"
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "ASYNC"]
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
+packages = ["vllm_verifier"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/vllm_verifier"]

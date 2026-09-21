@@ -1,0 +1,43 @@
+name: CI
+on:
+  push:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python: ['3.11', '3.12', '3.13']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+        with:
+          version: '0.9.26'
+          python-version: ${{ matrix.python }}
+      - run: uv sync --locked
+      - run: uv run ruff check .
+      - run: uv run ruff format --check .
+      - run: uv run mypy
+      - run: uv run pytest --cov=vllm_verifier --cov-fail-under=85
+      - run: uv build
+      - run: uv run python scripts/export_openapi.py --check
+  container:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+        with:
+          version: '0.9.26'
+          python-version: '3.12'
+      - run: uv sync --locked
+      - run: docker build -t vllm-verifier:ci .
+      - name: Test container networking and TypeSafe SDK
+        run: uv run python scripts/check_container.py --image vllm-verifier:ci
+      - name: Smoke-test standalone demo Compose
+        run: |
+          VERIFIER_HTTP_PORT=18080 VERIFIER_IMAGE_TAG=ci docker compose -p verifier-ci-demo -f compose.demo.yaml up --build --wait --wait-timeout 60
+          curl -fsS http://127.0.0.1:18080/v1/systemone -H 'Authorization: Bearer local-demo-key' -H 'Content-Type: application/json' --data-binary @examples/triage.json
+      - if: always()
+        run: docker compose -p verifier-ci-demo -f compose.demo.yaml down

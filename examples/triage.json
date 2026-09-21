@@ -1,0 +1,17 @@
+{
+  "model": "jev-latest",
+  "state": {"message": "I was charged twice. Please refund the extra payment today."},
+  "questions": {
+    "department": {
+      "type": "choice",
+      "instructions": "Which team should handle this ticket?",
+      "criteria": {"billing": "Charges and refunds", "technical": "Software bugs", "sales": "New purchases"}
+    },
+    "urgency": {
+      "type": "score",
+      "instructions": "How urgent is the customer's request?",
+      "criteria": ["No stated time constraint", "Needs attention this week", "Needs attention today"]
+    },
+    "refund": {"type": "noul", "instructions": "Does the customer request a refund?"}
+  }
+}

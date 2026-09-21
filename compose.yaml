@@ -1,0 +1,55 @@
+services:
+  gateway:
+    image: vllm-verifier:${VERIFIER_IMAGE_TAG:-local}
+    build:
+      context: .
+      target: runtime
+    ports:
+      - "127.0.0.1:${VERIFIER_HTTP_PORT:-8080}:8080"
+    environment:
+      VERIFIER_API_KEY: ${VERIFIER_API_KEY:?Set VERIFIER_API_KEY in .env}
+      VERIFIER_BASE_URL: ${VERIFIER_BASE_URL:-http://engine:8000/v1}
+      VERIFIER_MODEL: ${VERIFIER_MODEL:-google/diffusiongemma-26B-A4B-it}
+      VERIFIER_UPSTREAM_API_KEY: ${VERIFIER_UPSTREAM_API_KEY:-}
+      VERIFIER_MAX_CONCURRENCY: ${VERIFIER_MAX_CONCURRENCY:-8}
+      VERIFIER_MAX_REQUESTS: ${VERIFIER_MAX_REQUESTS:-32}
+      VERIFIER_REQUEST_TIMEOUT: ${VERIFIER_REQUEST_TIMEOUT:-60}
+      VERIFIER_UPSTREAM_TIMEOUT: ${VERIFIER_UPSTREAM_TIMEOUT:-30}
+      VERIFIER_MAX_OUTPUT_TOKENS: ${VERIFIER_MAX_OUTPUT_TOKENS:-2048}
+      VERIFIER_VALIDATION_RETRIES: ${VERIFIER_VALIDATION_RETRIES:-1}
+      VERIFIER_TEMPERATURE: ${VERIFIER_TEMPERATURE:-0}
+    read_only: true
+    tmpfs: ["/tmp:size=64m"]
+    cap_drop: [ALL]
+    security_opt: ["no-new-privileges:true"]
+    restart: unless-stopped
+  engine:
+    profiles: [gpu]
+    image: ${VLLM_IMAGE:-vllm/vllm-openai:gemma}
+    gpus: all
+    shm_size: 16gb
+    volumes:
+      - model-cache:/root/.cache/huggingface
+    environment:
+      HF_TOKEN: ${HF_TOKEN:-}
+      VLLM_USE_V2_MODEL_RUNNER: "1"
+    command:
+      - --model
+      - ${VERIFIER_MODEL:-google/diffusiongemma-26B-A4B-it}
+      - --host
+      - 0.0.0.0
+      - --port
+      - "8000"
+      - --max-model-len
+      - "16384"
+      - --max-num-seqs
+      - "8"
+      - --gpu-memory-utilization
+      - "0.85"
+      - --reasoning-parser
+      - gemma4
+      - --limit-mm-per-prompt
+      - '{"image":4}'
+    restart: unless-stopped
+volumes:
+  model-cache:

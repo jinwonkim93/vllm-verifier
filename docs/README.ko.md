@@ -1,0 +1,53 @@
+# vLLM Verifier — DiffusionGemma를 Jev API 형태로 사용하기
+
+FastAPI 게이트웨이가 Jev의 `POST /v1/systemone` 요청을 받아 vLLM에서 실행되는
+DiffusionGemma로 판단하고, 검증된 `choice`, `score`, `noul` 응답을 반환합니다.
+공식 TypeSafe Python SDK는 API 주소와 키를 바꾸어 사용할 수 있습니다.
+
+## 실행
+
+vLLM 서버 주소와 키를 설정한 뒤 게이트웨이를 시작합니다.
+
+```sh
+export VERIFIER_API_KEY=your-local-api-key
+export VERIFIER_BASE_URL=http://your-vllm-host:8000/v1
+docker compose up --build -d gateway
+```
+
+주소는 컨테이너에서 접근할 수 있어야 합니다. 같은 Mac에서 실행하는 vLLM에는
+`http://host.docker.internal:8000/v1`을 사용합니다.
+
+GPU 없이 API를 확인하려면 별도 데모 서버를 실행합니다.
+
+```sh
+docker compose -f compose.demo.yaml up --build -d --wait
+```
+
+데모는 `examples/demo/`에 분리되어 있으며 제품 패키지나 이미지에 포함되지 않습니다.
+균등 분포만 반환하고 실제 추론을 하지 않습니다. 기본 키는 `local-demo-key`이며,
+`VERIFIER_API_KEY`가 설정되어 있으면 해당 값을 사용합니다.
+
+## 제공 기능
+
+- Choice: 주어진 옵션의 확률 분포와 가장 높은 확률의 선택지
+- Score: 순서가 있는 기준의 확률 가중 평균, 기준 설명 및 확률 분포
+- Noul: 질문이 참일 추정 확률
+- `/v1/vision/systemone`: 이미지를 한 번 텍스트로 해석한 뒤 여러 질문에 공통으로 사용
+- 질문별 독립 추론, 전체 동시 호출 제한, 타임아웃, 오류 응답, 제한된 재생성
+- Bearer 인증, 상태 점검, Prometheus 지표, Docker Compose 및 CI
+
+이미지 요청은 원본 Jev API의 확장입니다. 이미지 URL을 서버가 내려받지 않으며,
+base64 PNG/JPEG/WebP만 받습니다. 선택 결과에 따른 실제 명령 실행은 호출 애플리케이션이 담당합니다.
+
+## 호환성과 검증 범위
+
+Jev와 **요청·응답 프로토콜을 맞춘 독립 구현**입니다. Jev 모델 자체나 학습 방법을 재현하지 않습니다.
+모델이 생성한 확률을 구조적으로 검증하며, 실제 정답 확률로 보정되어 있다고 보장하지 않습니다.
+`confidence`는 정규화 엔트로피로 계산하고, Jev의 수치와 동일하다고 주장하지 않습니다.
+
+현재 로컬 테스트는 실제 TypeSafe SDK와 가짜 upstream 응답으로 서버 동작을 검증합니다.
+Docker ARM64 이미지 빌드·실행과 컨테이너 간 HTTP 연동도 검증했습니다.
+GPU 추론 정확도·지연 시간은 해당 환경에서 [평가 도구](evaluation.md)로 확인해야 합니다.
+잘못된 JSON이나 확률을 정상 결과로 위장하지 않고, 재시도 후에도 실패하면 오류를 반환합니다.
+
+[전체 API 호환 범위](compatibility.md) · [설계](architecture.md) · [배포](deployment.md)

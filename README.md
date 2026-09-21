@@ -1,139 +1,174 @@
 # vLLM Verifier
 
-**Jev-compatible typed decisions powered by DiffusionGemma on vLLM.**
+A Jev-compatible API for classification, scoring, and yes/no decisions, backed by
+[DiffusionGemma](https://huggingface.co/google/diffusiongemma-26B-A4B-it) on vLLM.
 
-Send state and independent questions; receive Choice, Score and Noul answers through
-`POST /v1/systemone`. Use an existing TypeSafe client with a different base URL, or plain HTTP.
-An image extension observes images once, then evaluates questions against the resulting text.
+Send text or structured data with a set of questions. Get typed answers your application can
+use to route requests, rank items, or choose its next action. Existing TypeSafe Python clients
+can connect by changing their base URL and API key.
 
-This is an independent Apache-2.0 project, not TypeSafe's Jev model or an official vLLM component.
-API compatibility does not imply equivalent accuracy, calibration, latency or cost.
-Probabilities are model-generated estimates. The verifier checks structure and arithmetic,
-not factual correctness. No benchmark or GPU inference result is claimed by this repository.
+- **Choice** selects an option and returns a distribution over all options.
+- **Score** rates input against an ordered rubric and returns its expected score.
+- **Noul** returns an estimated probability that a statement is true.
+- **Vision** describes images once, then evaluates questions against the description.
 
-## Quick start (CPU, API wiring only)
+The server validates model output, derives scores and choices from the returned probabilities,
+and retries invalid generations within a bounded deadline. It includes authentication,
+concurrency limits, health checks, and Prometheus metrics.
 
-Requires Python 3.11+ and [uv](https://docs.astral.sh/uv/).
+## Run with Docker
 
-```sh
-uv sync --locked
-uv run vllm-verifier --demo
-```
-
-In another terminal:
+Clone the repository:
 
 ```sh
-curl http://127.0.0.1:8080/v1/systemone \
-  -H 'Content-Type: application/json' \
-  --data-binary @examples/triage.json
+git clone https://github.com/jinwonkim93/vllm-verifier.git
+cd vllm-verifier
 ```
 
-Demo mode returns uniform fixtures, labels every response as demo, and performs **no inference**.
-Open [interactive API docs](http://127.0.0.1:8080/docs).
-
-## Run with DiffusionGemma
-
-1. Start a compatible vLLM server on a Linux NVIDIA GPU host using the [deployment guide](docs/deployment.md).
-2. Configure the gateway:
+Connect to a running vLLM server. Set the URL to an address reachable **from the container**:
 
 ```sh
-cp .env.example .env
-# Set VERIFIER_API_KEY to your own secret in .env.
-# Set VERIFIER_BASE_URL to your vLLM server's /v1 URL.
-uv run vllm-verifier
+export VERIFIER_API_KEY=your-local-api-key
+export VERIFIER_BASE_URL=http://your-vllm-host:8000/v1
+export VERIFIER_MODEL=google/diffusiongemma-26B-A4B-it
+docker compose up --build -d gateway
 ```
+
+For a vLLM server on the same Mac, use `http://host.docker.internal:8000/v1`.
+`127.0.0.1` inside the container refers to the container itself.
+If vLLM requires authentication, also set `VERIFIER_UPSTREAM_API_KEY`.
+
+To run both services on a Linux NVIDIA GPU host instead:
+
+```sh
+export VERIFIER_API_KEY=your-local-api-key
+export VERIFIER_BASE_URL=http://engine:8000/v1
+docker compose --profile gpu up --build -d
+```
+
+Check readiness after the model loads:
+
+```sh
+curl http://127.0.0.1:8080/readyz
+```
+
+See [deployment](docs/deployment.md) for GPU requirements, image versions, and configuration.
+The gateway image is CPU-only; vLLM serves the model in a separate process or container.
+
+## Make a decision
 
 ```sh
 curl http://127.0.0.1:8080/v1/systemone \
   -H "Authorization: Bearer $VERIFIER_API_KEY" \
   -H 'Content-Type: application/json' \
-  --data-binary @examples/triage.json
+  -d '{
+    "model": "jev-latest",
+    "state": "I was charged twice. Please refund the extra payment.",
+    "questions": {
+      "team": {
+        "type": "choice",
+        "instructions": "Which team should handle this?",
+        "criteria": {
+          "billing": "Payments and refunds",
+          "technical": "Software bugs"
+        }
+      }
+    }
+  }'
 ```
 
-The shell variable in curl must be set separately; the server reads `.env` itself.
-The default engine is `google/diffusiongemma-26B-A4B-it`. The request alias `jev-latest`
-selects that locally configured model. Responses identify the actual configured model.
-No requests are sent to TypeSafe. The gateway does not install vLLM or load GPU weights.
+The response contains `model`, `answers`, and token `usage`. Each answer is keyed by its
+question ID. A Choice answer includes `choice`, `probabilities`, and `confidence`.
+The alias `jev-latest` selects the locally configured model; the response identifies that model.
 
-## TypeSafe Python SDK
+### TypeSafe Python SDK
+
+```sh
+pip install 'typesafe-sdk>=0.7.1,<0.8'
+```
 
 ```python
-from typesafe_sdk import TypeSafeClient, Choice
+import os
+from typesafe_sdk import Choice, TypeSafeClient
 
-with TypeSafeClient(api_key="your-local-key", base_url="http://127.0.0.1:8080") as client:
+with TypeSafeClient(
+    api_key=os.environ["VERIFIER_API_KEY"],
+    base_url="http://127.0.0.1:8080",
+) as client:
     result = client.system_one(
-        model="jev-latest",
         state="I was charged twice. Please refund the extra payment.",
         questions={
             "team": Choice(
                 instructions="Which team should handle this?",
-                criteria={"billing": "Payments and refunds", "support": "Technical problems"},
+                criteria={"billing": "Payments and refunds", "technical": "Software bugs"},
             )
         },
     )
-    print(result.answers["team"].choice)
+    print(result.choices["team"].choice)
 ```
 
-SDK installation and executable examples: [examples](examples/).
-See the [compatibility contract](docs/compatibility.md) for exact guarantees and differences.
+The SDK base URL ends at the host and port. The upstream `VERIFIER_BASE_URL` includes `/v1`.
 
-## Architecture
+## Try the API without a GPU
 
-```text
-TypeSafe SDK / HTTP
-        │
-        ▼
-Auth → bounded admission → request validation
-        │
-        ├─ /v1/vision/systemone → inline image validation → one image observation
-        │
-        ▼
-Independent question prompts → shared concurrency limit → vLLM /chat/completions
-        │
-        ▼
-Strict JSON + probability validation → bounded repair retry
-        │
-        ▼
-Derived choice / score / confidence → Jev response
+```sh
+docker compose -f compose.demo.yaml up --build -d --wait
 ```
 
-- Choice: complete distribution over supplied labels; stable argmax selection.
-- Score: distribution over 2–10 levels, expected value and original legend.
-- Noul: yes probability in `[0, 1]`.
-- Each question gets only the shared state and its own instructions/criteria. Question IDs never enter prompts.
-- Invalid, incomplete, non-finite and out-of-range outputs fail closed; never fabricate a successful decision.
-- Token usage aggregates all question calls, repair attempts and image observation.
-- Request deadlines, overload responses, health/readiness checks and Prometheus metrics.
-- No automatic action execution: your application handles the returned decision.
+The [demo](examples/demo/README.md) connects the gateway to a separate synthetic HTTP server.
+It returns uniform probabilities and `model: "demo-uniform"`; it does not classify text or
+interpret images. Its default API key is `local-demo-key`, unless `VERIFIER_API_KEY` is set.
+The production package and Docker image contain no demo backend.
 
-Diffusion model support and structured-output support are different capabilities. The default
-backend deliberately sends neither `response_format` nor `structured_outputs`. See
-[architecture and probability semantics](docs/architecture.md).
+```sh
+docker compose -f compose.demo.yaml down
+```
 
-## Development
+## Local development
+
+Requires Python 3.11+ and [uv](https://docs.astral.sh/uv/).
 
 ```sh
 uv sync --locked
-uv run pytest --cov=vllm_verifier --cov-report=term-missing
+cp .env.example .env
+# Configure your vLLM URL, model and API key in .env.
+uv run vllm-verifier
+```
+
+```sh
+uv run pytest --cov=vllm_verifier
 uv run ruff check .
 uv run ruff format --check .
 uv run mypy
-uv run python -m build
+uv run python scripts/export_openapi.py --check
 ```
 
-Tests use deterministic fake completions and the real TypeSafe Python SDK. They do not download
-weights or prove model quality. Run [the live smoke test and benchmark](docs/evaluation.md)
-on your target GPU before deployment. Dependencies are locked in `uv.lock`; the GPU image is
-separately configurable and must be recorded with your benchmark results.
+Build and test the production image against an isolated HTTP fixture:
 
-| Document | Purpose |
-| --- | --- |
-| [한국어 시작 가이드](docs/README.ko.md) | 구성, 실행, 검증 범위 |
-| [Compatibility](docs/compatibility.md) | Jev contract and intentional differences |
-| [Deployment](docs/deployment.md) | vLLM, Docker, configuration and operations |
-| [Evaluation](docs/evaluation.md) | Live smoke tests, accuracy and latency measurement |
-| [Contributing](CONTRIBUTING.md) | Contribution workflow |
-| [Security](SECURITY.md) | Deployment boundaries and reporting |
+```sh
+docker build -t vllm-verifier:local .
+uv run python scripts/check_container.py --image vllm-verifier:local
+```
 
-Source references were reviewed on 2026-09-22. See [sources](docs/sources.md).
-# vllm-verifier
+Application code lives in `src/`, tests and fixtures in `tests/`, and runnable examples in
+`examples/`. The wheel and runtime image include only the application package and dependencies.
+
+## Compatibility and limits
+
+This independent project implements the Jev HTTP contract, not the Jev model or training method.
+Probabilities are model-generated estimates, not calibrated Jev probabilities. Confidence is
+computed from normalized entropy. Structural validation does not guarantee a correct judgment.
+Evaluate thresholds on your own data before using decisions to automate actions.
+
+Questions are evaluated independently. Adding questions can increase latency and token usage.
+There is no guarantee of Jev-equivalent speed, accuracy, or cost. Real GPU inference performance
+must be measured on your target vLLM build and hardware.
+
+## Documentation
+
+- [API compatibility](docs/compatibility.md)
+- [Deployment and settings](docs/deployment.md)
+- [Architecture and probability semantics](docs/architecture.md)
+- [Evaluation](docs/evaluation.md)
+- [한국어 가이드](docs/README.ko.md)
+- [Contributing](CONTRIBUTING.md) · [Security](SECURITY.md) · [Apache-2.0 license](LICENSE)
