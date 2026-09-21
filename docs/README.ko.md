@@ -4,6 +4,13 @@ FastAPI 게이트웨이가 Jev의 `POST /v1/systemone` 요청을 받아 vLLM에�
 DiffusionGemma로 판단하고, 검증된 `choice`, `score`, `noul` 응답을 반환합니다.
 공식 TypeSafe Python SDK는 API 주소와 키를 바꾸어 사용할 수 있습니다.
 
+## 네이티브 결정 엔진
+
+[네이티브 엔진](native-engine.md)은 HTTP 추론 서버 없이 vLLM Python 런타임에 토큰 작업을
+직접 제출합니다. 질문별 격리를 유지하면서 배치 실행, 공유 state prefix, 토큰 예산,
+실패한 질문만 재시도하는 경로를 제공합니다. 현재는 오프라인 실험용이며 실제 GPU 검증이
+남아 있습니다. 직접 분류 head와 diffusion sampler 최적화는 후속 개발 항목입니다.
+
 ## 실행
 
 vLLM 서버 주소와 키를 설정한 뒤 게이트웨이를 시작합니다.

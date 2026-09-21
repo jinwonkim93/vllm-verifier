@@ -1,5 +1,8 @@
 # Architecture and inference semantics
 
+This page describes the HTTP gateway. The separate [native engine](native-engine.md) submits
+token batches directly to vLLM and has its own execution and admission semantics.
+
 The gateway is a small FastAPI service, with no PyTorch/vLLM import in the serving process.
 The independently deployed inference server owns GPU memory, scheduling, prefix caching and
 diffusion sampling. `Backend` in `backend.py` is the testable integration boundary.

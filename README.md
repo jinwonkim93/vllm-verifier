@@ -16,6 +16,17 @@ The server validates model output, derives scores and choices from the returned 
 and retries invalid generations within a bounded deadline. It includes authentication,
 concurrency limits, health checks, and Prometheus metrics.
 
+## Native decision execution
+
+The experimental [native engine](docs/native-engine.md) compiles typed questions into bounded
+vLLM generation batches without an HTTP inference server. It preserves question isolation, places
+shared state before question-specific tokens for prefix-cache reuse, and repairs only invalid
+answers. A native CLI records batch sizes, token usage and timings for isolated/batched comparisons.
+
+The native path is currently offline and GPU validation is pending. Direct classification heads,
+custom diffusion sampling and continuous online admission are development milestones. The HTTP
+API below remains available as a compatible serving baseline.
+
 ## Run with Docker
 
 Clone the repository:
