@@ -29,7 +29,17 @@ def create_app(settings: Settings | None = None, backend: Backend | None = None)
 
     @asynccontextmanager
     async def lifespan(app: FastAPI) -> AsyncIterator[None]:
-        active_backend = backend or VLLMBackend(settings)
+        active_backend: Backend
+        if backend is not None:
+            active_backend = backend
+        elif settings.runtime == "mlx":
+            from .engine.mlx_backend import MLXBackend
+
+            local_backend = MLXBackend(settings)
+            await local_backend.start()
+            active_backend = local_backend
+        else:
+            active_backend = VLLMBackend(settings)
         app.state.service = DecisionService(settings, active_backend)
         try:
             yield

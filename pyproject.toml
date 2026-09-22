@@ -15,6 +15,12 @@ dependencies = [
   "prometheus-client>=0.21,<1", "pillow>=11.1,<13",
 ]
 
+[project.optional-dependencies]
+mac = [
+  "mlx-vlm==0.7.2; sys_platform == 'darwin' and platform_machine == 'arm64'",
+  "numpy<2.5; sys_platform == 'darwin' and platform_machine == 'arm64'",
+]
+
 [project.scripts]
 vllm-verifier = "vllm_verifier.cli:main"
 

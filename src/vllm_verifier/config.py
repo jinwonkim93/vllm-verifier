@@ -1,3 +1,4 @@
+from typing import Literal
 from urllib.parse import urlsplit
 
 from pydantic import Field, SecretStr, field_validator
@@ -9,6 +10,10 @@ class Settings(BaseSettings):
         env_prefix="VERIFIER_", env_file=".env", extra="ignore", validate_assignment=True
     )
 
+    runtime: Literal["http", "mlx"] = "http"
+    mlx_revision: str | None = None
+    mlx_canvas_tokens: int = Field(default=256, ge=1, le=256)
+    mlx_max_model_len: int = Field(default=4096, ge=257)
     base_url: str = "http://127.0.0.1:8000/v1"
     model: str = "google/diffusiongemma-26B-A4B-it"
     api_key: SecretStr | None = None

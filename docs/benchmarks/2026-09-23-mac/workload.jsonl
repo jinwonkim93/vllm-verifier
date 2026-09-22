@@ -1,0 +1,1 @@
+{"request": {"model": "jev-latest", "state": "Please refund the duplicate payment.", "questions": {"refund": {"type": "noul", "instructions": "Is a refund requested?"}}}}

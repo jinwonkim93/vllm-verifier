@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Apple Silicon MLX runtime, local text API, canvas controls and native diffusion metrics.
+
 - Experimental native vLLM decision execution with bounded token batches and request interleaving.
 - State-first prompts, token-prefix measurements, selective repairs and native comparison CLI.
 - CPU execution-contract tests and an explicit opt-in GPU integration gate.

@@ -5,9 +5,12 @@ It compiles Jev-shaped requests into tokenized work items, admits bounded batche
 verified Choice, Score and Noul responses. No OpenAI HTTP server is involved in this execution path.
 
 This is an **experimental offline execution engine**. The HTTP gateway remains a separate baseline;
-its endpoints do not silently switch to the native engine. Native GPU execution has not yet been
-validated in this repository's macOS development environment. CPU tests validate the compiler,
+its endpoints do not silently switch to the native engine. Native vLLM GPU execution still needs
+validation on an NVIDIA host; the MLX path has separate real-Mac validation results. CPU tests validate the compiler,
 admission, batching, repairs and runtime boundary using explicit test doubles.
+
+For Apple Silicon, use the [Mac runtime](macos.md). It executes through MLX rather than vLLM
+and currently supports one diffusion sequence at a time.
 
 ## Execution
 

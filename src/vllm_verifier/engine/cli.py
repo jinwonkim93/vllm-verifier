@@ -8,7 +8,8 @@ from dataclasses import asdict
 from pathlib import Path
 
 from ..models import SystemOneRequest
-from .core import DecisionEngine, EngineConfig
+from .core import DecisionEngine, EngineConfig, Runtime
+from .mlx import DEFAULT_MODEL, MLXRuntime
 from .native import VLLMRuntime
 
 
@@ -16,12 +17,14 @@ def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--dataset", type=Path, required=True)
     parser.add_argument("--output", type=Path, required=True)
-    parser.add_argument("--model", default="google/diffusiongemma-26B-A4B-it")
+    parser.add_argument("--runtime", choices=["vllm", "mlx"], default="vllm")
+    parser.add_argument("--model")
+    parser.add_argument("--canvas-tokens", type=int, default=256)
     parser.add_argument("--revision", help="Model/tokenizer revision for reproducible runs")
     parser.add_argument("--mode", choices=["batch", "isolated"], default="batch")
     parser.add_argument("--prefix-caching", action=argparse.BooleanOptionalAction, default=True)
     parser.add_argument("--tensor-parallel-size", type=int, default=1)
-    parser.add_argument("--max-model-len", type=int, default=16384)
+    parser.add_argument("--max-model-len", type=int)
     parser.add_argument("--batch-questions", type=int, default=32)
     parser.add_argument("--batch-tokens", type=int, default=131072)
     parser.add_argument("--output-tokens", type=int, default=2048)
@@ -29,6 +32,13 @@ def main() -> None:
     parser.add_argument("--warmup", type=int, default=1)
     parser.add_argument("--repeat", type=int, default=3)
     args = parser.parse_args()
+    args.model = args.model or (
+        DEFAULT_MODEL if args.runtime == "mlx" else "google/diffusiongemma-26B-A4B-it"
+    )
+    if args.max_model_len is None:
+        args.max_model_len = 4096 if args.runtime == "mlx" else 16384
+    if args.runtime == "mlx" and args.tensor_parallel_size != 1:
+        parser.error("MLX supports a single Mac GPU")
     if args.repeat < 1 or args.warmup < 0 or args.tensor_parallel_size < 1:
         parser.error("repeat and tensor parallel size must be positive; warmup cannot be negative")
     config = EngineConfig(
@@ -45,19 +55,32 @@ def main() -> None:
     if args.output.exists():
         parser.error("output already exists; choose a new path")
     args.output.parent.mkdir(parents=True, exist_ok=True)
-    # Must be set before importing vLLM. Preserve an explicit operator override.
-    os.environ.setdefault("VLLM_USE_V2_MODEL_RUNNER", "1")
-    runtime = VLLMRuntime(
-        args.model,
-        revision=args.revision,
-        tokenizer_revision=args.revision,
-        tensor_parallel_size=args.tensor_parallel_size,
-        max_model_len=args.max_model_len,
-        enable_prefix_caching=args.prefix_caching,
-    )
+    runtime: Runtime
+    if args.runtime == "mlx":
+        config.max_batch_questions = 1
+        runtime = MLXRuntime(
+            args.model,
+            revision=args.revision,
+            canvas_tokens=args.canvas_tokens,
+            prefix_caching=args.prefix_caching,
+            max_model_len=args.max_model_len,
+        )
+    else:
+        # Must be set before importing vLLM. Preserve an explicit operator override.
+        os.environ.setdefault("VLLM_USE_V2_MODEL_RUNNER", "1")
+        runtime = VLLMRuntime(
+            args.model,
+            revision=args.revision,
+            tokenizer_revision=args.revision,
+            tensor_parallel_size=args.tensor_parallel_size,
+            max_model_len=args.max_model_len,
+            enable_prefix_caching=args.prefix_caching,
+        )
     engine = DecisionEngine(runtime, args.model, config)
     for _ in range(args.warmup):
         engine.evaluate(requests)
+    if isinstance(runtime, MLXRuntime):
+        runtime.stats.clear()
     runs = []
     for _ in range(args.repeat):
         result = engine.evaluate(requests)
@@ -68,11 +91,16 @@ def main() -> None:
             }
         )
     report = {
-        "runtime": "native-vllm",
-        "vllm_version": importlib.metadata.version("vllm"),
+        "runtime": "native-" + args.runtime,
+        "runtime_version": importlib.metadata.version(
+            "mlx-vlm" if args.runtime == "mlx" else "vllm"
+        ),
+        "runtime_stats": getattr(runtime, "stats", []),
+        "canvas_tokens": args.canvas_tokens if args.runtime == "mlx" else None,
         "model": args.model,
         "revision": args.revision,
         "mode": args.mode,
+        "execution": "serial" if args.runtime == "mlx" else args.mode,
         "prefix_caching": args.prefix_caching,
         "tensor_parallel_size": args.tensor_parallel_size,
         "config": config.model_dump(),

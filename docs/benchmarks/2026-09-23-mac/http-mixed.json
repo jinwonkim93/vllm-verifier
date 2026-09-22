@@ -1,0 +1,42 @@
+{
+  "seconds": 11.625290292082354,
+  "status": 200,
+  "response": {
+    "model": "mlx-community/diffusiongemma-26B-A4B-it-4bit",
+    "answers": {
+      "department": {
+        "type": "choice",
+        "choice": "billing",
+        "probabilities": {
+          "billing": 1.0,
+          "technical": 0.0,
+          "sales": 0.0
+        },
+        "confidence": 1.0
+      },
+      "urgency": {
+        "type": "score",
+        "score": 1.9000000000000001,
+        "probabilities": {
+          "0": 0.0,
+          "1": 0.1,
+          "2": 0.9
+        },
+        "confidence": 0.7040967257106154,
+        "legend": {
+          "0": "No stated time constraint",
+          "1": "Needs attention this week",
+          "2": "Needs attention today"
+        }
+      },
+      "refund": {
+        "type": "noul",
+        "noul": 1.0
+      }
+    },
+    "usage": {
+      "input_tokens": 478,
+      "output_tokens": 60
+    }
+  }
+}

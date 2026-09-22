@@ -8,8 +8,15 @@ DiffusionGemma로 판단하고, 검증된 `choice`, `score`, `noul` 응답을 �
 
 [네이티브 엔진](native-engine.md)은 HTTP 추론 서버 없이 vLLM Python 런타임에 토큰 작업을
 직접 제출합니다. 질문별 격리를 유지하면서 배치 실행, 공유 state prefix, 토큰 예산,
-실패한 질문만 재시도하는 경로를 제공합니다. 현재는 오프라인 실험용이며 실제 GPU 검증이
-남아 있습니다. 직접 분류 head와 diffusion sampler 최적화는 후속 개발 항목입니다.
+실패한 질문만 재시도하는 경로를 제공합니다. vLLM 경로는 오프라인 실험용이며 NVIDIA GPU 검증이
+남아 있습니다. Mac용 MLX 경로는 실제 추론과 API 동작을 확인했습니다. 직접 분류 head와 diffusion sampler 최적화는 후속 개발 항목입니다.
+
+## Mac에서 실행
+
+Apple Silicon에서는 `uv sync --locked --extra mac`으로 설치한 뒤
+`uv run --extra mac vllm-verifier --runtime mlx --port 18080`으로 실행할 수 있습니다.
+4bit 모델 가중치 약 16.5GB를 내려받으며, Metal에서 텍스트 질문을 순차 처리합니다.
+24GB Mac에 권장하는 낮은 동시성 설정과 메모리 제한은 [Mac 실행 안내](macos.md)를 참고하세요.
 
 ## 실행
 

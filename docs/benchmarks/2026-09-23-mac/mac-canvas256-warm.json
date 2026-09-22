@@ -1,0 +1,221 @@
+{
+  "runtime": "native-mlx",
+  "runtime_version": "0.7.2",
+  "runtime_stats": [
+    {
+      "cached_tokens": 0,
+      "diffusion_canvas_tokens": 256,
+      "diffusion_denoising_steps": 4,
+      "diffusion_work_tokens": 1024,
+      "peak_memory": 17.656102116,
+      "prompt_tps": 665.7385559437527,
+      "generation_tps": 6.321754738187575
+    },
+    {
+      "cached_tokens": 0,
+      "diffusion_canvas_tokens": 256,
+      "diffusion_denoising_steps": 2,
+      "diffusion_work_tokens": 512,
+      "peak_memory": 17.519586843,
+      "prompt_tps": 665.2177950892118,
+      "generation_tps": 15.28234612610808
+    },
+    {
+      "cached_tokens": 0,
+      "diffusion_canvas_tokens": 256,
+      "diffusion_denoising_steps": 2,
+      "diffusion_work_tokens": 512,
+      "peak_memory": 17.519586843,
+      "prompt_tps": 663.4411106264273,
+      "generation_tps": 15.322413675128129
+    },
+    {
+      "cached_tokens": 0,
+      "diffusion_canvas_tokens": 256,
+      "diffusion_denoising_steps": 2,
+      "diffusion_work_tokens": 512,
+      "peak_memory": 17.519586843,
+      "prompt_tps": 665.2081462736156,
+      "generation_tps": 15.15779124822349
+    },
+    {
+      "cached_tokens": 0,
+      "diffusion_canvas_tokens": 256,
+      "diffusion_denoising_steps": 2,
+      "diffusion_work_tokens": 512,
+      "peak_memory": 17.656102116,
+      "prompt_tps": 662.4146905681229,
+      "generation_tps": 14.774812720518877
+    }
+  ],
+  "canvas_tokens": 256,
+  "model": "mlx-community/diffusiongemma-26B-A4B-it-4bit",
+  "revision": "a7a81407613811e8ba63af92ac0d852b809e191f",
+  "mode": "batch",
+  "execution": "serial",
+  "prefix_caching": false,
+  "tensor_parallel_size": 1,
+  "config": {
+    "max_batch_questions": 1,
+    "max_batch_tokens": 131072,
+    "max_model_len": 4096,
+    "output_tokens": 256,
+    "validation_retries": 1,
+    "max_requests": 128
+  },
+  "warmup_runs": 1,
+  "dataset": "/private/tmp/mac-smoke.jsonl",
+  "probability_source": "uncalibrated-model-estimates",
+  "runs": [
+    {
+      "stats": {
+        "submitted_questions": 1,
+        "repair_questions": 0,
+        "batches": 1,
+        "generation_seconds": 2.4400997499469668,
+        "elapsed_seconds": 2.4416973749175668,
+        "batch_sizes": [
+          1
+        ],
+        "shared_prefix_tokens": [
+          0
+        ]
+      },
+      "responses": [
+        {
+          "model": "mlx-community/diffusiongemma-26B-A4B-it-4bit",
+          "answers": {
+            "refund": {
+              "type": "noul",
+              "noul": 1.0
+            }
+          },
+          "usage": {
+            "input_tokens": 149,
+            "output_tokens": 14
+          }
+        }
+      ]
+    },
+    {
+      "stats": {
+        "submitted_questions": 1,
+        "repair_questions": 0,
+        "batches": 1,
+        "generation_seconds": 1.1417610421776772,
+        "elapsed_seconds": 1.1420933748595417,
+        "batch_sizes": [
+          1
+        ],
+        "shared_prefix_tokens": [
+          0
+        ]
+      },
+      "responses": [
+        {
+          "model": "mlx-community/diffusiongemma-26B-A4B-it-4bit",
+          "answers": {
+            "refund": {
+              "type": "noul",
+              "noul": 1.0
+            }
+          },
+          "usage": {
+            "input_tokens": 149,
+            "output_tokens": 14
+          }
+        }
+      ]
+    },
+    {
+      "stats": {
+        "submitted_questions": 1,
+        "repair_questions": 0,
+        "batches": 1,
+        "generation_seconds": 1.1400182920042425,
+        "elapsed_seconds": 1.1403474581893533,
+        "batch_sizes": [
+          1
+        ],
+        "shared_prefix_tokens": [
+          0
+        ]
+      },
+      "responses": [
+        {
+          "model": "mlx-community/diffusiongemma-26B-A4B-it-4bit",
+          "answers": {
+            "refund": {
+              "type": "noul",
+              "noul": 1.0
+            }
+          },
+          "usage": {
+            "input_tokens": 149,
+            "output_tokens": 14
+          }
+        }
+      ]
+    },
+    {
+      "stats": {
+        "submitted_questions": 1,
+        "repair_questions": 0,
+        "batches": 1,
+        "generation_seconds": 1.14932033396326,
+        "elapsed_seconds": 1.1496369580272585,
+        "batch_sizes": [
+          1
+        ],
+        "shared_prefix_tokens": [
+          0
+        ]
+      },
+      "responses": [
+        {
+          "model": "mlx-community/diffusiongemma-26B-A4B-it-4bit",
+          "answers": {
+            "refund": {
+              "type": "noul",
+              "noul": 1.0
+            }
+          },
+          "usage": {
+            "input_tokens": 149,
+            "output_tokens": 14
+          }
+        }
+      ]
+    },
+    {
+      "stats": {
+        "submitted_questions": 1,
+        "repair_questions": 0,
+        "batches": 1,
+        "generation_seconds": 1.1748074998613447,
+        "elapsed_seconds": 1.1751144169829786,
+        "batch_sizes": [
+          1
+        ],
+        "shared_prefix_tokens": [
+          0
+        ]
+      },
+      "responses": [
+        {
+          "model": "mlx-community/diffusiongemma-26B-A4B-it-4bit",
+          "answers": {
+            "refund": {
+              "type": "noul",
+              "noul": 1.0
+            }
+          },
+          "usage": {
+            "input_tokens": 149,
+            "output_tokens": 14
+          }
+        }
+      ]
+    }
+  ]
+}

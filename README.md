@@ -1,7 +1,8 @@
 # vLLM Verifier
 
-A Jev-compatible API for classification, scoring, and yes/no decisions, backed by
-[DiffusionGemma](https://huggingface.co/google/diffusiongemma-26B-A4B-it) on vLLM.
+Typed classification, scoring, and yes/no decisions with
+[DiffusionGemma](https://huggingface.co/google/diffusiongemma-26B-A4B-it), native vLLM/MLX
+execution paths, and a Jev-compatible HTTP API.
 
 Send text or structured data with a set of questions. Get typed answers your application can
 use to route requests, rank items, or choose its next action. Existing TypeSafe Python clients
@@ -23,9 +24,25 @@ vLLM generation batches without an HTTP inference server. It preserves question 
 shared state before question-specific tokens for prefix-cache reuse, and repairs only invalid
 answers. A native CLI records batch sizes, token usage and timings for isolated/batched comparisons.
 
-The native path is currently offline and GPU validation is pending. Direct classification heads,
+The vLLM native path is currently offline and its GPU validation is pending. Direct classification heads,
 custom diffusion sampling and continuous online admission are development milestones. The HTTP
 API below remains available as a compatible serving baseline.
+
+## Run on an Apple Silicon Mac
+
+```sh
+git clone https://github.com/jinwonkim93/vllm-verifier.git
+cd vllm-verifier
+export HF_HOME="${HF_HOME:-$HOME/.cache/diffusion-jev/huggingface}"
+uv sync --locked --extra mac
+VERIFIER_MAX_CONCURRENCY=1 VERIFIER_MAX_REQUESTS=2 \
+VERIFIER_MAX_OUTPUT_TOKENS=256 VERIFIER_REQUEST_TIMEOUT=300 \
+uv run --extra mac vllm-verifier --runtime mlx --port 18080
+```
+
+This loads the 4bit DiffusionGemma checkpoint directly through MLX/Metal. The first run downloads
+approximately 16.5 GB of weights. See [Mac setup](docs/macos.md) for memory limits, native workload
+execution and current text-only, sequential-generation support.
 
 ## Run with Docker
 

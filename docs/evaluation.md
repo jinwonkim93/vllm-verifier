@@ -67,7 +67,8 @@ concurrency, question count, state length and workload. Compare with an autoregr
 and Jev only under equivalent workloads. Diffusion's generation throughput advantage need not
 translate to lower latency for very short decision outputs, especially with repair generations.
 
-No GPU results are checked in because the model has not been run in this development environment.
+NVIDIA/vLLM GPU execution remains unverified. [Apple M5 MLX results](benchmarks/2026-09-23-mac/README.md)
+record actual local DiffusionGemma execution, separately from the synthetic HTTP baseline.
 
 ## Question-count and concurrency sweep
 

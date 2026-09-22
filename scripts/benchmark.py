@@ -26,7 +26,8 @@ async def run(args):
         for case in cases:
             queue.put_nowait(case)
     rows = []
-    headers = {"Authorization": "Bearer " + os.environ.get("VERIFIER_API_KEY", "")}
+    key = os.environ.get("VERIFIER_API_KEY")
+    headers = {"Authorization": "Bearer " + key} if key else {}
     async with httpx.AsyncClient(
         base_url=args.url.rstrip("/"), headers=headers, timeout=args.timeout
     ) as client:
