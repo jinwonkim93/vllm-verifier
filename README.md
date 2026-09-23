@@ -17,6 +17,12 @@ The server includes authentication, bounded admission, health checks, and Promet
 The Decision runtime scores candidates directly and batches questions across requests.
 Generation backends validate JSON output and retry invalid generations within a bounded deadline.
 
+## Customer-service chatbot
+
+Try [모아](examples/customer_service/README.md), a browser-based Korean customer-service example
+with 100 intents, multi-turn state tracking, slot correction, task resumption, and confirmation
+before simulated changes. It connects to either Kai or DiffusionGemma through the same API.
+
 ## Native decision execution
 
 The experimental [native engine](docs/native-engine.md) compiles typed questions into bounded

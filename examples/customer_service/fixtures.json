@@ -1,0 +1,22 @@
+{
+  "as_of": "2026-09-23",
+  "customer": {"name": "데모 고객", "tier": "실버", "points": 3200},
+  "orders": {
+    "ORD-1001": {"product": "에어버즈", "status": "배송 중", "eta": "2026-09-24 14:00~18:00", "tracking": "DEMO-71001", "location": "서울 배송 터미널", "amount": 79000, "address": "서울시 예시로 12", "quantity": 1, "option": "화이트"},
+    "ORD-1002": {"product": "트래블백", "status": "결제 완료", "eta": "2026-09-26 09:00~18:00", "tracking": "미발급", "location": "출고 준비 전", "amount": 59000, "address": "부산시 예시로 8", "quantity": 1, "option": "블랙"},
+    "ORD-1003": {"product": "텀블러", "status": "배송 완료", "eta": "2026-09-21 11:20 배송 완료", "tracking": "DEMO-71003", "location": "배송 완료", "amount": 24000, "address": "제주시 예시로 3", "quantity": 1, "option": "그린"}
+  },
+  "products": [
+    {"id":"P001","name":"에어버즈","aliases":["이어폰","에어 버즈","airbuds"],"tags":["무선","이어폰","블루투스","음악"],"price":79000,"stock":24,"description":"블루투스 5.3, 최대 24시간 배터리, USB-C 충전","sizes":"충전 케이스 60 × 45 mm","options":["화이트","블랙"],"rating":4.5,"restock":"상시 판매","warranty":"구매일로부터 1년","manual":"케이스를 열고 페어링 버튼을 3초 누른 후 기기의 Bluetooth 목록에서 에어버즈를 선택하세요."},
+    {"id":"P002","name":"트래블백","aliases":["여행 가방","여행용 가방","가방","트래블 백"],"tags":["여행","가방","수납","백팩"],"price":59000,"stock":8,"description":"24L 용량, 노트북 수납, 생활 방수","sizes":"45 × 30 × 18 cm","options":["블랙","베이지"],"rating":4.7,"restock":"상시 판매","warranty":"구매일로부터 6개월","manual":"세탁기 대신 젖은 천으로 닦고 그늘에서 건조하세요."},
+    {"id":"P003","name":"텀블러","aliases":["컵","보온병"],"tags":["컵","보온","물병","텀블러"],"price":24000,"stock":0,"description":"500ml, 스테인리스, 보온 6시간","sizes":"높이 22 cm, 지름 7 cm","options":["그린","화이트"],"rating":4.3,"restock":"2026-10-02 예정","warranty":"구매일로부터 6개월","manual":"중성 세제로 손세척하고 전자레인지에는 넣지 마세요."},
+    {"id":"P004","name":"데일리 티셔츠","aliases":["티셔츠","반팔","티"],"tags":["옷","면","반팔","티셔츠"],"price":19000,"stock":36,"description":"면 100%, 기본핏","sizes":"S: 가슴 48cm / M: 51cm / L: 54cm","options":["S","M","L"],"rating":4.4,"restock":"상시 판매","warranty":"상품 수령 후 7일 내 초기 불량 접수","manual":"30도 이하 물에 비슷한 색상끼리 세탁하세요."},
+    {"id":"P005","name":"미니 스피커","aliases":["스피커","블루투스 스피커"],"tags":["음악","스피커","블루투스","휴대용"],"price":49000,"stock":12,"description":"10W 출력, 블루투스 5.3, 배터리 12시간","sizes":"9 × 9 × 10 cm","options":["블랙","화이트"],"rating":4.6,"restock":"상시 판매","warranty":"구매일로부터 1년","manual":"전원 버튼을 2초 누른 후 Bluetooth 목록에서 미니 스피커를 선택하세요."}
+  ],
+  "events": [
+    {"name":"가을맞이","description":"가방·의류 최대 20% 할인","period":"2026-09-20 ~ 2026-09-30","eligibility":"모든 데모 회원"},
+    {"name":"신규회원","description":"첫 구매 10% 쿠폰 지급","period":"가입 후 30일","eligibility":"구매 이력이 없는 신규 데모 회원"},
+    {"name":"주말 특가","description":"주말 지정 상품 무료배송","period":"2026-09-26 ~ 2026-09-27","eligibility":"지정 상품을 3만원 이상 구매"}
+  ],
+  "coupons": {"WELCOME10":{"description":"첫 구매 10% 할인, 최대 5천원","expiry":"2026-10-23","condition":"신규회원·3만원 이상 구매"},"FALL20":{"description":"가방·의류 20% 할인, 최대 1만원","expiry":"2026-09-30","condition":"가방 또는 의류 5만원 이상 구매"}}
+}

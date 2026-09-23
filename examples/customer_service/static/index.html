@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>모아 · 고객센터 챗봇</title>
+    <link rel="stylesheet" href="/static/style.css" />
+    <script src="/static/app.js" defer></script>
+  </head>
+  <body>
+    <header>
+      <a class="brand" href="/">모아<span>customer care lab</span></a>
+      <div class="status">
+        <span class="dot"></span><span id="engine">모델 연결 대기</span>
+      </div>
+      <button id="reset" class="quiet">새 대화 ↗</button>
+    </header>
+    <main>
+      <aside class="catalog panel">
+        <div class="eyebrow">INTENT LIBRARY</div>
+        <h2>어떤 도움이<br />필요하세요?</h2>
+        <p class="muted">10개 영역 · 100개 인텐트</p>
+        <label class="search"
+          ><span>⌕</span
+          ><input
+            id="search"
+            placeholder="인텐트 찾아보기"
+            aria-label="인텐트 검색"
+        /></label>
+        <div id="catalog"></div>
+        <div class="catalog-foot">
+          선택하면 해당 업무로 바로 이동해요.<br />직접 입력한 문장은 모델이
+          분류해요.
+        </div>
+      </aside>
+      <section class="conversation panel">
+        <div class="chat-heading">
+          <div>
+            <span class="eyebrow">MOA ASSISTANT</span>
+            <h1>반가워요. 무엇을 도와드릴까요?</h1>
+          </div>
+          <span class="tag">LOCAL DEMO</span>
+        </div>
+        <div class="notice">
+          가상 상품·주문을 사용하는 체험입니다. 실제 개인정보를 입력하지 마세요.
+        </div>
+        <div id="messages" role="log" aria-live="polite">
+          <div id="welcome">
+            <div class="orb">m.</div>
+            <h2>문의는 짧게,<br />대화는 이어서.</h2>
+            <p>
+              주문번호를 나중에 알려줘도 괜찮아요.<br />이야기하던 내용을
+              기억하고 필요한 정보만 물어볼게요.
+            </p>
+            <div class="starter">
+              <button data-text="내 상품 언제 도착해?">
+                📦 상품 언제 도착해?</button
+              ><button data-text="무선 이어폰 찾아줘">🎧 상품 검색</button
+              ><button data-text="지금 진행 중인 이벤트 알려줘">
+                🎉 이벤트 조회</button
+              ><button data-text="상담사 연결해줘">💬 상담사 연결</button>
+            </div>
+          </div>
+        </div>
+        <div id="error" role="alert" hidden></div>
+        <div id="suggestions"></div>
+        <form id="composer">
+          <input
+            id="message"
+            maxlength="400"
+            placeholder="궁금한 점을 입력해주세요…"
+            aria-label="메시지"
+            autocomplete="off"
+          /><button id="send" type="submit" aria-label="메시지 보내기">
+            ↑
+          </button>
+        </form>
+        <div class="composer-foot">
+          <span id="activity">대화할 준비가 됐어요</span
+          ><span>예시 주문 ORD-1001 · ORD-1002 · ORD-1003</span>
+        </div>
+      </section>
+      <aside class="inspector panel">
+        <div class="eyebrow">LIVE DIALOGUE STATE</div>
+        <div class="inspector-title">
+          <h2>대화의 맥락</h2>
+          <span id="turn" class="turn">TURN 0</span>
+        </div>
+        <p class="muted">인텐트와 슬롯이 채워지는 과정을 확인하세요.</p>
+        <div class="state-block">
+          <label>현재 인텐트</label>
+          <h3 id="intent">아직 선택되지 않았어요</h3>
+          <span id="phase" class="phase">대기 중</span>
+        </div>
+        <div class="state-block">
+          <label>수집한 정보 · SLOTS</label>
+          <div id="slots" class="empty">대화를 시작하면 여기에 표시돼요.</div>
+        </div>
+        <div class="state-block">
+          <label>다음에 필요한 정보</label>
+          <div id="missing">—</div>
+        </div>
+        <div class="state-block">
+          <label>잠시 멈춘 문의</label>
+          <div id="suspended">없음</div>
+        </div>
+        <div class="state-block">
+          <label>이번 턴 처리</label>
+          <p id="route" class="route">모델 분류 또는 대화 상태 전이</p>
+          <div id="candidates"></div>
+        </div>
+        <details>
+          <summary>DST 원본 보기</summary>
+          <pre id="raw">{}</pre>
+        </details>
+        <div class="inspector-foot">
+          분류: Kai / DiffusionGemma<br />대화 상태: 명시적 프레임 · 슬롯
+          수집<br />확률은 보정된 정확도가 아닙니다.
+        </div>
+      </aside>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,34 @@
+[
+  {
+    "input": "내 상품 언제 도착해?",
+    "status": 503,
+    "seconds": 90.08232591697015,
+    "response": {
+      "detail": "분류 엔진에 연결하지 못했어요. Kai 또는 DiffusionGemma 서버를 확인해주세요. 대화 상태는 유지돼요."
+    }
+  },
+  {
+    "input": "ORD-1001",
+    "status": 503,
+    "seconds": 90.0324546250049,
+    "response": {
+      "detail": "분류 엔진에 연결하지 못했어요. Kai 또는 DiffusionGemma 서버를 확인해주세요. 대화 상태는 유지돼요."
+    }
+  },
+  {
+    "input": "그 주문 현재 어디야?",
+    "status": 503,
+    "seconds": 0.05733008403331041,
+    "response": {
+      "detail": "분류 엔진에 연결하지 못했어요. Kai 또는 DiffusionGemma 서버를 확인해주세요. 대화 상태는 유지돼요."
+    }
+  },
+  {
+    "input": "이벤트 조회해줘",
+    "status": 503,
+    "seconds": 0.00488333310931921,
+    "response": {
+      "detail": "분류 엔진에 연결하지 못했어요. Kai 또는 DiffusionGemma 서버를 확인해주세요. 대화 상태는 유지돼요."
+    }
+  }
+]

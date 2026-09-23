@@ -1,0 +1,775 @@
+[
+  {
+    "input": "내 상품 언제 도착해?",
+    "status": 200,
+    "seconds": 0.1295228749513626,
+    "response": {
+      "reply": {
+        "role": "assistant",
+        "text": "도착 예정 시간을 도와드릴게요. 주문번호를 알려주세요. 예: ORD-1001",
+        "cards": [],
+        "suggestions": [
+          "ORD-1001"
+        ]
+      },
+      "messages": [
+        {
+          "role": "user",
+          "text": "내 상품 언제 도착해?"
+        },
+        {
+          "role": "assistant",
+          "text": "도착 예정 시간을 도와드릴게요. 주문번호를 알려주세요. 예: ORD-1001",
+          "cards": [],
+          "suggestions": [
+            "ORD-1001"
+          ]
+        }
+      ],
+      "state": {
+        "turn": 1,
+        "active": {
+          "intent": "delivery_eta",
+          "slots": {},
+          "phase": "collecting",
+          "label": "도착 예정 시간",
+          "missing_slots": [
+            "order_id"
+          ]
+        },
+        "suspended": [],
+        "last_completed": null,
+        "clarification_candidates": [],
+        "demo_actions": 0
+      },
+      "trace": {
+        "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+        "category": "delivery",
+        "category_probability": 0.4958304762840271,
+        "routing": "hierarchical System One Choice (category → intent)",
+        "seconds": 0.12729575019329786,
+        "needs_clarification": false,
+        "candidates": [
+          {
+            "id": "delivery_eta",
+            "label": "도착 예정 시간",
+            "probability": 0.5059854984283447
+          },
+          {
+            "id": "delivery_delay",
+            "label": "배송 지연",
+            "probability": 0.24147702753543854
+          },
+          {
+            "id": "delivery_tracking",
+            "label": "배송 추적",
+            "probability": 0.07125670462846756
+          }
+        ]
+      }
+    }
+  },
+  {
+    "input": "ORD-1001",
+    "status": 200,
+    "seconds": 0.0012163331266492605,
+    "response": {
+      "reply": {
+        "role": "assistant",
+        "text": "도착 예정: 2026-09-24 14:00~18:00.",
+        "cards": [
+          {
+            "id": "ORD-1001",
+            "product": "에어버즈",
+            "status": "배송 중",
+            "eta": "2026-09-24 14:00~18:00",
+            "tracking": "DEMO-71001",
+            "location": "서울 배송 터미널",
+            "amount": 79000,
+            "address": "서울시 예시로 12",
+            "quantity": 1,
+            "option": "화이트"
+          }
+        ],
+        "suggestions": []
+      },
+      "messages": [
+        {
+          "role": "user",
+          "text": "내 상품 언제 도착해?"
+        },
+        {
+          "role": "assistant",
+          "text": "도착 예정 시간을 도와드릴게요. 주문번호를 알려주세요. 예: ORD-1001",
+          "cards": [],
+          "suggestions": [
+            "ORD-1001"
+          ]
+        },
+        {
+          "role": "user",
+          "text": "ORD-1001"
+        },
+        {
+          "role": "assistant",
+          "text": "도착 예정: 2026-09-24 14:00~18:00.",
+          "cards": [
+            {
+              "id": "ORD-1001",
+              "product": "에어버즈",
+              "status": "배송 중",
+              "eta": "2026-09-24 14:00~18:00",
+              "tracking": "DEMO-71001",
+              "location": "서울 배송 터미널",
+              "amount": 79000,
+              "address": "서울시 예시로 12",
+              "quantity": 1,
+              "option": "화이트"
+            }
+          ],
+          "suggestions": []
+        }
+      ],
+      "state": {
+        "turn": 2,
+        "active": null,
+        "suspended": [],
+        "last_completed": {
+          "intent": "delivery_eta",
+          "slots": {
+            "order_id": "ORD-1001"
+          },
+          "phase": "completed",
+          "label": "도착 예정 시간",
+          "missing_slots": []
+        },
+        "clarification_candidates": [],
+        "demo_actions": 0
+      },
+      "trace": {
+        "routing": "dialogue state",
+        "model": null
+      }
+    }
+  },
+  {
+    "input": "주문 수량 변경해줘",
+    "status": 200,
+    "seconds": 0.09350445796735585,
+    "response": {
+      "reply": {
+        "role": "assistant",
+        "text": "주문 수량 변경을 도와드릴게요. 주문번호를 알려주세요. 예: ORD-1001",
+        "cards": [],
+        "suggestions": [
+          "ORD-1001"
+        ]
+      },
+      "messages": [
+        {
+          "role": "user",
+          "text": "내 상품 언제 도착해?"
+        },
+        {
+          "role": "assistant",
+          "text": "도착 예정 시간을 도와드릴게요. 주문번호를 알려주세요. 예: ORD-1001",
+          "cards": [],
+          "suggestions": [
+            "ORD-1001"
+          ]
+        },
+        {
+          "role": "user",
+          "text": "ORD-1001"
+        },
+        {
+          "role": "assistant",
+          "text": "도착 예정: 2026-09-24 14:00~18:00.",
+          "cards": [
+            {
+              "id": "ORD-1001",
+              "product": "에어버즈",
+              "status": "배송 중",
+              "eta": "2026-09-24 14:00~18:00",
+              "tracking": "DEMO-71001",
+              "location": "서울 배송 터미널",
+              "amount": 79000,
+              "address": "서울시 예시로 12",
+              "quantity": 1,
+              "option": "화이트"
+            }
+          ],
+          "suggestions": []
+        },
+        {
+          "role": "user",
+          "text": "주문 수량 변경해줘"
+        },
+        {
+          "role": "assistant",
+          "text": "주문 수량 변경을 도와드릴게요. 주문번호를 알려주세요. 예: ORD-1001",
+          "cards": [],
+          "suggestions": [
+            "ORD-1001"
+          ]
+        }
+      ],
+      "state": {
+        "turn": 3,
+        "active": {
+          "intent": "order_quantity",
+          "slots": {},
+          "phase": "collecting",
+          "label": "주문 수량 변경",
+          "missing_slots": [
+            "order_id",
+            "quantity"
+          ]
+        },
+        "suspended": [],
+        "last_completed": {
+          "intent": "delivery_eta",
+          "slots": {
+            "order_id": "ORD-1001"
+          },
+          "phase": "completed",
+          "label": "도착 예정 시간",
+          "missing_slots": []
+        },
+        "clarification_candidates": [],
+        "demo_actions": 0
+      },
+      "trace": {
+        "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+        "category": "orders",
+        "category_probability": 0.4815349876880646,
+        "routing": "hierarchical System One Choice (category → intent)",
+        "seconds": 0.09239770891144872,
+        "needs_clarification": false,
+        "candidates": [
+          {
+            "id": "order_quantity",
+            "label": "주문 수량 변경",
+            "probability": 0.7559328675270081
+          },
+          {
+            "id": "order_status",
+            "label": "주문 상태",
+            "probability": 0.1125330924987793
+          },
+          {
+            "id": "order_cancel",
+            "label": "주문 취소",
+            "probability": 0.027286777272820473
+          }
+        ]
+      }
+    }
+  },
+  {
+    "input": "ORD-1002",
+    "status": 200,
+    "seconds": 0.0010597920045256615,
+    "response": {
+      "reply": {
+        "role": "assistant",
+        "text": "주문 수량 변경을 도와드릴게요. 몇 개로 변경할까요? 1~99개를 입력해주세요.",
+        "cards": [],
+        "suggestions": [
+          "2개"
+        ]
+      },
+      "messages": [
+        {
+          "role": "user",
+          "text": "내 상품 언제 도착해?"
+        },
+        {
+          "role": "assistant",
+          "text": "도착 예정 시간을 도와드릴게요. 주문번호를 알려주세요. 예: ORD-1001",
+          "cards": [],
+          "suggestions": [
+            "ORD-1001"
+          ]
+        },
+        {
+          "role": "user",
+          "text": "ORD-1001"
+        },
+        {
+          "role": "assistant",
+          "text": "도착 예정: 2026-09-24 14:00~18:00.",
+          "cards": [
+            {
+              "id": "ORD-1001",
+              "product": "에어버즈",
+              "status": "배송 중",
+              "eta": "2026-09-24 14:00~18:00",
+              "tracking": "DEMO-71001",
+              "location": "서울 배송 터미널",
+              "amount": 79000,
+              "address": "서울시 예시로 12",
+              "quantity": 1,
+              "option": "화이트"
+            }
+          ],
+          "suggestions": []
+        },
+        {
+          "role": "user",
+          "text": "주문 수량 변경해줘"
+        },
+        {
+          "role": "assistant",
+          "text": "주문 수량 변경을 도와드릴게요. 주문번호를 알려주세요. 예: ORD-1001",
+          "cards": [],
+          "suggestions": [
+            "ORD-1001"
+          ]
+        },
+        {
+          "role": "user",
+          "text": "ORD-1002"
+        },
+        {
+          "role": "assistant",
+          "text": "주문 수량 변경을 도와드릴게요. 몇 개로 변경할까요? 1~99개를 입력해주세요.",
+          "cards": [],
+          "suggestions": [
+            "2개"
+          ]
+        }
+      ],
+      "state": {
+        "turn": 4,
+        "active": {
+          "intent": "order_quantity",
+          "slots": {
+            "order_id": "ORD-1002"
+          },
+          "phase": "collecting",
+          "label": "주문 수량 변경",
+          "missing_slots": [
+            "quantity"
+          ]
+        },
+        "suspended": [],
+        "last_completed": {
+          "intent": "delivery_eta",
+          "slots": {
+            "order_id": "ORD-1001"
+          },
+          "phase": "completed",
+          "label": "도착 예정 시간",
+          "missing_slots": []
+        },
+        "clarification_candidates": [],
+        "demo_actions": 0
+      },
+      "trace": {
+        "routing": "dialogue state",
+        "model": null
+      }
+    }
+  },
+  {
+    "input": "2개",
+    "status": 200,
+    "seconds": 0.0008920829277485609,
+    "response": {
+      "reply": {
+        "role": "assistant",
+        "text": "주문 수량 변경\n주문번호: ORD-1002 / 수량: 2\n이 내용으로 데모 접수할까요? 실제 주문 변경이나 상담 연결은 하지 않아요.",
+        "cards": [],
+        "suggestions": [
+          "네",
+          "취소"
+        ]
+      },
+      "messages": [
+        {
+          "role": "user",
+          "text": "내 상품 언제 도착해?"
+        },
+        {
+          "role": "assistant",
+          "text": "도착 예정 시간을 도와드릴게요. 주문번호를 알려주세요. 예: ORD-1001",
+          "cards": [],
+          "suggestions": [
+            "ORD-1001"
+          ]
+        },
+        {
+          "role": "user",
+          "text": "ORD-1001"
+        },
+        {
+          "role": "assistant",
+          "text": "도착 예정: 2026-09-24 14:00~18:00.",
+          "cards": [
+            {
+              "id": "ORD-1001",
+              "product": "에어버즈",
+              "status": "배송 중",
+              "eta": "2026-09-24 14:00~18:00",
+              "tracking": "DEMO-71001",
+              "location": "서울 배송 터미널",
+              "amount": 79000,
+              "address": "서울시 예시로 12",
+              "quantity": 1,
+              "option": "화이트"
+            }
+          ],
+          "suggestions": []
+        },
+        {
+          "role": "user",
+          "text": "주문 수량 변경해줘"
+        },
+        {
+          "role": "assistant",
+          "text": "주문 수량 변경을 도와드릴게요. 주문번호를 알려주세요. 예: ORD-1001",
+          "cards": [],
+          "suggestions": [
+            "ORD-1001"
+          ]
+        },
+        {
+          "role": "user",
+          "text": "ORD-1002"
+        },
+        {
+          "role": "assistant",
+          "text": "주문 수량 변경을 도와드릴게요. 몇 개로 변경할까요? 1~99개를 입력해주세요.",
+          "cards": [],
+          "suggestions": [
+            "2개"
+          ]
+        },
+        {
+          "role": "user",
+          "text": "2개"
+        },
+        {
+          "role": "assistant",
+          "text": "주문 수량 변경\n주문번호: ORD-1002 / 수량: 2\n이 내용으로 데모 접수할까요? 실제 주문 변경이나 상담 연결은 하지 않아요.",
+          "cards": [],
+          "suggestions": [
+            "네",
+            "취소"
+          ]
+        }
+      ],
+      "state": {
+        "turn": 5,
+        "active": {
+          "intent": "order_quantity",
+          "slots": {
+            "order_id": "ORD-1002",
+            "quantity": "2"
+          },
+          "phase": "confirming",
+          "label": "주문 수량 변경",
+          "missing_slots": []
+        },
+        "suspended": [],
+        "last_completed": {
+          "intent": "delivery_eta",
+          "slots": {
+            "order_id": "ORD-1001"
+          },
+          "phase": "completed",
+          "label": "도착 예정 시간",
+          "missing_slots": []
+        },
+        "clarification_candidates": [],
+        "demo_actions": 0
+      },
+      "trace": {
+        "routing": "dialogue state",
+        "model": null
+      }
+    }
+  },
+  {
+    "input": "아니 3개",
+    "status": 200,
+    "seconds": 0.0010164580307900906,
+    "response": {
+      "reply": {
+        "role": "assistant",
+        "text": "수정했어요. 주문 수량 변경\n주문번호: ORD-1002 / 수량: 3\n이 내용으로 데모 접수할까요? 실제 주문 변경이나 상담 연결은 하지 않아요.",
+        "cards": [],
+        "suggestions": [
+          "네",
+          "취소"
+        ]
+      },
+      "messages": [
+        {
+          "role": "user",
+          "text": "내 상품 언제 도착해?"
+        },
+        {
+          "role": "assistant",
+          "text": "도착 예정 시간을 도와드릴게요. 주문번호를 알려주세요. 예: ORD-1001",
+          "cards": [],
+          "suggestions": [
+            "ORD-1001"
+          ]
+        },
+        {
+          "role": "user",
+          "text": "ORD-1001"
+        },
+        {
+          "role": "assistant",
+          "text": "도착 예정: 2026-09-24 14:00~18:00.",
+          "cards": [
+            {
+              "id": "ORD-1001",
+              "product": "에어버즈",
+              "status": "배송 중",
+              "eta": "2026-09-24 14:00~18:00",
+              "tracking": "DEMO-71001",
+              "location": "서울 배송 터미널",
+              "amount": 79000,
+              "address": "서울시 예시로 12",
+              "quantity": 1,
+              "option": "화이트"
+            }
+          ],
+          "suggestions": []
+        },
+        {
+          "role": "user",
+          "text": "주문 수량 변경해줘"
+        },
+        {
+          "role": "assistant",
+          "text": "주문 수량 변경을 도와드릴게요. 주문번호를 알려주세요. 예: ORD-1001",
+          "cards": [],
+          "suggestions": [
+            "ORD-1001"
+          ]
+        },
+        {
+          "role": "user",
+          "text": "ORD-1002"
+        },
+        {
+          "role": "assistant",
+          "text": "주문 수량 변경을 도와드릴게요. 몇 개로 변경할까요? 1~99개를 입력해주세요.",
+          "cards": [],
+          "suggestions": [
+            "2개"
+          ]
+        },
+        {
+          "role": "user",
+          "text": "2개"
+        },
+        {
+          "role": "assistant",
+          "text": "주문 수량 변경\n주문번호: ORD-1002 / 수량: 2\n이 내용으로 데모 접수할까요? 실제 주문 변경이나 상담 연결은 하지 않아요.",
+          "cards": [],
+          "suggestions": [
+            "네",
+            "취소"
+          ]
+        },
+        {
+          "role": "user",
+          "text": "아니 3개"
+        },
+        {
+          "role": "assistant",
+          "text": "수정했어요. 주문 수량 변경\n주문번호: ORD-1002 / 수량: 3\n이 내용으로 데모 접수할까요? 실제 주문 변경이나 상담 연결은 하지 않아요.",
+          "cards": [],
+          "suggestions": [
+            "네",
+            "취소"
+          ]
+        }
+      ],
+      "state": {
+        "turn": 6,
+        "active": {
+          "intent": "order_quantity",
+          "slots": {
+            "order_id": "ORD-1002",
+            "quantity": "3"
+          },
+          "phase": "confirming",
+          "label": "주문 수량 변경",
+          "missing_slots": []
+        },
+        "suspended": [],
+        "last_completed": {
+          "intent": "delivery_eta",
+          "slots": {
+            "order_id": "ORD-1001"
+          },
+          "phase": "completed",
+          "label": "도착 예정 시간",
+          "missing_slots": []
+        },
+        "clarification_candidates": [],
+        "demo_actions": 0
+      },
+      "trace": {
+        "routing": "dialogue state",
+        "model": null
+      }
+    }
+  },
+  {
+    "input": "네",
+    "status": 200,
+    "seconds": 0.0011677921283990145,
+    "response": {
+      "reply": {
+        "role": "assistant",
+        "text": "주문 수량 변경 데모 접수를 완료했어요. 접수번호 DEMO-0001. 실제 주문·계정 변경, 결제 또는 상담 연결은 발생하지 않아요.",
+        "cards": [
+          {
+            "id": "DEMO-0001",
+            "intent": "order_quantity",
+            "slots": {
+              "order_id": "ORD-1002",
+              "quantity": "3"
+            }
+          }
+        ],
+        "suggestions": []
+      },
+      "messages": [
+        {
+          "role": "user",
+          "text": "내 상품 언제 도착해?"
+        },
+        {
+          "role": "assistant",
+          "text": "도착 예정 시간을 도와드릴게요. 주문번호를 알려주세요. 예: ORD-1001",
+          "cards": [],
+          "suggestions": [
+            "ORD-1001"
+          ]
+        },
+        {
+          "role": "user",
+          "text": "ORD-1001"
+        },
+        {
+          "role": "assistant",
+          "text": "도착 예정: 2026-09-24 14:00~18:00.",
+          "cards": [
+            {
+              "id": "ORD-1001",
+              "product": "에어버즈",
+              "status": "배송 중",
+              "eta": "2026-09-24 14:00~18:00",
+              "tracking": "DEMO-71001",
+              "location": "서울 배송 터미널",
+              "amount": 79000,
+              "address": "서울시 예시로 12",
+              "quantity": 1,
+              "option": "화이트"
+            }
+          ],
+          "suggestions": []
+        },
+        {
+          "role": "user",
+          "text": "주문 수량 변경해줘"
+        },
+        {
+          "role": "assistant",
+          "text": "주문 수량 변경을 도와드릴게요. 주문번호를 알려주세요. 예: ORD-1001",
+          "cards": [],
+          "suggestions": [
+            "ORD-1001"
+          ]
+        },
+        {
+          "role": "user",
+          "text": "ORD-1002"
+        },
+        {
+          "role": "assistant",
+          "text": "주문 수량 변경을 도와드릴게요. 몇 개로 변경할까요? 1~99개를 입력해주세요.",
+          "cards": [],
+          "suggestions": [
+            "2개"
+          ]
+        },
+        {
+          "role": "user",
+          "text": "2개"
+        },
+        {
+          "role": "assistant",
+          "text": "주문 수량 변경\n주문번호: ORD-1002 / 수량: 2\n이 내용으로 데모 접수할까요? 실제 주문 변경이나 상담 연결은 하지 않아요.",
+          "cards": [],
+          "suggestions": [
+            "네",
+            "취소"
+          ]
+        },
+        {
+          "role": "user",
+          "text": "아니 3개"
+        },
+        {
+          "role": "assistant",
+          "text": "수정했어요. 주문 수량 변경\n주문번호: ORD-1002 / 수량: 3\n이 내용으로 데모 접수할까요? 실제 주문 변경이나 상담 연결은 하지 않아요.",
+          "cards": [],
+          "suggestions": [
+            "네",
+            "취소"
+          ]
+        },
+        {
+          "role": "user",
+          "text": "네"
+        },
+        {
+          "role": "assistant",
+          "text": "주문 수량 변경 데모 접수를 완료했어요. 접수번호 DEMO-0001. 실제 주문·계정 변경, 결제 또는 상담 연결은 발생하지 않아요.",
+          "cards": [
+            {
+              "id": "DEMO-0001",
+              "intent": "order_quantity",
+              "slots": {
+                "order_id": "ORD-1002",
+                "quantity": "3"
+              }
+            }
+          ],
+          "suggestions": []
+        }
+      ],
+      "state": {
+        "turn": 7,
+        "active": null,
+        "suspended": [],
+        "last_completed": {
+          "intent": "order_quantity",
+          "slots": {
+            "order_id": "ORD-1002",
+            "quantity": "3"
+          },
+          "phase": "completed",
+          "label": "주문 수량 변경",
+          "missing_slots": []
+        },
+        "clarification_candidates": [],
+        "demo_actions": 1
+      },
+      "trace": {
+        "routing": "dialogue state",
+        "model": null
+      }
+    }
+  }
+]

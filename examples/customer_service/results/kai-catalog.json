@@ -1,0 +1,2057 @@
+{
+  "dataset": "Authored catalog examples; not a held-out benchmark",
+  "count": 100,
+  "correct": 27,
+  "clarifications": 62,
+  "median_seconds": 0.049580896040424705,
+  "rows": [
+    {
+      "expected": "order_status",
+      "input": "ORD-1001 주문 상태 알려줘",
+      "predicted": "order_status",
+      "candidates": [
+        {
+          "id": "order_status",
+          "label": "주문 상태",
+          "probability": 0.9177790880203247
+        },
+        {
+          "id": "order_cancel",
+          "label": "주문 취소",
+          "probability": 0.016417935490608215
+        },
+        {
+          "id": "order_confirmation",
+          "label": "주문 확인서",
+          "probability": 0.013360301032662392
+        }
+      ],
+      "trace": {
+        "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+        "category": "orders",
+        "category_probability": 0.7116625905036926,
+        "routing": "hierarchical System One Choice (category → intent)",
+        "seconds": 0.45757579198107123,
+        "needs_clarification": false
+      }
+    },
+    {
+      "expected": "order_history",
+      "input": "최근 주문 내역 보여줘",
+      "predicted": "order_history",
+      "candidates": [
+        {
+          "id": "order_history",
+          "label": "주문 내역",
+          "probability": 0.6211815476417542
+        },
+        {
+          "id": "order_status",
+          "label": "주문 상태",
+          "probability": 0.18250752985477448
+        },
+        {
+          "id": "order_confirmation",
+          "label": "주문 확인서",
+          "probability": 0.03741304576396942
+        }
+      ],
+      "trace": {
+        "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+        "category": "orders",
+        "category_probability": 0.501104474067688,
+        "routing": "hierarchical System One Choice (category → intent)",
+        "seconds": 0.09053133288398385,
+        "needs_clarification": false
+      }
+    },
+    {
+      "expected": "order_cancel",
+      "input": "주문 취소하고 싶어",
+      "predicted": "order_cancel",
+      "candidates": [
+        {
+          "id": "order_cancel",
+          "label": "주문 취소",
+          "probability": 0.910528302192688
+        },
+        {
+          "id": "order_status",
+          "label": "주문 상태",
+          "probability": 0.034010063856840134
+        },
+        {
+          "id": "order_split",
+          "label": "주문 분리 배송",
+          "probability": 0.012348182499408722
+        }
+      ],
+      "trace": {
+        "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+        "category": "orders",
+        "category_probability": 0.46641770005226135,
+        "routing": "hierarchical System One Choice (category → intent)",
+        "seconds": 0.08818283420987427,
+        "needs_clarification": false
+      }
+    },
+    {
+      "expected": "order_quantity",
+      "input": "주문 수량을 바꾸고 싶어",
+      "predicted": "order_quantity",
+      "candidates": [
+        {
+          "id": "order_quantity",
+          "label": "주문 수량 변경",
+          "probability": 0.764099657535553
+        },
+        {
+          "id": "order_status",
+          "label": "주문 상태",
+          "probability": 0.08660367131233215
+        },
+        {
+          "id": "order_cancel",
+          "label": "주문 취소",
+          "probability": 0.02901998534798622
+        }
+      ],
+      "trace": {
+        "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+        "category": "orders",
+        "category_probability": 0.4554438889026642,
+        "routing": "hierarchical System One Choice (category → intent)",
+        "seconds": 0.203585792100057,
+        "needs_clarification": false
+      }
+    },
+    {
+      "expected": "order_option",
+      "input": "주문한 상품 색상 변경해줘",
+      "predicted": null,
+      "candidates": [
+        {
+          "id": "order_status",
+          "label": "주문 상태",
+          "probability": 0.3277490437030792
+        },
+        {
+          "id": "order_option",
+          "label": "주문 옵션 변경",
+          "probability": 0.2885749638080597
+        },
+        {
+          "id": "order_quantity",
+          "label": "주문 수량 변경",
+          "probability": 0.09008649736642838
+        }
+      ],
+      "trace": {
+        "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+        "category": "orders",
+        "category_probability": 0.3634979724884033,
+        "routing": "hierarchical System One Choice (category → intent)",
+        "seconds": 0.08656258415430784,
+        "needs_clarification": true
+      }
+    },
+    {
+      "expected": "order_confirmation",
+      "input": "주문 확인서가 필요해",
+      "predicted": "order_confirmation",
+      "candidates": [
+        {
+          "id": "order_confirmation",
+          "label": "주문 확인서",
+          "probability": 0.5791268348693848
+        },
+        {
+          "id": "order_status",
+          "label": "주문 상태",
+          "probability": 0.20641310513019562
+        },
+        {
+          "id": "order_cancel",
+          "label": "주문 취소",
+          "probability": 0.051066428422927856
+        }
+      ],
+      "trace": {
+        "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+        "category": "orders",
+        "category_probability": 0.46626710891723633,
+        "routing": "hierarchical System One Choice (category → intent)",
+        "seconds": 0.08620787505060434,
+        "needs_clarification": false
+      }
+    },
+    {
+      "expected": "order_receipt",
+      "input": "구매 영수증 보여줘",
+      "predicted": null,
+      "candidates": [],
+      "trace": {
+        "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+        "category": "out_of_scope",
+        "category_probability": 0.3100503087043762,
+        "routing": "hierarchical System One Choice (category → intent)",
+        "seconds": 0.05296400003135204
+      }
+    },
+    {
+      "expected": "guest_order",
+      "input": "비회원 주문 조회하고 싶어",
+      "predicted": null,
+      "candidates": [],
+      "trace": {
+        "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+        "category": "out_of_scope",
+        "category_probability": 0.46775317192077637,
+        "routing": "hierarchical System One Choice (category → intent)",
+        "seconds": 0.04934508306905627
+      }
+    },
+    {
+      "expected": "preorder",
+      "input": "예약 판매 일정 알려줘",
+      "predicted": "delivery_delay",
+      "candidates": [
+        {
+          "id": "delivery_delay",
+          "label": "배송 지연",
+          "probability": 0.36512571573257446
+        },
+        {
+          "id": "delivery_eta",
+          "label": "도착 예정 시간",
+          "probability": 0.2516553997993469
+        },
+        {
+          "id": "delivery_tracking",
+          "label": "배송 추적",
+          "probability": 0.08736459910869598
+        }
+      ],
+      "trace": {
+        "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+        "category": "delivery",
+        "category_probability": 0.27658984065055847,
+        "routing": "hierarchical System One Choice (category → intent)",
+        "seconds": 0.10270108305849135,
+        "needs_clarification": false
+      }
+    },
+    {
+      "expected": "order_split",
+      "input": "주문을 나눠서 배송할 수 있어?",
+      "predicted": null,
+      "candidates": [
+        {
+          "id": "delivery_delay",
+          "label": "배송 지연",
+          "probability": 0.329112708568573
+        },
+        {
+          "id": "delivery_address",
+          "label": "배송지 변경",
+          "probability": 0.30316391587257385
+        },
+        {
+          "id": "delivery_eta",
+          "label": "도착 예정 시간",
+          "probability": 0.08236275613307953
+        }
+      ],
+      "trace": {
+        "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+        "category": "delivery",
+        "category_probability": 0.6702083349227905,
+        "routing": "hierarchical System One Choice (category → intent)",
+        "seconds": 0.09296258282847703,
+        "needs_clarification": true
+      }
+    },
+    {
+      "expected": "delivery_eta",
+      "input": "내 상품 언제 도착해?",
+      "predicted": "delivery_eta",
+      "candidates": [
+        {
+          "id": "delivery_eta",
+          "label": "도착 예정 시간",
+          "probability": 0.5059854984283447
+        },
+        {
+          "id": "delivery_delay",
+          "label": "배송 지연",
+          "probability": 0.24147702753543854
+        },
+        {
+          "id": "delivery_tracking",
+          "label": "배송 추적",
+          "probability": 0.07125670462846756
+        }
+      ],
+      "trace": {
+        "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+        "category": "delivery",
+        "category_probability": 0.4958304762840271,
+        "routing": "hierarchical System One Choice (category → intent)",
+        "seconds": 0.09572912519797683,
+        "needs_clarification": false
+      }
+    },
+    {
+      "expected": "delivery_tracking",
+      "input": "택배 지금 어디 있어?",
+      "predicted": null,
+      "candidates": [],
+      "trace": {
+        "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+        "category": "out_of_scope",
+        "category_probability": 0.33595266938209534,
+        "routing": "hierarchical System One Choice (category → intent)",
+        "seconds": 0.049397584050893784
+      }
+    },
+    {
+      "expected": "delivery_delay",
+      "input": "배송이 예정일보다 늦어졌어",
+      "predicted": "delivery_delay",
+      "candidates": [
+        {
+          "id": "delivery_delay",
+          "label": "배송 지연",
+          "probability": 0.7100540995597839
+        },
+        {
+          "id": "delivery_eta",
+          "label": "도착 예정 시간",
+          "probability": 0.13018889725208282
+        },
+        {
+          "id": "delivery_tracking",
+          "label": "배송 추적",
+          "probability": 0.03449816629290581
+        }
+      ],
+      "trace": {
+        "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+        "category": "delivery",
+        "category_probability": 0.6224624514579773,
+        "routing": "hierarchical System One Choice (category → intent)",
+        "seconds": 0.08983512502163649,
+        "needs_clarification": false
+      }
+    },
+    {
+      "expected": "delivery_fee",
+      "input": "배송비가 얼마야?",
+      "predicted": "delivery_fee",
+      "candidates": [
+        {
+          "id": "delivery_fee",
+          "label": "배송비 안내",
+          "probability": 0.4430971145629883
+        },
+        {
+          "id": "delivery_delay",
+          "label": "배송 지연",
+          "probability": 0.21784056723117828
+        },
+        {
+          "id": "delivery_eta",
+          "label": "도착 예정 시간",
+          "probability": 0.09108269214630127
+        }
+      ],
+      "trace": {
+        "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+        "category": "delivery",
+        "category_probability": 0.64226895570755,
+        "routing": "hierarchical System One Choice (category → intent)",
+        "seconds": 0.0893501250538975,
+        "needs_clarification": false
+      }
+    },
+    {
+      "expected": "delivery_region",
+      "input": "제주도 배송 가능해?",
+      "predicted": "delivery_region",
+      "candidates": [
+        {
+          "id": "delivery_region",
+          "label": "배송 가능 지역",
+          "probability": 0.4769749343395233
+        },
+        {
+          "id": "delivery_delay",
+          "label": "배송 지연",
+          "probability": 0.25845107436180115
+        },
+        {
+          "id": "delivery_eta",
+          "label": "도착 예정 시간",
+          "probability": 0.07083714753389359
+        }
+      ],
+      "trace": {
+        "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+        "category": "delivery",
+        "category_probability": 0.6941947340965271,
+        "routing": "hierarchical System One Choice (category → intent)",
+        "seconds": 0.08824575017206371,
+        "needs_clarification": false
+      }
+    },
+    {
+      "expected": "delivery_address",
+      "input": "배송 주소를 바꾸고 싶어",
+      "predicted": "delivery_address",
+      "candidates": [
+        {
+          "id": "delivery_address",
+          "label": "배송지 변경",
+          "probability": 0.7697150111198425
+        },
+        {
+          "id": "delivery_delay",
+          "label": "배송 지연",
+          "probability": 0.09171109646558762
+        },
+        {
+          "id": "delivery_eta",
+          "label": "도착 예정 시간",
+          "probability": 0.033960066735744476
+        }
+      ],
+      "trace": {
+        "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+        "category": "delivery",
+        "category_probability": 0.5544577240943909,
+        "routing": "hierarchical System One Choice (category → intent)",
+        "seconds": 0.09228733298368752,
+        "needs_clarification": false
+      }
+    },
+    {
+      "expected": "delivery_instructions",
+      "input": "문 앞에 놓아 달라고 요청해줘",
+      "predicted": null,
+      "candidates": [],
+      "trace": {
+        "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+        "category": "out_of_scope",
+        "category_probability": 0.2772658169269562,
+        "routing": "hierarchical System One Choice (category → intent)",
+        "seconds": 0.05032999999821186
+      }
+    },
+    {
+      "expected": "delivery_missed",
+      "input": "집에 없어서 택배를 못 받았어",
+      "predicted": null,
+      "candidates": [],
+      "trace": {
+        "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+        "category": "out_of_scope",
+        "category_probability": 0.41874781250953674,
+        "routing": "hierarchical System One Choice (category → intent)",
+        "seconds": 0.05169629096053541
+      }
+    },
+    {
+      "expected": "delivery_wrong",
+      "input": "다른 상품이 배송됐어",
+      "predicted": "delivery_delay",
+      "candidates": [
+        {
+          "id": "delivery_delay",
+          "label": "배송 지연",
+          "probability": 0.39441779255867004
+        },
+        {
+          "id": "delivery_eta",
+          "label": "도착 예정 시간",
+          "probability": 0.1472199708223343
+        },
+        {
+          "id": "delivery_tracking",
+          "label": "배송 추적",
+          "probability": 0.11519143730401993
+        }
+      ],
+      "trace": {
+        "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+        "category": "delivery",
+        "category_probability": 0.6345522403717041,
+        "routing": "hierarchical System One Choice (category → intent)",
+        "seconds": 0.0962223750539124,
+        "needs_clarification": false
+      }
+    },
+    {
+      "expected": "delivery_missing",
+      "input": "배송 완료라는데 물건이 없어",
+      "predicted": "delivery_delay",
+      "candidates": [
+        {
+          "id": "delivery_delay",
+          "label": "배송 지연",
+          "probability": 0.38607922196388245
+        },
+        {
+          "id": "delivery_missing",
+          "label": "배송 완료 미수령",
+          "probability": 0.23753349483013153
+        },
+        {
+          "id": "delivery_missed",
+          "label": "부재 중 배송",
+          "probability": 0.13675105571746826
+        }
+      ],
+      "trace": {
+        "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+        "category": "delivery",
+        "category_probability": 0.40305638313293457,
+        "routing": "hierarchical System One Choice (category → intent)",
+        "seconds": 0.09223712515085936,
+        "needs_clarification": false
+      }
+    },
+    {
+      "expected": "return_request",
+      "input": "상품 반품하고 싶어",
+      "predicted": "return_request",
+      "candidates": [
+        {
+          "id": "return_request",
+          "label": "반품 접수",
+          "probability": 0.36993831396102905
+        },
+        {
+          "id": "refund_status",
+          "label": "환불 상태",
+          "probability": 0.14687661826610565
+        },
+        {
+          "id": "return_policy",
+          "label": "반품 규정",
+          "probability": 0.10633517056703568
+        }
+      ],
+      "trace": {
+        "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+        "category": "returns",
+        "category_probability": 0.7347587943077087,
+        "routing": "hierarchical System One Choice (category → intent)",
+        "seconds": 0.08653787500225008,
+        "needs_clarification": false
+      }
+    },
+    {
+      "expected": "exchange_request",
+      "input": "상품을 다른 사이즈로 교환하고 싶어",
+      "predicted": null,
+      "candidates": [],
+      "trace": {
+        "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+        "category": "out_of_scope",
+        "category_probability": 0.2334900200366974,
+        "routing": "hierarchical System One Choice (category → intent)",
+        "seconds": 0.04779783310368657
+      }
+    },
+    {
+      "expected": "refund_status",
+      "input": "환불 진행 상황 알려줘",
+      "predicted": "refund_status",
+      "candidates": [
+        {
+          "id": "refund_status",
+          "label": "환불 상태",
+          "probability": 0.629572331905365
+        },
+        {
+          "id": "return_request",
+          "label": "반품 접수",
+          "probability": 0.12036052346229553
+        },
+        {
+          "id": "refund_method",
+          "label": "환불 수단",
+          "probability": 0.07546365261077881
+        }
+      ],
+      "trace": {
+        "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+        "category": "returns",
+        "category_probability": 0.4124889671802521,
+        "routing": "hierarchical System One Choice (category → intent)",
+        "seconds": 0.09071929194033146,
+        "needs_clarification": false
+      }
+    },
+    {
+      "expected": "return_policy",
+      "input": "반품은 며칠 안에 해야 해?",
+      "predicted": null,
+      "candidates": [
+        {
+          "id": "return_request",
+          "label": "반품 접수",
+          "probability": 0.2521176040172577
+        },
+        {
+          "id": "return_policy",
+          "label": "반품 규정",
+          "probability": 0.2017185240983963
+        },
+        {
+          "id": "refund_status",
+          "label": "환불 상태",
+          "probability": 0.14779403805732727
+        }
+      ],
+      "trace": {
+        "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+        "category": "returns",
+        "category_probability": 0.6275842189788818,
+        "routing": "hierarchical System One Choice (category → intent)",
+        "seconds": 0.09178162505850196,
+        "needs_clarification": true
+      }
+    },
+    {
+      "expected": "return_fee",
+      "input": "반품 배송비 얼마야?",
+      "predicted": "return_fee",
+      "candidates": [
+        {
+          "id": "return_fee",
+          "label": "반품 배송비",
+          "probability": 0.791695237159729
+        },
+        {
+          "id": "return_request",
+          "label": "반품 접수",
+          "probability": 0.06887572258710861
+        },
+        {
+          "id": "refund_status",
+          "label": "환불 상태",
+          "probability": 0.03728020563721657
+        }
+      ],
+      "trace": {
+        "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+        "category": "returns",
+        "category_probability": 0.5753065943717957,
+        "routing": "hierarchical System One Choice (category → intent)",
+        "seconds": 0.08945816615596414,
+        "needs_clarification": false
+      }
+    },
+    {
+      "expected": "return_pickup",
+      "input": "반품 택배 수거 예약해줘",
+      "predicted": "return_pickup",
+      "candidates": [
+        {
+          "id": "return_pickup",
+          "label": "반품 수거 예약",
+          "probability": 0.4826015830039978
+        },
+        {
+          "id": "return_request",
+          "label": "반품 접수",
+          "probability": 0.13781949877738953
+        },
+        {
+          "id": "refund_status",
+          "label": "환불 상태",
+          "probability": 0.09956096112728119
+        }
+      ],
+      "trace": {
+        "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+        "category": "returns",
+        "category_probability": 0.637726366519928,
+        "routing": "hierarchical System One Choice (category → intent)",
+        "seconds": 0.09221737505868077,
+        "needs_clarification": false
+      }
+    },
+    {
+      "expected": "return_withdraw",
+      "input": "신청한 반품 취소할래",
+      "predicted": "return_withdraw",
+      "candidates": [
+        {
+          "id": "return_withdraw",
+          "label": "반품 철회",
+          "probability": 0.3325922191143036
+        },
+        {
+          "id": "return_request",
+          "label": "반품 접수",
+          "probability": 0.2587870657444
+        },
+        {
+          "id": "refund_status",
+          "label": "환불 상태",
+          "probability": 0.13078901171684265
+        }
+      ],
+      "trace": {
+        "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+        "category": "returns",
+        "category_probability": 0.7501521110534668,
+        "routing": "hierarchical System One Choice (category → intent)",
+        "seconds": 0.08790412498638034,
+        "needs_clarification": false
+      }
+    },
+    {
+      "expected": "refund_method",
+      "input": "환불은 어디로 들어와?",
+      "predicted": "refund_status",
+      "candidates": [
+        {
+          "id": "refund_status",
+          "label": "환불 상태",
+          "probability": 0.40882769227027893
+        },
+        {
+          "id": "return_request",
+          "label": "반품 접수",
+          "probability": 0.18097439408302307
+        },
+        {
+          "id": "refund_method",
+          "label": "환불 수단",
+          "probability": 0.13804921507835388
+        }
+      ],
+      "trace": {
+        "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+        "category": "returns",
+        "category_probability": 0.5735328197479248,
+        "routing": "hierarchical System One Choice (category → intent)",
+        "seconds": 0.08919491712003946,
+        "needs_clarification": false
+      }
+    },
+    {
+      "expected": "partial_return",
+      "input": "주문 중 하나만 반품하고 싶어",
+      "predicted": null,
+      "candidates": [
+        {
+          "id": "partial_return",
+          "label": "부분 반품",
+          "probability": 0.2955061197280884
+        },
+        {
+          "id": "return_request",
+          "label": "반품 접수",
+          "probability": 0.24508744478225708
+        },
+        {
+          "id": "refund_status",
+          "label": "환불 상태",
+          "probability": 0.12247040867805481
+        }
+      ],
+      "trace": {
+        "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+        "category": "returns",
+        "category_probability": 0.7972845435142517,
+        "routing": "hierarchical System One Choice (category → intent)",
+        "seconds": 0.09184391680173576,
+        "needs_clarification": true
+      }
+    },
+    {
+      "expected": "refund_duration",
+      "input": "환불 입금까지 며칠 걸려?",
+      "predicted": null,
+      "candidates": [],
+      "trace": {
+        "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+        "category": "out_of_scope",
+        "category_probability": 0.31258121132850647,
+        "routing": "hierarchical System One Choice (category → intent)",
+        "seconds": 0.04826062498614192
+      }
+    },
+    {
+      "expected": "product_search",
+      "input": "무선 이어폰 찾아줘",
+      "predicted": null,
+      "candidates": [],
+      "trace": {
+        "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+        "category": "out_of_scope",
+        "category_probability": 0.31402337551116943,
+        "routing": "hierarchical System One Choice (category → intent)",
+        "seconds": 0.04924787487834692
+      }
+    },
+    {
+      "expected": "product_detail",
+      "input": "에어버즈 상품 사양 알려줘",
+      "predicted": null,
+      "candidates": [],
+      "trace": {
+        "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+        "category": "out_of_scope",
+        "category_probability": 0.25907468795776367,
+        "routing": "hierarchical System One Choice (category → intent)",
+        "seconds": 0.04764249990694225
+      }
+    },
+    {
+      "expected": "product_stock",
+      "input": "트래블백 재고 있어?",
+      "predicted": null,
+      "candidates": [],
+      "trace": {
+        "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+        "category": "out_of_scope",
+        "category_probability": 0.28321707248687744,
+        "routing": "hierarchical System One Choice (category → intent)",
+        "seconds": 0.04845858318731189
+      }
+    },
+    {
+      "expected": "product_restock",
+      "input": "텀블러 언제 재입고돼?",
+      "predicted": "delivery_delay",
+      "candidates": [
+        {
+          "id": "delivery_delay",
+          "label": "배송 지연",
+          "probability": 0.4194543957710266
+        },
+        {
+          "id": "delivery_eta",
+          "label": "도착 예정 시간",
+          "probability": 0.1732296645641327
+        },
+        {
+          "id": "delivery_tracking",
+          "label": "배송 추적",
+          "probability": 0.1090054139494896
+        }
+      ],
+      "trace": {
+        "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+        "category": "delivery",
+        "category_probability": 0.311214417219162,
+        "routing": "hierarchical System One Choice (category → intent)",
+        "seconds": 0.08981241681613028,
+        "needs_clarification": false
+      }
+    },
+    {
+      "expected": "product_size",
+      "input": "데일리 티셔츠 사이즈 알려줘",
+      "predicted": null,
+      "candidates": [],
+      "trace": {
+        "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+        "category": "out_of_scope",
+        "category_probability": 0.2849263846874237,
+        "routing": "hierarchical System One Choice (category → intent)",
+        "seconds": 0.04842054098844528
+      }
+    },
+    {
+      "expected": "product_compatibility",
+      "input": "에어버즈가 아이폰과 호환돼?",
+      "predicted": null,
+      "candidates": [],
+      "trace": {
+        "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+        "category": "out_of_scope",
+        "category_probability": 0.2563819885253906,
+        "routing": "hierarchical System One Choice (category → intent)",
+        "seconds": 0.0482845411170274
+      }
+    },
+    {
+      "expected": "product_compare",
+      "input": "에어버즈와 스피커 비교해줘",
+      "predicted": null,
+      "candidates": [],
+      "trace": {
+        "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+        "category": "out_of_scope",
+        "category_probability": 0.3379914164543152,
+        "routing": "hierarchical System One Choice (category → intent)",
+        "seconds": 0.04841458308510482
+      }
+    },
+    {
+      "expected": "product_authenticity",
+      "input": "에어버즈 정품이야?",
+      "predicted": null,
+      "candidates": [],
+      "trace": {
+        "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+        "category": "out_of_scope",
+        "category_probability": 0.2821708619594574,
+        "routing": "hierarchical System One Choice (category → intent)",
+        "seconds": 0.048528708051890135
+      }
+    },
+    {
+      "expected": "product_recommend",
+      "input": "여행용 가방 추천해줘",
+      "predicted": null,
+      "candidates": [],
+      "trace": {
+        "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+        "category": "out_of_scope",
+        "category_probability": 0.24330434203147888,
+        "routing": "hierarchical System One Choice (category → intent)",
+        "seconds": 0.049003791995346546
+      }
+    },
+    {
+      "expected": "product_reviews",
+      "input": "트래블백 후기 보여줘",
+      "predicted": null,
+      "candidates": [],
+      "trace": {
+        "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+        "category": "out_of_scope",
+        "category_probability": 0.34145858883857727,
+        "routing": "hierarchical System One Choice (category → intent)",
+        "seconds": 0.04824874992482364
+      }
+    },
+    {
+      "expected": "payment_methods",
+      "input": "어떤 결제 수단을 쓸 수 있어?",
+      "predicted": "payment_methods",
+      "candidates": [
+        {
+          "id": "payment_methods",
+          "label": "결제 수단",
+          "probability": 0.4973103404045105
+        },
+        {
+          "id": "payment_duplicate",
+          "label": "중복 결제",
+          "probability": 0.13925471901893616
+        },
+        {
+          "id": "payment_failed",
+          "label": "결제 실패",
+          "probability": 0.13605570793151855
+        }
+      ],
+      "trace": {
+        "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+        "category": "payments",
+        "category_probability": 0.929768443107605,
+        "routing": "hierarchical System One Choice (category → intent)",
+        "seconds": 0.09296129085123539,
+        "needs_clarification": false
+      }
+    },
+    {
+      "expected": "payment_failed",
+      "input": "카드 결제가 자꾸 실패해",
+      "predicted": "payment_failed",
+      "candidates": [
+        {
+          "id": "payment_failed",
+          "label": "결제 실패",
+          "probability": 0.6400272846221924
+        },
+        {
+          "id": "payment_duplicate",
+          "label": "중복 결제",
+          "probability": 0.155929833650589
+        },
+        {
+          "id": "payment_methods",
+          "label": "결제 수단",
+          "probability": 0.09981410950422287
+        }
+      ],
+      "trace": {
+        "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+        "category": "payments",
+        "category_probability": 0.5291196703910828,
+        "routing": "hierarchical System One Choice (category → intent)",
+        "seconds": 0.09128029108978808,
+        "needs_clarification": false
+      }
+    },
+    {
+      "expected": "payment_duplicate",
+      "input": "결제가 두 번 됐어",
+      "predicted": "payment_duplicate",
+      "candidates": [
+        {
+          "id": "payment_duplicate",
+          "label": "중복 결제",
+          "probability": 0.5114778280258179
+        },
+        {
+          "id": "payment_methods",
+          "label": "결제 수단",
+          "probability": 0.16012248396873474
+        },
+        {
+          "id": "payment_failed",
+          "label": "결제 실패",
+          "probability": 0.10036715865135193
+        }
+      ],
+      "trace": {
+        "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+        "category": "payments",
+        "category_probability": 0.3939989507198334,
+        "routing": "hierarchical System One Choice (category → intent)",
+        "seconds": 0.09059933386743069,
+        "needs_clarification": false
+      }
+    },
+    {
+      "expected": "payment_installment",
+      "input": "무이자 할부 가능해?",
+      "predicted": null,
+      "candidates": [],
+      "trace": {
+        "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+        "category": "out_of_scope",
+        "category_probability": 0.3211958706378937,
+        "routing": "hierarchical System One Choice (category → intent)",
+        "seconds": 0.049052458023652434
+      }
+    },
+    {
+      "expected": "cash_receipt",
+      "input": "현금영수증 발급해줘",
+      "predicted": null,
+      "candidates": [],
+      "trace": {
+        "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+        "category": "out_of_scope",
+        "category_probability": 0.3799978494644165,
+        "routing": "hierarchical System One Choice (category → intent)",
+        "seconds": 0.049693332985043526
+      }
+    },
+    {
+      "expected": "tax_invoice",
+      "input": "세금계산서가 필요해",
+      "predicted": null,
+      "candidates": [],
+      "trace": {
+        "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+        "category": "out_of_scope",
+        "category_probability": 0.3957124650478363,
+        "routing": "hierarchical System One Choice (category → intent)",
+        "seconds": 0.0489743750076741
+      }
+    },
+    {
+      "expected": "bank_transfer",
+      "input": "무통장 입금은 어떻게 해?",
+      "predicted": null,
+      "candidates": [],
+      "trace": {
+        "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+        "category": "out_of_scope",
+        "category_probability": 0.3920994997024536,
+        "routing": "hierarchical System One Choice (category → intent)",
+        "seconds": 0.048946249997243285
+      }
+    },
+    {
+      "expected": "payment_deadline",
+      "input": "입금 기한 언제까지야?",
+      "predicted": null,
+      "candidates": [],
+      "trace": {
+        "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+        "category": "out_of_scope",
+        "category_probability": 0.2572483420372009,
+        "routing": "hierarchical System One Choice (category → intent)",
+        "seconds": 0.048451999900862575
+      }
+    },
+    {
+      "expected": "virtual_account",
+      "input": "가상계좌 번호 알려줘",
+      "predicted": null,
+      "candidates": [],
+      "trace": {
+        "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+        "category": "out_of_scope",
+        "category_probability": 0.2711900770664215,
+        "routing": "hierarchical System One Choice (category → intent)",
+        "seconds": 0.048599000088870525
+      }
+    },
+    {
+      "expected": "deposit_confirmation",
+      "input": "입금했는데 확인이 안 돼",
+      "predicted": null,
+      "candidates": [],
+      "trace": {
+        "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+        "category": "out_of_scope",
+        "category_probability": 0.420440673828125,
+        "routing": "hierarchical System One Choice (category → intent)",
+        "seconds": 0.048796792048960924
+      }
+    },
+    {
+      "expected": "event_list",
+      "input": "지금 진행 중인 이벤트 알려줘",
+      "predicted": "event_list",
+      "candidates": [
+        {
+          "id": "event_list",
+          "label": "이벤트 조회",
+          "probability": 0.5670240521430969
+        },
+        {
+          "id": "event_detail",
+          "label": "이벤트 상세",
+          "probability": 0.13349023461341858
+        },
+        {
+          "id": "event_eligibility",
+          "label": "이벤트 참여 조건",
+          "probability": 0.07401750236749649
+        }
+      ],
+      "trace": {
+        "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+        "category": "promotions",
+        "category_probability": 0.4018784463405609,
+        "routing": "hierarchical System One Choice (category → intent)",
+        "seconds": 0.09118079114705324,
+        "needs_clarification": false
+      }
+    },
+    {
+      "expected": "event_detail",
+      "input": "가을맞이 이벤트 자세히 알려줘",
+      "predicted": null,
+      "candidates": [],
+      "trace": {
+        "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+        "category": "out_of_scope",
+        "category_probability": 0.3234461545944214,
+        "routing": "hierarchical System One Choice (category → intent)",
+        "seconds": 0.049135582987219095
+      }
+    },
+    {
+      "expected": "event_eligibility",
+      "input": "신규회원 이벤트 참여 조건이 뭐야?",
+      "predicted": "event_eligibility",
+      "candidates": [
+        {
+          "id": "event_eligibility",
+          "label": "이벤트 참여 조건",
+          "probability": 0.7104130387306213
+        },
+        {
+          "id": "event_detail",
+          "label": "이벤트 상세",
+          "probability": 0.0743957981467247
+        },
+        {
+          "id": "event_list",
+          "label": "이벤트 조회",
+          "probability": 0.06386036425828934
+        }
+      ],
+      "trace": {
+        "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+        "category": "promotions",
+        "category_probability": 0.22572745382785797,
+        "routing": "hierarchical System One Choice (category → intent)",
+        "seconds": 0.10805183299817145,
+        "needs_clarification": false
+      }
+    },
+    {
+      "expected": "coupon_list",
+      "input": "내 쿠폰 보여줘",
+      "predicted": null,
+      "candidates": [],
+      "trace": {
+        "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+        "category": "out_of_scope",
+        "category_probability": 0.27240702509880066,
+        "routing": "hierarchical System One Choice (category → intent)",
+        "seconds": 0.04849254107102752
+      }
+    },
+    {
+      "expected": "coupon_apply",
+      "input": "주문에 쿠폰 적용해줘",
+      "predicted": "coupon_apply",
+      "candidates": [
+        {
+          "id": "coupon_apply",
+          "label": "쿠폰 적용",
+          "probability": 0.8654282093048096
+        },
+        {
+          "id": "coupon_error",
+          "label": "쿠폰 오류",
+          "probability": 0.026956748217344284
+        },
+        {
+          "id": "event_eligibility",
+          "label": "이벤트 참여 조건",
+          "probability": 0.024036256596446037
+        }
+      ],
+      "trace": {
+        "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+        "category": "promotions",
+        "category_probability": 0.3084573745727539,
+        "routing": "hierarchical System One Choice (category → intent)",
+        "seconds": 0.09111329191364348,
+        "needs_clarification": false
+      }
+    },
+    {
+      "expected": "coupon_error",
+      "input": "WELCOME10 쿠폰이 적용이 안 돼",
+      "predicted": null,
+      "candidates": [],
+      "trace": {
+        "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+        "category": "out_of_scope",
+        "category_probability": 0.5889235138893127,
+        "routing": "hierarchical System One Choice (category → intent)",
+        "seconds": 0.04822187498211861
+      }
+    },
+    {
+      "expected": "coupon_expiry",
+      "input": "WELCOME10 쿠폰 언제까지야?",
+      "predicted": null,
+      "candidates": [],
+      "trace": {
+        "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+        "category": "out_of_scope",
+        "category_probability": 0.24235858023166656,
+        "routing": "hierarchical System One Choice (category → intent)",
+        "seconds": 0.04761591600254178
+      }
+    },
+    {
+      "expected": "points_balance",
+      "input": "내 포인트 얼마 있어?",
+      "predicted": null,
+      "candidates": [],
+      "trace": {
+        "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+        "category": "out_of_scope",
+        "category_probability": 0.3235657513141632,
+        "routing": "hierarchical System One Choice (category → intent)",
+        "seconds": 0.04841104103252292
+      }
+    },
+    {
+      "expected": "points_use",
+      "input": "포인트 어떻게 사용해?",
+      "predicted": null,
+      "candidates": [],
+      "trace": {
+        "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+        "category": "out_of_scope",
+        "category_probability": 0.2711738049983978,
+        "routing": "hierarchical System One Choice (category → intent)",
+        "seconds": 0.04761508293449879
+      }
+    },
+    {
+      "expected": "points_expiry",
+      "input": "포인트 언제 소멸돼?",
+      "predicted": null,
+      "candidates": [],
+      "trace": {
+        "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+        "category": "out_of_scope",
+        "category_probability": 0.5333828926086426,
+        "routing": "hierarchical System One Choice (category → intent)",
+        "seconds": 0.04836370795965195
+      }
+    },
+    {
+      "expected": "login_help",
+      "input": "로그인이 안 돼",
+      "predicted": null,
+      "candidates": [],
+      "trace": {
+        "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+        "category": "out_of_scope",
+        "category_probability": 0.5063247084617615,
+        "routing": "hierarchical System One Choice (category → intent)",
+        "seconds": 0.047524709021672606
+      }
+    },
+    {
+      "expected": "password_reset",
+      "input": "비밀번호를 잊어버렸어",
+      "predicted": null,
+      "candidates": [],
+      "trace": {
+        "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+        "category": "out_of_scope",
+        "category_probability": 0.4423515498638153,
+        "routing": "hierarchical System One Choice (category → intent)",
+        "seconds": 0.04778070910833776
+      }
+    },
+    {
+      "expected": "email_change",
+      "input": "이메일 주소 변경해줘",
+      "predicted": null,
+      "candidates": [],
+      "trace": {
+        "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+        "category": "out_of_scope",
+        "category_probability": 0.31701022386550903,
+        "routing": "hierarchical System One Choice (category → intent)",
+        "seconds": 0.04904337483458221
+      }
+    },
+    {
+      "expected": "phone_change",
+      "input": "휴대폰 번호 바꾸고 싶어",
+      "predicted": null,
+      "candidates": [],
+      "trace": {
+        "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+        "category": "out_of_scope",
+        "category_probability": 0.3209547698497772,
+        "routing": "hierarchical System One Choice (category → intent)",
+        "seconds": 0.04904454085044563
+      }
+    },
+    {
+      "expected": "profile_change",
+      "input": "프로필 이름 바꾸고 싶어",
+      "predicted": null,
+      "candidates": [],
+      "trace": {
+        "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+        "category": "out_of_scope",
+        "category_probability": 0.3220463991165161,
+        "routing": "hierarchical System One Choice (category → intent)",
+        "seconds": 0.04761395906098187
+      }
+    },
+    {
+      "expected": "account_delete",
+      "input": "회원 탈퇴할래",
+      "predicted": null,
+      "candidates": [],
+      "trace": {
+        "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+        "category": "out_of_scope",
+        "category_probability": 0.3676016330718994,
+        "routing": "hierarchical System One Choice (category → intent)",
+        "seconds": 0.04800925008021295
+      }
+    },
+    {
+      "expected": "signup_help",
+      "input": "회원가입 어떻게 해?",
+      "predicted": "signup_help",
+      "candidates": [
+        {
+          "id": "signup_help",
+          "label": "회원가입 안내",
+          "probability": 0.8927884101867676
+        },
+        {
+          "id": "account_delete",
+          "label": "회원 탈퇴",
+          "probability": 0.03884490206837654
+        },
+        {
+          "id": "password_reset",
+          "label": "비밀번호 재설정",
+          "probability": 0.019055763259530067
+        }
+      ],
+      "trace": {
+        "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+        "category": "accounts",
+        "category_probability": 0.35881611704826355,
+        "routing": "hierarchical System One Choice (category → intent)",
+        "seconds": 0.08653845801018178,
+        "needs_clarification": false
+      }
+    },
+    {
+      "expected": "verification_help",
+      "input": "인증 문자가 안 와",
+      "predicted": null,
+      "candidates": [],
+      "trace": {
+        "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+        "category": "out_of_scope",
+        "category_probability": 0.5453434586524963,
+        "routing": "hierarchical System One Choice (category → intent)",
+        "seconds": 0.047436082968488336
+      }
+    },
+    {
+      "expected": "privacy_info",
+      "input": "개인정보 어떻게 보관해?",
+      "predicted": null,
+      "candidates": [],
+      "trace": {
+        "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+        "category": "out_of_scope",
+        "category_probability": 0.23583950102329254,
+        "routing": "hierarchical System One Choice (category → intent)",
+        "seconds": 0.04917254112660885
+      }
+    },
+    {
+      "expected": "notification_settings",
+      "input": "마케팅 알림 끄고 싶어",
+      "predicted": null,
+      "candidates": [],
+      "trace": {
+        "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+        "category": "out_of_scope",
+        "category_probability": 0.5994429588317871,
+        "routing": "hierarchical System One Choice (category → intent)",
+        "seconds": 0.048687957925722
+      }
+    },
+    {
+      "expected": "membership_tier",
+      "input": "내 회원 등급 뭐야?",
+      "predicted": "membership_tier",
+      "candidates": [
+        {
+          "id": "membership_tier",
+          "label": "회원 등급",
+          "probability": 0.8827680945396423
+        },
+        {
+          "id": "membership_upgrade",
+          "label": "등급 승급",
+          "probability": 0.02769363857805729
+        },
+        {
+          "id": "subscription_renew",
+          "label": "구독 갱신일",
+          "probability": 0.02535131573677063
+        }
+      ],
+      "trace": {
+        "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+        "category": "membership",
+        "category_probability": 0.6474151015281677,
+        "routing": "hierarchical System One Choice (category → intent)",
+        "seconds": 0.09001575014553964,
+        "needs_clarification": false
+      }
+    },
+    {
+      "expected": "membership_benefits",
+      "input": "멤버십 혜택 알려줘",
+      "predicted": "membership_benefits",
+      "candidates": [
+        {
+          "id": "membership_benefits",
+          "label": "멤버십 혜택",
+          "probability": 0.43088337779045105
+        },
+        {
+          "id": "membership_tier",
+          "label": "회원 등급",
+          "probability": 0.1923607587814331
+        },
+        {
+          "id": "subscription_renew",
+          "label": "구독 갱신일",
+          "probability": 0.10816702991724014
+        }
+      ],
+      "trace": {
+        "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+        "category": "membership",
+        "category_probability": 0.5776366591453552,
+        "routing": "hierarchical System One Choice (category → intent)",
+        "seconds": 0.08857354195788503,
+        "needs_clarification": false
+      }
+    },
+    {
+      "expected": "membership_upgrade",
+      "input": "등급을 올리려면 어떻게 해?",
+      "predicted": "membership_tier",
+      "candidates": [
+        {
+          "id": "membership_tier",
+          "label": "회원 등급",
+          "probability": 0.44079798460006714
+        },
+        {
+          "id": "membership_upgrade",
+          "label": "등급 승급",
+          "probability": 0.3235641121864319
+        },
+        {
+          "id": "subscription_renew",
+          "label": "구독 갱신일",
+          "probability": 0.08397237211465836
+        }
+      ],
+      "trace": {
+        "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+        "category": "membership",
+        "category_probability": 0.2589713931083679,
+        "routing": "hierarchical System One Choice (category → intent)",
+        "seconds": 0.08954650000669062,
+        "needs_clarification": false
+      }
+    },
+    {
+      "expected": "subscription_renew",
+      "input": "구독 갱신일 언제야?",
+      "predicted": "subscription_renew",
+      "candidates": [
+        {
+          "id": "subscription_renew",
+          "label": "구독 갱신일",
+          "probability": 0.8982422351837158
+        },
+        {
+          "id": "membership_tier",
+          "label": "회원 등급",
+          "probability": 0.0343230664730072
+        },
+        {
+          "id": "subscription_pause",
+          "label": "구독 일시정지",
+          "probability": 0.014077797532081604
+        }
+      ],
+      "trace": {
+        "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+        "category": "membership",
+        "category_probability": 0.40836283564567566,
+        "routing": "hierarchical System One Choice (category → intent)",
+        "seconds": 0.08891354198567569,
+        "needs_clarification": false
+      }
+    },
+    {
+      "expected": "subscription_cancel",
+      "input": "정기 구독 해지해줘",
+      "predicted": null,
+      "candidates": [],
+      "trace": {
+        "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+        "category": "out_of_scope",
+        "category_probability": 0.3773009777069092,
+        "routing": "hierarchical System One Choice (category → intent)",
+        "seconds": 0.04795758309774101
+      }
+    },
+    {
+      "expected": "subscription_pause",
+      "input": "구독을 잠시 중지하고 싶어",
+      "predicted": null,
+      "candidates": [],
+      "trace": {
+        "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+        "category": "out_of_scope",
+        "category_probability": 0.457401305437088,
+        "routing": "hierarchical System One Choice (category → intent)",
+        "seconds": 0.04946845909580588
+      }
+    },
+    {
+      "expected": "subscription_schedule",
+      "input": "정기 배송 날짜 변경해줘",
+      "predicted": "delivery_delay",
+      "candidates": [
+        {
+          "id": "delivery_delay",
+          "label": "배송 지연",
+          "probability": 0.33412495255470276
+        },
+        {
+          "id": "delivery_eta",
+          "label": "도착 예정 시간",
+          "probability": 0.21425999701023102
+        },
+        {
+          "id": "delivery_address",
+          "label": "배송지 변경",
+          "probability": 0.15227815508842468
+        }
+      ],
+      "trace": {
+        "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+        "category": "delivery",
+        "category_probability": 0.5521677136421204,
+        "routing": "hierarchical System One Choice (category → intent)",
+        "seconds": 0.09017412504181266,
+        "needs_clarification": false
+      }
+    },
+    {
+      "expected": "subscription_address",
+      "input": "구독 배송지 바꾸고 싶어",
+      "predicted": "delivery_address",
+      "candidates": [
+        {
+          "id": "delivery_address",
+          "label": "배송지 변경",
+          "probability": 0.6626843810081482
+        },
+        {
+          "id": "delivery_delay",
+          "label": "배송 지연",
+          "probability": 0.14700020849704742
+        },
+        {
+          "id": "delivery_eta",
+          "label": "도착 예정 시간",
+          "probability": 0.041976600885391235
+        }
+      ],
+      "trace": {
+        "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+        "category": "delivery",
+        "category_probability": 0.575661838054657,
+        "routing": "hierarchical System One Choice (category → intent)",
+        "seconds": 0.09098958293907344,
+        "needs_clarification": false
+      }
+    },
+    {
+      "expected": "subscription_payment",
+      "input": "구독 결제 수단 변경해줘",
+      "predicted": "payment_methods",
+      "candidates": [
+        {
+          "id": "payment_methods",
+          "label": "결제 수단",
+          "probability": 0.37377339601516724
+        },
+        {
+          "id": "payment_failed",
+          "label": "결제 실패",
+          "probability": 0.22355224192142487
+        },
+        {
+          "id": "payment_duplicate",
+          "label": "중복 결제",
+          "probability": 0.16333182156085968
+        }
+      ],
+      "trace": {
+        "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+        "category": "payments",
+        "category_probability": 0.7704865336418152,
+        "routing": "hierarchical System One Choice (category → intent)",
+        "seconds": 0.09101295797154307,
+        "needs_clarification": false
+      }
+    },
+    {
+      "expected": "referral",
+      "input": "친구 추천 혜택 있어?",
+      "predicted": null,
+      "candidates": [],
+      "trace": {
+        "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+        "category": "out_of_scope",
+        "category_probability": 0.3051256537437439,
+        "routing": "hierarchical System One Choice (category → intent)",
+        "seconds": 0.047602874925360084
+      }
+    },
+    {
+      "expected": "agent_handoff",
+      "input": "상담사 연결해줘",
+      "predicted": "agent_handoff",
+      "candidates": [
+        {
+          "id": "agent_handoff",
+          "label": "상담사 연결",
+          "probability": 0.5929238200187683
+        },
+        {
+          "id": "feedback",
+          "label": "서비스 의견",
+          "probability": 0.10458628833293915
+        },
+        {
+          "id": "product_damage",
+          "label": "제품 파손",
+          "probability": 0.07483037561178207
+        }
+      ],
+      "trace": {
+        "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+        "category": "support",
+        "category_probability": 0.44472935795783997,
+        "routing": "hierarchical System One Choice (category → intent)",
+        "seconds": 0.08717795903794467,
+        "needs_clarification": false
+      }
+    },
+    {
+      "expected": "support_hours",
+      "input": "상담 가능한 시간 알려줘",
+      "predicted": null,
+      "candidates": [
+        {
+          "id": "feedback",
+          "label": "서비스 의견",
+          "probability": 0.2097701132297516
+        },
+        {
+          "id": "product_damage",
+          "label": "제품 파손",
+          "probability": 0.15170978009700775
+        },
+        {
+          "id": "support_hours",
+          "label": "상담 운영시간",
+          "probability": 0.13978508114814758
+        }
+      ],
+      "trace": {
+        "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+        "category": "support",
+        "category_probability": 0.3199217617511749,
+        "routing": "hierarchical System One Choice (category → intent)",
+        "seconds": 0.08722395799122751,
+        "needs_clarification": true
+      }
+    },
+    {
+      "expected": "complaint",
+      "input": "불만을 접수하고 싶어",
+      "predicted": null,
+      "candidates": [],
+      "trace": {
+        "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+        "category": "out_of_scope",
+        "category_probability": 0.32982543110847473,
+        "routing": "hierarchical System One Choice (category → intent)",
+        "seconds": 0.048451875103637576
+      }
+    },
+    {
+      "expected": "feedback",
+      "input": "서비스 개선 의견 남길게",
+      "predicted": null,
+      "candidates": [],
+      "trace": {
+        "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+        "category": "out_of_scope",
+        "category_probability": 0.2732250988483429,
+        "routing": "hierarchical System One Choice (category → intent)",
+        "seconds": 0.04757066606543958
+      }
+    },
+    {
+      "expected": "product_damage",
+      "input": "상품이 깨져서 왔어",
+      "predicted": null,
+      "candidates": [],
+      "trace": {
+        "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+        "category": "out_of_scope",
+        "category_probability": 0.49820202589035034,
+        "routing": "hierarchical System One Choice (category → intent)",
+        "seconds": 0.04772533313371241
+      }
+    },
+    {
+      "expected": "missing_parts",
+      "input": "구성품이 빠져 있어",
+      "predicted": null,
+      "candidates": [],
+      "trace": {
+        "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+        "category": "out_of_scope",
+        "category_probability": 0.5403925180435181,
+        "routing": "hierarchical System One Choice (category → intent)",
+        "seconds": 0.048678958090022206
+      }
+    },
+    {
+      "expected": "installation_help",
+      "input": "스피커 설치 방법 알려줘",
+      "predicted": null,
+      "candidates": [],
+      "trace": {
+        "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+        "category": "out_of_scope",
+        "category_probability": 0.3731062710285187,
+        "routing": "hierarchical System One Choice (category → intent)",
+        "seconds": 0.04786641686223447
+      }
+    },
+    {
+      "expected": "repair_request",
+      "input": "스피커 수리 맡기고 싶어",
+      "predicted": null,
+      "candidates": [],
+      "trace": {
+        "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+        "category": "out_of_scope",
+        "category_probability": 0.3582039177417755,
+        "routing": "hierarchical System One Choice (category → intent)",
+        "seconds": 0.04735354194417596
+      }
+    },
+    {
+      "expected": "warranty_info",
+      "input": "에어버즈 보증 기간 알려줘",
+      "predicted": null,
+      "candidates": [],
+      "trace": {
+        "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+        "category": "out_of_scope",
+        "category_probability": 0.27669772505760193,
+        "routing": "hierarchical System One Choice (category → intent)",
+        "seconds": 0.04852729104459286
+      }
+    },
+    {
+      "expected": "product_manual",
+      "input": "스피커 사용 설명서 보여줘",
+      "predicted": null,
+      "candidates": [],
+      "trace": {
+        "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+        "category": "out_of_scope",
+        "category_probability": 0.40329188108444214,
+        "routing": "hierarchical System One Choice (category → intent)",
+        "seconds": 0.04785554111003876
+      }
+    },
+    {
+      "expected": "greeting",
+      "input": "안녕",
+      "predicted": null,
+      "candidates": [],
+      "trace": {
+        "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+        "category": "out_of_scope",
+        "category_probability": 0.3684583902359009,
+        "routing": "hierarchical System One Choice (category → intent)",
+        "seconds": 0.04908391716890037
+      }
+    },
+    {
+      "expected": "thanks",
+      "input": "고마워",
+      "predicted": null,
+      "candidates": [],
+      "trace": {
+        "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+        "category": "out_of_scope",
+        "category_probability": 0.3410554528236389,
+        "routing": "hierarchical System One Choice (category → intent)",
+        "seconds": 0.04932245798408985
+      }
+    },
+    {
+      "expected": "goodbye",
+      "input": "다음에 봐",
+      "predicted": null,
+      "candidates": [],
+      "trace": {
+        "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+        "category": "out_of_scope",
+        "category_probability": 0.3211081624031067,
+        "routing": "hierarchical System One Choice (category → intent)",
+        "seconds": 0.04972450016066432
+      }
+    },
+    {
+      "expected": "help",
+      "input": "뭘 도와줄 수 있어?",
+      "predicted": null,
+      "candidates": [],
+      "trace": {
+        "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+        "category": "out_of_scope",
+        "category_probability": 0.29720646142959595,
+        "routing": "hierarchical System One Choice (category → intent)",
+        "seconds": 0.04988654097542167
+      }
+    },
+    {
+      "expected": "language",
+      "input": "영어로 상담할 수 있어?",
+      "predicted": null,
+      "candidates": [
+        {
+          "id": "feedback",
+          "label": "서비스 의견",
+          "probability": 0.24574407935142517
+        },
+        {
+          "id": "product_damage",
+          "label": "제품 파손",
+          "probability": 0.16954614222049713
+        },
+        {
+          "id": "agent_handoff",
+          "label": "상담사 연결",
+          "probability": 0.11398333311080933
+        }
+      ],
+      "trace": {
+        "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+        "category": "support",
+        "category_probability": 0.3609500825405121,
+        "routing": "hierarchical System One Choice (category → intent)",
+        "seconds": 0.08811133401468396,
+        "needs_clarification": true
+      }
+    },
+    {
+      "expected": "store_location",
+      "input": "서울 매장 어디 있어?",
+      "predicted": "store_location",
+      "candidates": [
+        {
+          "id": "store_location",
+          "label": "매장 위치",
+          "probability": 0.5823571085929871
+        },
+        {
+          "id": "greeting",
+          "label": "인사",
+          "probability": 0.16997814178466797
+        },
+        {
+          "id": "goodbye",
+          "label": "종료 인사",
+          "probability": 0.099930040538311
+        }
+      ],
+      "trace": {
+        "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+        "category": "general",
+        "category_probability": 0.26575034856796265,
+        "routing": "hierarchical System One Choice (category → intent)",
+        "seconds": 0.08622512500733137,
+        "needs_clarification": false
+      }
+    },
+    {
+      "expected": "contact_info",
+      "input": "고객센터 연락처 알려줘",
+      "predicted": null,
+      "candidates": [],
+      "trace": {
+        "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+        "category": "out_of_scope",
+        "category_probability": 0.2578175961971283,
+        "routing": "hierarchical System One Choice (category → intent)",
+        "seconds": 0.047971250023692846
+      }
+    },
+    {
+      "expected": "gift_wrap",
+      "input": "트래블백 선물 포장 돼?",
+      "predicted": "delivery_delay",
+      "candidates": [
+        {
+          "id": "delivery_delay",
+          "label": "배송 지연",
+          "probability": 0.4785480201244354
+        },
+        {
+          "id": "delivery_eta",
+          "label": "도착 예정 시간",
+          "probability": 0.1303316354751587
+        },
+        {
+          "id": "delivery_tracking",
+          "label": "배송 추적",
+          "probability": 0.08935738354921341
+        }
+      ],
+      "trace": {
+        "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+        "category": "delivery",
+        "category_probability": 0.2524554431438446,
+        "routing": "hierarchical System One Choice (category → intent)",
+        "seconds": 0.08991083293221891,
+        "needs_clarification": false
+      }
+    },
+    {
+      "expected": "gift_message",
+      "input": "선물 카드에 메시지 넣어줘",
+      "predicted": null,
+      "candidates": [],
+      "trace": {
+        "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+        "category": "out_of_scope",
+        "category_probability": 0.3075062334537506,
+        "routing": "hierarchical System One Choice (category → intent)",
+        "seconds": 0.04867337504401803
+      }
+    },
+    {
+      "expected": "sustainability",
+      "input": "친환경 포장을 사용해?",
+      "predicted": "delivery_delay",
+      "candidates": [
+        {
+          "id": "delivery_delay",
+          "label": "배송 지연",
+          "probability": 0.4914691150188446
+        },
+        {
+          "id": "delivery_eta",
+          "label": "도착 예정 시간",
+          "probability": 0.12042243778705597
+        },
+        {
+          "id": "delivery_tracking",
+          "label": "배송 추적",
+          "probability": 0.09909339994192123
+        }
+      ],
+      "trace": {
+        "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+        "category": "delivery",
+        "category_probability": 0.24504059553146362,
+        "routing": "hierarchical System One Choice (category → intent)",
+        "seconds": 0.09200479090213776,
+        "needs_clarification": false
+      }
+    }
+  ]
+}
