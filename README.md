@@ -1,8 +1,8 @@
 # vLLM Verifier
 
-Typed classification, scoring, and yes/no decisions with
-[DiffusionGemma](https://huggingface.co/google/diffusiongemma-26B-A4B-it), native vLLM/MLX
-execution paths, and a Jev-compatible HTTP API.
+Typed classification, scoring, and yes/no decisions with a Jev-compatible HTTP API.
+Run Decision Kai directly on Apple Silicon, use DiffusionGemma through MLX, or connect
+to an external vLLM server.
 
 Send text or structured data with a set of questions. Get typed answers your application can
 use to route requests, rank items, or choose its next action. Existing TypeSafe Python clients
@@ -13,9 +13,9 @@ can connect by changing their base URL and API key.
 - **Noul** returns an estimated probability that a statement is true.
 - **Vision** describes images once, then evaluates questions against the description.
 
-The server validates model output, derives scores and choices from the returned probabilities,
-and retries invalid generations within a bounded deadline. It includes authentication,
-concurrency limits, health checks, and Prometheus metrics.
+The server includes authentication, bounded admission, health checks, and Prometheus metrics.
+The Decision runtime scores candidates directly and batches questions across requests.
+Generation backends validate JSON output and retry invalid generations within a bounded deadline.
 
 ## Native decision execution
 
@@ -24,11 +24,27 @@ vLLM generation batches without an HTTP inference server. It preserves question 
 shared state before question-specific tokens for prefix-cache reuse, and repairs only invalid
 answers. A native CLI records batch sizes, token usage and timings for isolated/batched comparisons.
 
-The vLLM native path is currently offline and its GPU validation is pending. Direct classification heads,
-custom diffusion sampling and continuous online admission are development milestones. The HTTP
-API below remains available as a compatible serving baseline.
+The vLLM generation path is currently offline and its GPU validation is pending. The
+[Decision runtime](docs/decision-models.md) provides direct candidate heads and bounded online
+request batching on Mac. Custom diffusion sampling and distributed serving remain future work.
 
-## Run on an Apple Silicon Mac
+## Run Decision Kai on an Apple Silicon Mac
+
+```sh
+git clone https://github.com/jinwonkim93/vllm-verifier.git
+cd vllm-verifier
+UV_PROJECT_ENVIRONMENT=.venv-decision uv sync --locked --extra decision --python 3.12
+UV_PROJECT_ENVIRONMENT=.venv-decision uv run --extra decision \
+  vllm-verifier --runtime decision --port 18080
+```
+
+Kai scores Choice, Noul and Score candidates without generating text. The first start downloads
+approximately 2.3 GB. Each complete question, state and candidate set must fit 1,024 tokens.
+See [Decision setup and scheduling](docs/decision-models.md) for settings, probability semantics,
+CPU comparison and reproducible benchmarks. The [M5 measurements](docs/benchmarks/2026-09-23-decision/README.md)
+include latency, throughput and observed quality limitations.
+
+## Run DiffusionGemma on an Apple Silicon Mac
 
 ```sh
 git clone https://github.com/jinwonkim93/vllm-verifier.git
@@ -184,8 +200,9 @@ Application code lives in `src/`, tests and fixtures in `tests/`, and runnable e
 ## Compatibility and limits
 
 This independent project implements the Jev HTTP contract, not the Jev model or training method.
-Probabilities are model-generated estimates, not calibrated Jev probabilities. Confidence is
-computed from normalized entropy. Structural validation does not guarantee a correct judgment.
+Kai returns learned candidate probabilities and maximum-probability confidence. Generation
+backends return model-generated estimates and normalized-entropy confidence. Neither path
+provides calibrated Jev probabilities. Structural validation does not guarantee a correct judgment.
 Evaluate thresholds on your own data before using decisions to automate actions.
 
 Questions are evaluated independently. Adding questions can increase latency and token usage.
@@ -194,6 +211,7 @@ must be measured on your target vLLM build and hardware.
 
 ## Documentation
 
+- [Decision models on Mac](docs/decision-models.md)
 - [API compatibility](docs/compatibility.md)
 - [Deployment and settings](docs/deployment.md)
 - [Architecture and probability semantics](docs/architecture.md)

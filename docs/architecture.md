@@ -1,6 +1,10 @@
 # Architecture and inference semantics
 
-This page describes the HTTP gateway. The separate [native engine](native-engine.md) submits
+The [Decision runtime](decision-models.md) owns a bounded online queue and directly scores
+candidates on MPS/CPU using Kai. It bypasses text generation, JSON repair and the completion
+backend protocol. Its request batching and probability semantics are documented separately.
+
+The remainder of this page describes the HTTP gateway. The separate [native engine](native-engine.md) submits
 token batches directly to vLLM and has its own execution and admission semantics.
 
 The gateway is a small FastAPI service, with no PyTorch/vLLM import in the serving process.

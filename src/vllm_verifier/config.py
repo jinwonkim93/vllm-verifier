@@ -1,3 +1,4 @@
+from pathlib import Path
 from typing import Literal
 from urllib.parse import urlsplit
 
@@ -10,7 +11,13 @@ class Settings(BaseSettings):
         env_prefix="VERIFIER_", env_file=".env", extra="ignore", validate_assignment=True
     )
 
-    runtime: Literal["http", "mlx"] = "http"
+    runtime: Literal["http", "mlx", "decision"] = "http"
+    decision_device: Literal["mps", "cpu"] = "mps"
+    decision_cache_dir: Path = Path.home() / ".cache" / "diffusion-jev"
+    decision_batch_size: int = Field(default=8, ge=1, le=32)
+    decision_batch_tokens: int = Field(default=4096, ge=1024, le=32768)
+    decision_batch_requests: int = Field(default=8, ge=1, le=8)
+    decision_batch_wait_ms: float = Field(default=2, ge=0, le=100)
     mlx_revision: str | None = None
     mlx_canvas_tokens: int = Field(default=256, ge=1, le=256)
     mlx_max_model_len: int = Field(default=4096, ge=257)

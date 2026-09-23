@@ -1,7 +1,8 @@
-# vLLM Verifier — DiffusionGemma를 Jev API 형태로 사용하기
+# vLLM Verifier — Jev 호환 의사결정 엔진
 
-FastAPI 게이트웨이가 Jev의 `POST /v1/systemone` 요청을 받아 vLLM에서 실행되는
-DiffusionGemma로 판단하고, 검증된 `choice`, `score`, `noul` 응답을 반환합니다.
+Jev의 `POST /v1/systemone` 요청을 받아 `choice`, `score`, `noul` 응답을 반환합니다.
+Mac에서는 Decision Kai의 후보 점수 계산 또는 DiffusionGemma의 MLX 추론을 선택할 수 있고,
+외부 vLLM 서버에도 연결할 수 있습니다.
 공식 TypeSafe Python SDK는 API 주소와 키를 바꾸어 사용할 수 있습니다.
 
 ## 네이티브 결정 엔진
@@ -9,9 +10,23 @@ DiffusionGemma로 판단하고, 검증된 `choice`, `score`, `noul` 응답을 �
 [네이티브 엔진](native-engine.md)은 HTTP 추론 서버 없이 vLLM Python 런타임에 토큰 작업을
 직접 제출합니다. 질문별 격리를 유지하면서 배치 실행, 공유 state prefix, 토큰 예산,
 실패한 질문만 재시도하는 경로를 제공합니다. vLLM 경로는 오프라인 실험용이며 NVIDIA GPU 검증이
-남아 있습니다. Mac용 MLX 경로는 실제 추론과 API 동작을 확인했습니다. 직접 분류 head와 diffusion sampler 최적화는 후속 개발 항목입니다.
+남아 있습니다. Mac용 MLX 경로는 실제 추론과 API 동작을 확인했습니다. Decision 경로는 직접 후보 점수 계산과 요청 간 배치 처리를 제공합니다. Diffusion sampler 최적화와 분산 서빙은 후속 항목입니다.
 
-## Mac에서 실행
+## Mac에서 Decision Kai 실행
+
+```sh
+UV_PROJECT_ENVIRONMENT=.venv-decision uv sync --locked --extra decision --python 3.12
+UV_PROJECT_ENVIRONMENT=.venv-decision uv run --extra decision \
+  vllm-verifier --runtime decision --port 18080
+```
+
+가중치 약 2.3GB를 내려받아 PyTorch MPS/Metal에서 실행합니다. JSON 생성 없이 후보 확률을
+계산하며 여러 요청의 질문을 타입과 길이별로 묶습니다. 전체 입력 한도는 질문당 1,024토큰이고,
+Choice·Score는 최소 두 후보가 필요합니다. 확률은 보정되지 않았고 confidence는 최대 후보
+확률입니다. MLX와 Transformers 버전이 달라 별도 가상환경을 사용합니다.
+[설정·스케줄링·벤치마크 안내](decision-models.md)를 참고하세요.
+
+## Mac에서 DiffusionGemma 실행
 
 Apple Silicon에서는 `uv sync --locked --extra mac`으로 설치한 뒤
 `uv run --extra mac vllm-verifier --runtime mlx --port 18080`으로 실행할 수 있습니다.

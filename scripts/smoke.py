@@ -30,5 +30,5 @@ with httpx.Client(
     for key, answer in result.answers.items():
         assert answer.type == payload["questions"][key]["type"]
         if answer.type != "noul":
-            assert math.isclose(sum(answer.probabilities.values()), 1.0, abs_tol=1e-9)
+            assert math.isclose(sum(answer.probabilities.values()), 1.0, abs_tol=2e-5)
     print(result.model_dump_json(indent=2))

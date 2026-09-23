@@ -29,6 +29,17 @@ def create_app(settings: Settings | None = None, backend: Backend | None = None)
 
     @asynccontextmanager
     async def lifespan(app: FastAPI) -> AsyncIterator[None]:
+        if settings.runtime == "decision" and backend is None:
+            from .decision.service import DirectDecisionService
+
+            direct_service = DirectDecisionService(settings)
+            await direct_service.start()
+            app.state.service = direct_service
+            try:
+                yield
+            finally:
+                await direct_service.close()
+            return
         active_backend: Backend
         if backend is not None:
             active_backend = backend

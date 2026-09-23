@@ -1,0 +1,2112 @@
+{
+  "metadata": {
+    "dataset": "benchmarks/decision-smoke.jsonl",
+    "concurrency": 8,
+    "repeat": 10,
+    "warmup": 1,
+    "run_label": "Apple M5 24GB; Kai 7185f514; PyTorch 2.14.0 MPS FP32; batch8 tokens4096 wait2ms",
+    "models": [
+      "llm-semantic-router/Decision-1.0-Kai-0.6B"
+    ],
+    "demo": false
+  },
+  "requests": 80,
+  "successful": 80,
+  "wall_seconds": 3.0476901661604643,
+  "successful_requests_per_second": 26.249387450295007,
+  "successful_latency_seconds": {
+    "p50": 0.28573904116638005,
+    "p95": 0.41517075011506677,
+    "p99": 0.41708270902745426
+  },
+  "errors": {},
+  "usage": {
+    "input_tokens": 14770,
+    "output_tokens": 0
+  },
+  "classification_accuracy": 0.9375,
+  "mean_brier": 0.069128694935263,
+  "score_mae": 0.7482473943382502,
+  "rows": [
+    {
+      "status": 200,
+      "seconds": 0.13258429104462266,
+      "demo": false,
+      "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+      "usage": {
+        "input_tokens": 167,
+        "output_tokens": 0
+      },
+      "scores": [
+        {
+          "kind": "classification",
+          "correct": true,
+          "brier": 0.0008995949523877783
+        },
+        {
+          "kind": "classification",
+          "correct": true,
+          "brier": 0.23167275200881932
+        },
+        {
+          "kind": "score",
+          "absolute_error": 0.9996956288814545
+        }
+      ]
+    },
+    {
+      "status": 200,
+      "seconds": 0.13284095819108188,
+      "demo": false,
+      "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+      "usage": {
+        "input_tokens": 179,
+        "output_tokens": 0
+      },
+      "scores": [
+        {
+          "kind": "classification",
+          "correct": true,
+          "brier": 0.0009555661309904014
+        },
+        {
+          "kind": "classification",
+          "correct": true,
+          "brier": 0.011919052993034862
+        },
+        {
+          "kind": "score",
+          "absolute_error": 0.0005765557289123535
+        }
+      ]
+    },
+    {
+      "status": 200,
+      "seconds": 0.13253391603939235,
+      "demo": false,
+      "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+      "usage": {
+        "input_tokens": 164,
+        "output_tokens": 0
+      },
+      "scores": [
+        {
+          "kind": "classification",
+          "correct": true,
+          "brier": 0.00795958956400103
+        },
+        {
+          "kind": "classification",
+          "correct": false,
+          "brier": 0.3633924303439926
+        },
+        {
+          "kind": "score",
+          "absolute_error": 0.9998499155044556
+        }
+      ]
+    },
+    {
+      "status": 200,
+      "seconds": 0.41517075011506677,
+      "demo": false,
+      "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+      "usage": {
+        "input_tokens": 188,
+        "output_tokens": 0
+      },
+      "scores": [
+        {
+          "kind": "classification",
+          "correct": true,
+          "brier": 0.0033501460892968217
+        },
+        {
+          "kind": "classification",
+          "correct": true,
+          "brier": 0.06253934525580007
+        },
+        {
+          "kind": "score",
+          "absolute_error": 0.9937121570110321
+        }
+      ]
+    },
+    {
+      "status": 200,
+      "seconds": 0.4166918338742107,
+      "demo": false,
+      "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+      "usage": {
+        "input_tokens": 176,
+        "output_tokens": 0
+      },
+      "scores": [
+        {
+          "kind": "classification",
+          "correct": true,
+          "brier": 0.0955309465347094
+        },
+        {
+          "kind": "classification",
+          "correct": true,
+          "brier": 0.02797304846491877
+        },
+        {
+          "kind": "score",
+          "absolute_error": 0.9949284195899963
+        }
+      ]
+    },
+    {
+      "status": 200,
+      "seconds": 0.41708270902745426,
+      "demo": false,
+      "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+      "usage": {
+        "input_tokens": 185,
+        "output_tokens": 0
+      },
+      "scores": [
+        {
+          "kind": "classification",
+          "correct": true,
+          "brier": 3.227156641474302e-05
+        },
+        {
+          "kind": "classification",
+          "correct": true,
+          "brier": 0.015845156154936868
+        },
+        {
+          "kind": "score",
+          "absolute_error": 0.9965091943740845
+        }
+      ]
+    },
+    {
+      "status": 200,
+      "seconds": 0.4166344159748405,
+      "demo": false,
+      "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+      "usage": {
+        "input_tokens": 215,
+        "output_tokens": 0
+      },
+      "scores": [
+        {
+          "kind": "classification",
+          "correct": true,
+          "brier": 0.0019350463093134908
+        },
+        {
+          "kind": "classification",
+          "correct": true,
+          "brier": 0.043088509958494337
+        },
+        {
+          "kind": "score",
+          "absolute_error": 0.004349112510681152
+        }
+      ]
+    },
+    {
+      "status": 200,
+      "seconds": 0.4170192920137197,
+      "demo": false,
+      "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+      "usage": {
+        "input_tokens": 203,
+        "output_tokens": 0
+      },
+      "scores": [
+        {
+          "kind": "classification",
+          "correct": true,
+          "brier": 0.0007340382917064995
+        },
+        {
+          "kind": "classification",
+          "correct": true,
+          "brier": 0.23823165274785651
+        },
+        {
+          "kind": "score",
+          "absolute_error": 0.9963581264019012
+        }
+      ]
+    },
+    {
+      "status": 200,
+      "seconds": 0.28587924991734326,
+      "demo": false,
+      "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+      "usage": {
+        "input_tokens": 167,
+        "output_tokens": 0
+      },
+      "scores": [
+        {
+          "kind": "classification",
+          "correct": true,
+          "brier": 0.0008995953734578788
+        },
+        {
+          "kind": "classification",
+          "correct": true,
+          "brier": 0.23167269463053586
+        },
+        {
+          "kind": "score",
+          "absolute_error": 0.9996956288814545
+        }
+      ]
+    },
+    {
+      "status": 200,
+      "seconds": 0.2856495000887662,
+      "demo": false,
+      "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+      "usage": {
+        "input_tokens": 179,
+        "output_tokens": 0
+      },
+      "scores": [
+        {
+          "kind": "classification",
+          "correct": true,
+          "brier": 0.000955566602141575
+        },
+        {
+          "kind": "classification",
+          "correct": true,
+          "brier": 0.011919052993034862
+        },
+        {
+          "kind": "score",
+          "absolute_error": 0.0005765557289123535
+        }
+      ]
+    },
+    {
+      "status": 200,
+      "seconds": 0.28573904116638005,
+      "demo": false,
+      "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+      "usage": {
+        "input_tokens": 185,
+        "output_tokens": 0
+      },
+      "scores": [
+        {
+          "kind": "classification",
+          "correct": true,
+          "brier": 3.227156641474302e-05
+        },
+        {
+          "kind": "classification",
+          "correct": true,
+          "brier": 0.015845156154936868
+        },
+        {
+          "kind": "score",
+          "absolute_error": 0.9965091943740845
+        }
+      ]
+    },
+    {
+      "status": 200,
+      "seconds": 0.28917054110206664,
+      "demo": false,
+      "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+      "usage": {
+        "input_tokens": 176,
+        "output_tokens": 0
+      },
+      "scores": [
+        {
+          "kind": "classification",
+          "correct": true,
+          "brier": 0.0955309465347094
+        },
+        {
+          "kind": "classification",
+          "correct": true,
+          "brier": 0.02797304846491877
+        },
+        {
+          "kind": "score",
+          "absolute_error": 0.9949284195899963
+        }
+      ]
+    },
+    {
+      "status": 200,
+      "seconds": 0.28916099993512034,
+      "demo": false,
+      "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+      "usage": {
+        "input_tokens": 164,
+        "output_tokens": 0
+      },
+      "scores": [
+        {
+          "kind": "classification",
+          "correct": true,
+          "brier": 0.007959588629113529
+        },
+        {
+          "kind": "classification",
+          "correct": false,
+          "brier": 0.3633924303439926
+        },
+        {
+          "kind": "score",
+          "absolute_error": 0.9998499751091003
+        }
+      ]
+    },
+    {
+      "status": 200,
+      "seconds": 0.2882290829438716,
+      "demo": false,
+      "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+      "usage": {
+        "input_tokens": 167,
+        "output_tokens": 0
+      },
+      "scores": [
+        {
+          "kind": "classification",
+          "correct": true,
+          "brier": 0.0008995953734578788
+        },
+        {
+          "kind": "classification",
+          "correct": true,
+          "brier": 0.23167269463053586
+        },
+        {
+          "kind": "score",
+          "absolute_error": 0.9996956288814545
+        }
+      ]
+    },
+    {
+      "status": 200,
+      "seconds": 0.2891833330504596,
+      "demo": false,
+      "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+      "usage": {
+        "input_tokens": 215,
+        "output_tokens": 0
+      },
+      "scores": [
+        {
+          "kind": "classification",
+          "correct": true,
+          "brier": 0.0019350463093134908
+        },
+        {
+          "kind": "classification",
+          "correct": true,
+          "brier": 0.043088509958494337
+        },
+        {
+          "kind": "score",
+          "absolute_error": 0.004349112510681152
+        }
+      ]
+    },
+    {
+      "status": 200,
+      "seconds": 0.2896059169434011,
+      "demo": false,
+      "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+      "usage": {
+        "input_tokens": 203,
+        "output_tokens": 0
+      },
+      "scores": [
+        {
+          "kind": "classification",
+          "correct": true,
+          "brier": 0.0007340382917064995
+        },
+        {
+          "kind": "classification",
+          "correct": true,
+          "brier": 0.23823165274785651
+        },
+        {
+          "kind": "score",
+          "absolute_error": 0.9963581264019012
+        }
+      ]
+    },
+    {
+      "status": 200,
+      "seconds": 0.28860670793801546,
+      "demo": false,
+      "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+      "usage": {
+        "input_tokens": 185,
+        "output_tokens": 0
+      },
+      "scores": [
+        {
+          "kind": "classification",
+          "correct": true,
+          "brier": 3.227156641474302e-05
+        },
+        {
+          "kind": "classification",
+          "correct": true,
+          "brier": 0.015845156154936868
+        },
+        {
+          "kind": "score",
+          "absolute_error": 0.9965091943740845
+        }
+      ]
+    },
+    {
+      "status": 200,
+      "seconds": 0.2891273330897093,
+      "demo": false,
+      "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+      "usage": {
+        "input_tokens": 179,
+        "output_tokens": 0
+      },
+      "scores": [
+        {
+          "kind": "classification",
+          "correct": true,
+          "brier": 0.000955566602141575
+        },
+        {
+          "kind": "classification",
+          "correct": true,
+          "brier": 0.011919052993034862
+        },
+        {
+          "kind": "score",
+          "absolute_error": 0.0005765557289123535
+        }
+      ]
+    },
+    {
+      "status": 200,
+      "seconds": 0.2902066248934716,
+      "demo": false,
+      "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+      "usage": {
+        "input_tokens": 188,
+        "output_tokens": 0
+      },
+      "scores": [
+        {
+          "kind": "classification",
+          "correct": true,
+          "brier": 0.0033501460892968217
+        },
+        {
+          "kind": "classification",
+          "correct": true,
+          "brier": 0.06253934525580007
+        },
+        {
+          "kind": "score",
+          "absolute_error": 0.9937121570110321
+        }
+      ]
+    },
+    {
+      "status": 200,
+      "seconds": 0.285101082874462,
+      "demo": false,
+      "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+      "usage": {
+        "input_tokens": 176,
+        "output_tokens": 0
+      },
+      "scores": [
+        {
+          "kind": "classification",
+          "correct": true,
+          "brier": 0.0955309465347094
+        },
+        {
+          "kind": "classification",
+          "correct": true,
+          "brier": 0.02797304846491877
+        },
+        {
+          "kind": "score",
+          "absolute_error": 0.9949284195899963
+        }
+      ]
+    },
+    {
+      "status": 200,
+      "seconds": 0.2850314590614289,
+      "demo": false,
+      "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+      "usage": {
+        "input_tokens": 164,
+        "output_tokens": 0
+      },
+      "scores": [
+        {
+          "kind": "classification",
+          "correct": true,
+          "brier": 0.007959588629113529
+        },
+        {
+          "kind": "classification",
+          "correct": false,
+          "brier": 0.3633924303439926
+        },
+        {
+          "kind": "score",
+          "absolute_error": 0.9998499751091003
+        }
+      ]
+    },
+    {
+      "status": 200,
+      "seconds": 0.2849618748296052,
+      "demo": false,
+      "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+      "usage": {
+        "input_tokens": 203,
+        "output_tokens": 0
+      },
+      "scores": [
+        {
+          "kind": "classification",
+          "correct": true,
+          "brier": 0.0007340382917064995
+        },
+        {
+          "kind": "classification",
+          "correct": true,
+          "brier": 0.23823165274785651
+        },
+        {
+          "kind": "score",
+          "absolute_error": 0.9963581264019012
+        }
+      ]
+    },
+    {
+      "status": 200,
+      "seconds": 0.28497112495824695,
+      "demo": false,
+      "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+      "usage": {
+        "input_tokens": 215,
+        "output_tokens": 0
+      },
+      "scores": [
+        {
+          "kind": "classification",
+          "correct": true,
+          "brier": 0.0019350463093134908
+        },
+        {
+          "kind": "classification",
+          "correct": true,
+          "brier": 0.043088509958494337
+        },
+        {
+          "kind": "score",
+          "absolute_error": 0.004349112510681152
+        }
+      ]
+    },
+    {
+      "status": 200,
+      "seconds": 0.28416295908391476,
+      "demo": false,
+      "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+      "usage": {
+        "input_tokens": 179,
+        "output_tokens": 0
+      },
+      "scores": [
+        {
+          "kind": "classification",
+          "correct": true,
+          "brier": 0.000955566602141575
+        },
+        {
+          "kind": "classification",
+          "correct": true,
+          "brier": 0.011919052993034862
+        },
+        {
+          "kind": "score",
+          "absolute_error": 0.0005765557289123535
+        }
+      ]
+    },
+    {
+      "status": 200,
+      "seconds": 0.2856398751027882,
+      "demo": false,
+      "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+      "usage": {
+        "input_tokens": 188,
+        "output_tokens": 0
+      },
+      "scores": [
+        {
+          "kind": "classification",
+          "correct": true,
+          "brier": 0.0033501460892968217
+        },
+        {
+          "kind": "classification",
+          "correct": true,
+          "brier": 0.06253934525580007
+        },
+        {
+          "kind": "score",
+          "absolute_error": 0.9937121570110321
+        }
+      ]
+    },
+    {
+      "status": 200,
+      "seconds": 0.28491720790043473,
+      "demo": false,
+      "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+      "usage": {
+        "input_tokens": 185,
+        "output_tokens": 0
+      },
+      "scores": [
+        {
+          "kind": "classification",
+          "correct": true,
+          "brier": 3.227156641474302e-05
+        },
+        {
+          "kind": "classification",
+          "correct": true,
+          "brier": 0.015845156154936868
+        },
+        {
+          "kind": "score",
+          "absolute_error": 0.9965091943740845
+        }
+      ]
+    },
+    {
+      "status": 200,
+      "seconds": 0.2856396250426769,
+      "demo": false,
+      "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+      "usage": {
+        "input_tokens": 167,
+        "output_tokens": 0
+      },
+      "scores": [
+        {
+          "kind": "classification",
+          "correct": true,
+          "brier": 0.0008995953734578788
+        },
+        {
+          "kind": "classification",
+          "correct": true,
+          "brier": 0.23167269463053586
+        },
+        {
+          "kind": "score",
+          "absolute_error": 0.9996956288814545
+        }
+      ]
+    },
+    {
+      "status": 200,
+      "seconds": 0.2856277918908745,
+      "demo": false,
+      "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+      "usage": {
+        "input_tokens": 176,
+        "output_tokens": 0
+      },
+      "scores": [
+        {
+          "kind": "classification",
+          "correct": true,
+          "brier": 0.0955309465347094
+        },
+        {
+          "kind": "classification",
+          "correct": true,
+          "brier": 0.02797304846491877
+        },
+        {
+          "kind": "score",
+          "absolute_error": 0.9949284195899963
+        }
+      ]
+    },
+    {
+      "status": 200,
+      "seconds": 0.28584587504155934,
+      "demo": false,
+      "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+      "usage": {
+        "input_tokens": 164,
+        "output_tokens": 0
+      },
+      "scores": [
+        {
+          "kind": "classification",
+          "correct": true,
+          "brier": 0.007959588629113529
+        },
+        {
+          "kind": "classification",
+          "correct": false,
+          "brier": 0.3633924303439926
+        },
+        {
+          "kind": "score",
+          "absolute_error": 0.9998499751091003
+        }
+      ]
+    },
+    {
+      "status": 200,
+      "seconds": 0.28590945806354284,
+      "demo": false,
+      "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+      "usage": {
+        "input_tokens": 203,
+        "output_tokens": 0
+      },
+      "scores": [
+        {
+          "kind": "classification",
+          "correct": true,
+          "brier": 0.0007340382917064995
+        },
+        {
+          "kind": "classification",
+          "correct": true,
+          "brier": 0.23823165274785651
+        },
+        {
+          "kind": "score",
+          "absolute_error": 0.9963581264019012
+        }
+      ]
+    },
+    {
+      "status": 200,
+      "seconds": 0.28604224999435246,
+      "demo": false,
+      "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+      "usage": {
+        "input_tokens": 215,
+        "output_tokens": 0
+      },
+      "scores": [
+        {
+          "kind": "classification",
+          "correct": true,
+          "brier": 0.0019350463093134908
+        },
+        {
+          "kind": "classification",
+          "correct": true,
+          "brier": 0.043088509958494337
+        },
+        {
+          "kind": "score",
+          "absolute_error": 0.004349112510681152
+        }
+      ]
+    },
+    {
+      "status": 200,
+      "seconds": 0.28518429212272167,
+      "demo": false,
+      "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+      "usage": {
+        "input_tokens": 179,
+        "output_tokens": 0
+      },
+      "scores": [
+        {
+          "kind": "classification",
+          "correct": true,
+          "brier": 0.000955566602141575
+        },
+        {
+          "kind": "classification",
+          "correct": true,
+          "brier": 0.011919052993034862
+        },
+        {
+          "kind": "score",
+          "absolute_error": 0.0005765557289123535
+        }
+      ]
+    },
+    {
+      "status": 200,
+      "seconds": 0.28642708295956254,
+      "demo": false,
+      "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+      "usage": {
+        "input_tokens": 188,
+        "output_tokens": 0
+      },
+      "scores": [
+        {
+          "kind": "classification",
+          "correct": true,
+          "brier": 0.0033501460892968217
+        },
+        {
+          "kind": "classification",
+          "correct": true,
+          "brier": 0.06253934525580007
+        },
+        {
+          "kind": "score",
+          "absolute_error": 0.9937121570110321
+        }
+      ]
+    },
+    {
+      "status": 200,
+      "seconds": 0.2857117911335081,
+      "demo": false,
+      "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+      "usage": {
+        "input_tokens": 185,
+        "output_tokens": 0
+      },
+      "scores": [
+        {
+          "kind": "classification",
+          "correct": true,
+          "brier": 3.227156641474302e-05
+        },
+        {
+          "kind": "classification",
+          "correct": true,
+          "brier": 0.015845156154936868
+        },
+        {
+          "kind": "score",
+          "absolute_error": 0.9965091943740845
+        }
+      ]
+    },
+    {
+      "status": 200,
+      "seconds": 0.2864700839854777,
+      "demo": false,
+      "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+      "usage": {
+        "input_tokens": 167,
+        "output_tokens": 0
+      },
+      "scores": [
+        {
+          "kind": "classification",
+          "correct": true,
+          "brier": 0.0008995953734578788
+        },
+        {
+          "kind": "classification",
+          "correct": true,
+          "brier": 0.23167269463053586
+        },
+        {
+          "kind": "score",
+          "absolute_error": 0.9996956288814545
+        }
+      ]
+    },
+    {
+      "status": 200,
+      "seconds": 0.28369845799170434,
+      "demo": false,
+      "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+      "usage": {
+        "input_tokens": 176,
+        "output_tokens": 0
+      },
+      "scores": [
+        {
+          "kind": "classification",
+          "correct": true,
+          "brier": 0.0955309465347094
+        },
+        {
+          "kind": "classification",
+          "correct": true,
+          "brier": 0.02797304846491877
+        },
+        {
+          "kind": "score",
+          "absolute_error": 0.9949284195899963
+        }
+      ]
+    },
+    {
+      "status": 200,
+      "seconds": 0.28376849996857345,
+      "demo": false,
+      "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+      "usage": {
+        "input_tokens": 164,
+        "output_tokens": 0
+      },
+      "scores": [
+        {
+          "kind": "classification",
+          "correct": true,
+          "brier": 0.007959588629113529
+        },
+        {
+          "kind": "classification",
+          "correct": false,
+          "brier": 0.3633924303439926
+        },
+        {
+          "kind": "score",
+          "absolute_error": 0.9998499751091003
+        }
+      ]
+    },
+    {
+      "status": 200,
+      "seconds": 0.2837185407988727,
+      "demo": false,
+      "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+      "usage": {
+        "input_tokens": 203,
+        "output_tokens": 0
+      },
+      "scores": [
+        {
+          "kind": "classification",
+          "correct": true,
+          "brier": 0.0007340382917064995
+        },
+        {
+          "kind": "classification",
+          "correct": true,
+          "brier": 0.23823165274785651
+        },
+        {
+          "kind": "score",
+          "absolute_error": 0.9963581264019012
+        }
+      ]
+    },
+    {
+      "status": 200,
+      "seconds": 0.28359295800328255,
+      "demo": false,
+      "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+      "usage": {
+        "input_tokens": 215,
+        "output_tokens": 0
+      },
+      "scores": [
+        {
+          "kind": "classification",
+          "correct": true,
+          "brier": 0.0019350463093134908
+        },
+        {
+          "kind": "classification",
+          "correct": true,
+          "brier": 0.043088509958494337
+        },
+        {
+          "kind": "score",
+          "absolute_error": 0.004349112510681152
+        }
+      ]
+    },
+    {
+      "status": 200,
+      "seconds": 0.28274683305062354,
+      "demo": false,
+      "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+      "usage": {
+        "input_tokens": 179,
+        "output_tokens": 0
+      },
+      "scores": [
+        {
+          "kind": "classification",
+          "correct": true,
+          "brier": 0.000955566602141575
+        },
+        {
+          "kind": "classification",
+          "correct": true,
+          "brier": 0.011919052993034862
+        },
+        {
+          "kind": "score",
+          "absolute_error": 0.0005765557289123535
+        }
+      ]
+    },
+    {
+      "status": 200,
+      "seconds": 0.28377304202876985,
+      "demo": false,
+      "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+      "usage": {
+        "input_tokens": 188,
+        "output_tokens": 0
+      },
+      "scores": [
+        {
+          "kind": "classification",
+          "correct": true,
+          "brier": 0.0033501460892968217
+        },
+        {
+          "kind": "classification",
+          "correct": true,
+          "brier": 0.06253934525580007
+        },
+        {
+          "kind": "score",
+          "absolute_error": 0.9937121570110321
+        }
+      ]
+    },
+    {
+      "status": 200,
+      "seconds": 0.2833015420474112,
+      "demo": false,
+      "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+      "usage": {
+        "input_tokens": 185,
+        "output_tokens": 0
+      },
+      "scores": [
+        {
+          "kind": "classification",
+          "correct": true,
+          "brier": 3.227156641474302e-05
+        },
+        {
+          "kind": "classification",
+          "correct": true,
+          "brier": 0.015845156154936868
+        },
+        {
+          "kind": "score",
+          "absolute_error": 0.9965091943740845
+        }
+      ]
+    },
+    {
+      "status": 200,
+      "seconds": 0.28438104200176895,
+      "demo": false,
+      "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+      "usage": {
+        "input_tokens": 167,
+        "output_tokens": 0
+      },
+      "scores": [
+        {
+          "kind": "classification",
+          "correct": true,
+          "brier": 0.0008995953734578788
+        },
+        {
+          "kind": "classification",
+          "correct": true,
+          "brier": 0.23167269463053586
+        },
+        {
+          "kind": "score",
+          "absolute_error": 0.9996956288814545
+        }
+      ]
+    },
+    {
+      "status": 200,
+      "seconds": 0.2876892499625683,
+      "demo": false,
+      "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+      "usage": {
+        "input_tokens": 176,
+        "output_tokens": 0
+      },
+      "scores": [
+        {
+          "kind": "classification",
+          "correct": true,
+          "brier": 0.0955309465347094
+        },
+        {
+          "kind": "classification",
+          "correct": true,
+          "brier": 0.02797304846491877
+        },
+        {
+          "kind": "score",
+          "absolute_error": 0.9949284195899963
+        }
+      ]
+    },
+    {
+      "status": 200,
+      "seconds": 0.28745016595348716,
+      "demo": false,
+      "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+      "usage": {
+        "input_tokens": 164,
+        "output_tokens": 0
+      },
+      "scores": [
+        {
+          "kind": "classification",
+          "correct": true,
+          "brier": 0.007959588629113529
+        },
+        {
+          "kind": "classification",
+          "correct": false,
+          "brier": 0.3633924303439926
+        },
+        {
+          "kind": "score",
+          "absolute_error": 0.9998499751091003
+        }
+      ]
+    },
+    {
+      "status": 200,
+      "seconds": 0.28743308293633163,
+      "demo": false,
+      "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+      "usage": {
+        "input_tokens": 203,
+        "output_tokens": 0
+      },
+      "scores": [
+        {
+          "kind": "classification",
+          "correct": true,
+          "brier": 0.0007340382917064995
+        },
+        {
+          "kind": "classification",
+          "correct": true,
+          "brier": 0.23823165274785651
+        },
+        {
+          "kind": "score",
+          "absolute_error": 0.9963581264019012
+        }
+      ]
+    },
+    {
+      "status": 200,
+      "seconds": 0.2874337499961257,
+      "demo": false,
+      "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+      "usage": {
+        "input_tokens": 215,
+        "output_tokens": 0
+      },
+      "scores": [
+        {
+          "kind": "classification",
+          "correct": true,
+          "brier": 0.0019350463093134908
+        },
+        {
+          "kind": "classification",
+          "correct": true,
+          "brier": 0.043088509958494337
+        },
+        {
+          "kind": "score",
+          "absolute_error": 0.004349112510681152
+        }
+      ]
+    },
+    {
+      "status": 200,
+      "seconds": 0.28662112494930625,
+      "demo": false,
+      "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+      "usage": {
+        "input_tokens": 179,
+        "output_tokens": 0
+      },
+      "scores": [
+        {
+          "kind": "classification",
+          "correct": true,
+          "brier": 0.000955566602141575
+        },
+        {
+          "kind": "classification",
+          "correct": true,
+          "brier": 0.011919052993034862
+        },
+        {
+          "kind": "score",
+          "absolute_error": 0.0005765557289123535
+        }
+      ]
+    },
+    {
+      "status": 200,
+      "seconds": 0.28767833299934864,
+      "demo": false,
+      "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+      "usage": {
+        "input_tokens": 188,
+        "output_tokens": 0
+      },
+      "scores": [
+        {
+          "kind": "classification",
+          "correct": true,
+          "brier": 0.0033501460892968217
+        },
+        {
+          "kind": "classification",
+          "correct": true,
+          "brier": 0.06253934525580007
+        },
+        {
+          "kind": "score",
+          "absolute_error": 0.9937121570110321
+        }
+      ]
+    },
+    {
+      "status": 200,
+      "seconds": 0.2870357090141624,
+      "demo": false,
+      "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+      "usage": {
+        "input_tokens": 185,
+        "output_tokens": 0
+      },
+      "scores": [
+        {
+          "kind": "classification",
+          "correct": true,
+          "brier": 3.227156641474302e-05
+        },
+        {
+          "kind": "classification",
+          "correct": true,
+          "brier": 0.015845156154936868
+        },
+        {
+          "kind": "score",
+          "absolute_error": 0.9965091943740845
+        }
+      ]
+    },
+    {
+      "status": 200,
+      "seconds": 0.28818687493912876,
+      "demo": false,
+      "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+      "usage": {
+        "input_tokens": 167,
+        "output_tokens": 0
+      },
+      "scores": [
+        {
+          "kind": "classification",
+          "correct": true,
+          "brier": 0.0008995953734578788
+        },
+        {
+          "kind": "classification",
+          "correct": true,
+          "brier": 0.23167269463053586
+        },
+        {
+          "kind": "score",
+          "absolute_error": 0.9996956288814545
+        }
+      ]
+    },
+    {
+      "status": 200,
+      "seconds": 0.28534870804287493,
+      "demo": false,
+      "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+      "usage": {
+        "input_tokens": 176,
+        "output_tokens": 0
+      },
+      "scores": [
+        {
+          "kind": "classification",
+          "correct": true,
+          "brier": 0.0955309465347094
+        },
+        {
+          "kind": "classification",
+          "correct": true,
+          "brier": 0.02797304846491877
+        },
+        {
+          "kind": "score",
+          "absolute_error": 0.9949284195899963
+        }
+      ]
+    },
+    {
+      "status": 200,
+      "seconds": 0.2853062499780208,
+      "demo": false,
+      "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+      "usage": {
+        "input_tokens": 164,
+        "output_tokens": 0
+      },
+      "scores": [
+        {
+          "kind": "classification",
+          "correct": true,
+          "brier": 0.007959588629113529
+        },
+        {
+          "kind": "classification",
+          "correct": false,
+          "brier": 0.3633924303439926
+        },
+        {
+          "kind": "score",
+          "absolute_error": 0.9998499751091003
+        }
+      ]
+    },
+    {
+      "status": 200,
+      "seconds": 0.28491133311763406,
+      "demo": false,
+      "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+      "usage": {
+        "input_tokens": 188,
+        "output_tokens": 0
+      },
+      "scores": [
+        {
+          "kind": "classification",
+          "correct": true,
+          "brier": 0.0033501460892968217
+        },
+        {
+          "kind": "classification",
+          "correct": true,
+          "brier": 0.06253934525580007
+        },
+        {
+          "kind": "score",
+          "absolute_error": 0.9937121570110321
+        }
+      ]
+    },
+    {
+      "status": 200,
+      "seconds": 0.2843597079627216,
+      "demo": false,
+      "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+      "usage": {
+        "input_tokens": 185,
+        "output_tokens": 0
+      },
+      "scores": [
+        {
+          "kind": "classification",
+          "correct": true,
+          "brier": 3.227156641474302e-05
+        },
+        {
+          "kind": "classification",
+          "correct": true,
+          "brier": 0.015845156154936868
+        },
+        {
+          "kind": "score",
+          "absolute_error": 0.9965091943740845
+        }
+      ]
+    },
+    {
+      "status": 200,
+      "seconds": 0.2853280419949442,
+      "demo": false,
+      "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+      "usage": {
+        "input_tokens": 167,
+        "output_tokens": 0
+      },
+      "scores": [
+        {
+          "kind": "classification",
+          "correct": true,
+          "brier": 0.0008995953734578788
+        },
+        {
+          "kind": "classification",
+          "correct": true,
+          "brier": 0.23167269463053586
+        },
+        {
+          "kind": "score",
+          "absolute_error": 0.9996956288814545
+        }
+      ]
+    },
+    {
+      "status": 200,
+      "seconds": 0.28652879083529115,
+      "demo": false,
+      "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+      "usage": {
+        "input_tokens": 203,
+        "output_tokens": 0
+      },
+      "scores": [
+        {
+          "kind": "classification",
+          "correct": true,
+          "brier": 0.0007340382917064995
+        },
+        {
+          "kind": "classification",
+          "correct": true,
+          "brier": 0.23823165274785651
+        },
+        {
+          "kind": "score",
+          "absolute_error": 0.9963581264019012
+        }
+      ]
+    },
+    {
+      "status": 200,
+      "seconds": 0.28668637480586767,
+      "demo": false,
+      "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+      "usage": {
+        "input_tokens": 215,
+        "output_tokens": 0
+      },
+      "scores": [
+        {
+          "kind": "classification",
+          "correct": true,
+          "brier": 0.0019350463093134908
+        },
+        {
+          "kind": "classification",
+          "correct": true,
+          "brier": 0.043088509958494337
+        },
+        {
+          "kind": "score",
+          "absolute_error": 0.004349112510681152
+        }
+      ]
+    },
+    {
+      "status": 200,
+      "seconds": 0.28604612522758543,
+      "demo": false,
+      "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+      "usage": {
+        "input_tokens": 179,
+        "output_tokens": 0
+      },
+      "scores": [
+        {
+          "kind": "classification",
+          "correct": true,
+          "brier": 0.000955566602141575
+        },
+        {
+          "kind": "classification",
+          "correct": true,
+          "brier": 0.011919052993034862
+        },
+        {
+          "kind": "score",
+          "absolute_error": 0.0005765557289123535
+        }
+      ]
+    },
+    {
+      "status": 200,
+      "seconds": 0.12236649985425174,
+      "demo": false,
+      "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+      "usage": {
+        "input_tokens": 176,
+        "output_tokens": 0
+      },
+      "scores": [
+        {
+          "kind": "classification",
+          "correct": true,
+          "brier": 0.09553093007109581
+        },
+        {
+          "kind": "classification",
+          "correct": true,
+          "brier": 0.02797305843388309
+        },
+        {
+          "kind": "score",
+          "absolute_error": 0.9949283599853516
+        }
+      ]
+    },
+    {
+      "status": 200,
+      "seconds": 0.12198683293536305,
+      "demo": false,
+      "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+      "usage": {
+        "input_tokens": 164,
+        "output_tokens": 0
+      },
+      "scores": [
+        {
+          "kind": "classification",
+          "correct": true,
+          "brier": 0.00795958956400103
+        },
+        {
+          "kind": "classification",
+          "correct": false,
+          "brier": 0.3633924303439926
+        },
+        {
+          "kind": "score",
+          "absolute_error": 0.9998499155044556
+        }
+      ]
+    },
+    {
+      "status": 200,
+      "seconds": 0.12074541603215039,
+      "demo": false,
+      "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+      "usage": {
+        "input_tokens": 167,
+        "output_tokens": 0
+      },
+      "scores": [
+        {
+          "kind": "classification",
+          "correct": true,
+          "brier": 0.0008995949523877783
+        },
+        {
+          "kind": "classification",
+          "correct": true,
+          "brier": 0.23167275200881932
+        },
+        {
+          "kind": "score",
+          "absolute_error": 0.9996956288814545
+        }
+      ]
+    },
+    {
+      "status": 200,
+      "seconds": 0.40427754214033484,
+      "demo": false,
+      "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+      "usage": {
+        "input_tokens": 188,
+        "output_tokens": 0
+      },
+      "scores": [
+        {
+          "kind": "classification",
+          "correct": true,
+          "brier": 0.0033501460892968217
+        },
+        {
+          "kind": "classification",
+          "correct": true,
+          "brier": 0.06253934525580007
+        },
+        {
+          "kind": "score",
+          "absolute_error": 0.9937121570110321
+        }
+      ]
+    },
+    {
+      "status": 200,
+      "seconds": 0.4056577500887215,
+      "demo": false,
+      "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+      "usage": {
+        "input_tokens": 203,
+        "output_tokens": 0
+      },
+      "scores": [
+        {
+          "kind": "classification",
+          "correct": true,
+          "brier": 0.0007340382917064995
+        },
+        {
+          "kind": "classification",
+          "correct": true,
+          "brier": 0.23823165274785651
+        },
+        {
+          "kind": "score",
+          "absolute_error": 0.9963581264019012
+        }
+      ]
+    },
+    {
+      "status": 200,
+      "seconds": 0.404293708037585,
+      "demo": false,
+      "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+      "usage": {
+        "input_tokens": 179,
+        "output_tokens": 0
+      },
+      "scores": [
+        {
+          "kind": "classification",
+          "correct": true,
+          "brier": 0.000955566602141575
+        },
+        {
+          "kind": "classification",
+          "correct": true,
+          "brier": 0.011919052993034862
+        },
+        {
+          "kind": "score",
+          "absolute_error": 0.0005765557289123535
+        }
+      ]
+    },
+    {
+      "status": 200,
+      "seconds": 0.4055918750818819,
+      "demo": false,
+      "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+      "usage": {
+        "input_tokens": 215,
+        "output_tokens": 0
+      },
+      "scores": [
+        {
+          "kind": "classification",
+          "correct": true,
+          "brier": 0.0019350463093134908
+        },
+        {
+          "kind": "classification",
+          "correct": true,
+          "brier": 0.043088509958494337
+        },
+        {
+          "kind": "score",
+          "absolute_error": 0.004349112510681152
+        }
+      ]
+    },
+    {
+      "status": 200,
+      "seconds": 0.40449279197491705,
+      "demo": false,
+      "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+      "usage": {
+        "input_tokens": 185,
+        "output_tokens": 0
+      },
+      "scores": [
+        {
+          "kind": "classification",
+          "correct": true,
+          "brier": 3.227156641474302e-05
+        },
+        {
+          "kind": "classification",
+          "correct": true,
+          "brier": 0.015845156154936868
+        },
+        {
+          "kind": "score",
+          "absolute_error": 0.9965091943740845
+        }
+      ]
+    },
+    {
+      "status": 200,
+      "seconds": 0.2854761660564691,
+      "demo": false,
+      "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+      "usage": {
+        "input_tokens": 176,
+        "output_tokens": 0
+      },
+      "scores": [
+        {
+          "kind": "classification",
+          "correct": true,
+          "brier": 0.0955309465347094
+        },
+        {
+          "kind": "classification",
+          "correct": true,
+          "brier": 0.02797304846491877
+        },
+        {
+          "kind": "score",
+          "absolute_error": 0.9949284195899963
+        }
+      ]
+    },
+    {
+      "status": 200,
+      "seconds": 0.28537841606885195,
+      "demo": false,
+      "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+      "usage": {
+        "input_tokens": 164,
+        "output_tokens": 0
+      },
+      "scores": [
+        {
+          "kind": "classification",
+          "correct": true,
+          "brier": 0.007959588629113529
+        },
+        {
+          "kind": "classification",
+          "correct": false,
+          "brier": 0.3633924303439926
+        },
+        {
+          "kind": "score",
+          "absolute_error": 0.9998499751091003
+        }
+      ]
+    },
+    {
+      "status": 200,
+      "seconds": 0.28542270814068615,
+      "demo": false,
+      "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+      "usage": {
+        "input_tokens": 203,
+        "output_tokens": 0
+      },
+      "scores": [
+        {
+          "kind": "classification",
+          "correct": true,
+          "brier": 0.0007340382917064995
+        },
+        {
+          "kind": "classification",
+          "correct": true,
+          "brier": 0.23823165274785651
+        },
+        {
+          "kind": "score",
+          "absolute_error": 0.9963581264019012
+        }
+      ]
+    },
+    {
+      "status": 200,
+      "seconds": 0.20100645814090967,
+      "demo": false,
+      "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+      "usage": {
+        "input_tokens": 215,
+        "output_tokens": 0
+      },
+      "scores": [
+        {
+          "kind": "classification",
+          "correct": true,
+          "brier": 0.0019350463093134908
+        },
+        {
+          "kind": "classification",
+          "correct": true,
+          "brier": 0.043088509958494337
+        },
+        {
+          "kind": "score",
+          "absolute_error": 0.004349112510681152
+        }
+      ]
+    },
+    {
+      "status": 200,
+      "seconds": 0.20085116708651185,
+      "demo": false,
+      "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+      "usage": {
+        "input_tokens": 188,
+        "output_tokens": 0
+      },
+      "scores": [
+        {
+          "kind": "classification",
+          "correct": true,
+          "brier": 0.0033501460892968217
+        },
+        {
+          "kind": "classification",
+          "correct": true,
+          "brier": 0.06253934525580007
+        },
+        {
+          "kind": "score",
+          "absolute_error": 0.9937121570110321
+        }
+      ]
+    },
+    {
+      "status": 200,
+      "seconds": 0.19982104119844735,
+      "demo": false,
+      "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+      "usage": {
+        "input_tokens": 176,
+        "output_tokens": 0
+      },
+      "scores": [
+        {
+          "kind": "classification",
+          "correct": true,
+          "brier": 0.0955309465347094
+        },
+        {
+          "kind": "classification",
+          "correct": true,
+          "brier": 0.02797305843388309
+        },
+        {
+          "kind": "score",
+          "absolute_error": 0.9949284195899963
+        }
+      ]
+    },
+    {
+      "status": 200,
+      "seconds": 0.19938929099589586,
+      "demo": false,
+      "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+      "usage": {
+        "input_tokens": 203,
+        "output_tokens": 0
+      },
+      "scores": [
+        {
+          "kind": "classification",
+          "correct": true,
+          "brier": 0.0007340382917064995
+        },
+        {
+          "kind": "classification",
+          "correct": true,
+          "brier": 0.2382317691175473
+        },
+        {
+          "kind": "score",
+          "absolute_error": 0.9963581264019012
+        }
+      ]
+    },
+    {
+      "status": 200,
+      "seconds": 0.20069037494249642,
+      "demo": false,
+      "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+      "usage": {
+        "input_tokens": 185,
+        "output_tokens": 0
+      },
+      "scores": [
+        {
+          "kind": "classification",
+          "correct": true,
+          "brier": 3.227156641474302e-05
+        },
+        {
+          "kind": "classification",
+          "correct": true,
+          "brier": 0.015845152403493934
+        },
+        {
+          "kind": "score",
+          "absolute_error": 0.9965091943740845
+        }
+      ]
+    },
+    {
+      "status": 200,
+      "seconds": 0.31617124984040856,
+      "demo": false,
+      "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+      "usage": {
+        "input_tokens": 164,
+        "output_tokens": 0
+      },
+      "scores": [
+        {
+          "kind": "classification",
+          "correct": true,
+          "brier": 0.00795958956400103
+        },
+        {
+          "kind": "classification",
+          "correct": false,
+          "brier": 0.3633924303439926
+        },
+        {
+          "kind": "score",
+          "absolute_error": 0.9998499155044556
+        }
+      ]
+    },
+    {
+      "status": 200,
+      "seconds": 0.3177044577896595,
+      "demo": false,
+      "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+      "usage": {
+        "input_tokens": 167,
+        "output_tokens": 0
+      },
+      "scores": [
+        {
+          "kind": "classification",
+          "correct": true,
+          "brier": 0.0008995949523877783
+        },
+        {
+          "kind": "classification",
+          "correct": true,
+          "brier": 0.23167275200881932
+        },
+        {
+          "kind": "score",
+          "absolute_error": 0.9996956288814545
+        }
+      ]
+    },
+    {
+      "status": 200,
+      "seconds": 0.31759462505578995,
+      "demo": false,
+      "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+      "usage": {
+        "input_tokens": 179,
+        "output_tokens": 0
+      },
+      "scores": [
+        {
+          "kind": "classification",
+          "correct": true,
+          "brier": 0.0009555661309904014
+        },
+        {
+          "kind": "classification",
+          "correct": true,
+          "brier": 0.011919052993034862
+        },
+        {
+          "kind": "score",
+          "absolute_error": 0.0005765557289123535
+        }
+      ]
+    },
+    {
+      "status": 200,
+      "seconds": 0.30732591706328094,
+      "demo": false,
+      "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+      "usage": {
+        "input_tokens": 215,
+        "output_tokens": 0
+      },
+      "scores": [
+        {
+          "kind": "classification",
+          "correct": true,
+          "brier": 0.0019350467097408487
+        },
+        {
+          "kind": "classification",
+          "correct": true,
+          "brier": 0.043088509958494337
+        },
+        {
+          "kind": "score",
+          "absolute_error": 0.00434914231300354
+        }
+      ]
+    },
+    {
+      "status": 200,
+      "seconds": 0.3070115000009537,
+      "demo": false,
+      "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+      "usage": {
+        "input_tokens": 188,
+        "output_tokens": 0
+      },
+      "scores": [
+        {
+          "kind": "classification",
+          "correct": true,
+          "brier": 0.0033501470471490637
+        },
+        {
+          "kind": "classification",
+          "correct": true,
+          "brier": 0.06253934525580007
+        },
+        {
+          "kind": "score",
+          "absolute_error": 0.9937122166156769
+        }
+      ]
+    }
+  ]
+}

@@ -25,15 +25,24 @@ The prose reference requires instructions and recommends at least two Score leve
 wire schema allows absent instructions and one level. We accept that broader SDK input; a
 single-level Score necessarily returns zero and confidence one.
 
+## Runtime-specific behavior
+
+The table above describes the shared wire schema. With `--runtime decision`, Kai requires at
+least two Choice/Score candidates, nonempty text, and at most 1,024 complete input tokens per
+question. Unsupported inputs return 422. Omitted instructions receive an explicit default.
+Kai probabilities come directly from candidate logits and confidence is the maximum probability;
+output usage is zero. Its bounded scheduler batches independent questions across requests.
+See [Decision runtime](decision-models.md). MLX and Decision reject the vision extension.
+
 ## Deliberate differences
 
 - `jev-latest` and `diffusion-jev` are aliases for the operator's configured model. An arbitrary
   `jev-*` version is not accepted. Responses identify the actual configured model, never pretend
   the weights are Jev. The separate demo server advertises `demo-uniform`.
-- Probabilities are generated estimates, not Jev's learned calibrated probabilities, and not token
+- In generation runtimes, probabilities are generated estimates, not Jev's learned calibrated probabilities, and not token
   logprobs. `confidence = 1 - H(p)/ln(K)` (singleton: 1). TypeSafe does not publish the exact
   confidence formula in the reviewed reference, so numeric equivalence is not claimed.
-- Questions run as independent model calls under a shared concurrency limit. More questions
+- In the HTTP generation gateway, questions run as independent calls under a shared concurrency limit. More questions
   can increase latency and repeat input tokens. There is no near-constant-latency promise.
 - Maximum 64 questions; question IDs and choice labels are nonempty and at most 256 characters.
   Unknown fields and non-finite JSON numbers are rejected. Body limit defaults to 16 MiB.

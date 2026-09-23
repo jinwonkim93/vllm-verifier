@@ -10,7 +10,7 @@ def main() -> None:
     parser = argparse.ArgumentParser(description="Serve a Jev-compatible decision API")
     parser.add_argument("--host")
     parser.add_argument("--port", type=int, choices=range(1, 65536), metavar="PORT")
-    parser.add_argument("--runtime", choices=["http", "mlx"])
+    parser.add_argument("--runtime", choices=["http", "mlx", "decision"])
     parser.add_argument("--model")
     args = parser.parse_args()
     settings = Settings()
@@ -22,6 +22,12 @@ def main() -> None:
         from .engine.mlx import DEFAULT_MODEL
 
         settings.model = DEFAULT_MODEL
+    elif (
+        settings.runtime == "decision" and settings.model == Settings.model_fields["model"].default
+    ):
+        from .decision.artifact import MODEL
+
+        settings.model = MODEL
     if args.host is not None:
         settings.host = args.host
     if args.port is not None:

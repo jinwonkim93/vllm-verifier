@@ -7,6 +7,12 @@ malformed outputs, retries and usage, HTTP errors, actual TypeSafe SDK parsing, 
 isolated prompts, shared concurrency, overload and cancellation. Mocked completions prove service
 behavior, not model intelligence.
 
+## Direct Decision model
+
+See [Decision model evaluation](decision-models.md#reproduce-measurements) for the pinned Kai
+FP32 workload and CPU/Metal parity check. Reports distinguish local submission latency from
+HTTP latency. The small authored workload checks integration, not broad accuracy or calibration.
+
 ## Real engine smoke test
 
 Docker protocol integration can be checked independently:

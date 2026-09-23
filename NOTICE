@@ -5,3 +5,7 @@ Independent interoperability implementation. Jev and TypeSafe are names associat
 TypeSafe AI. vLLM and DiffusionGemma are names associated with their respective projects.
 No affiliation or endorsement is implied. Model weights and upstream runtimes are not
 redistributed and retain their own licenses and terms.
+
+The optional Decision runtime loads Kai by the vLLM Semantic Router team from a pinned
+Hugging Face release. Downloaded artifacts include upstream notices and license terms.
+See docs/decision-models.md for provenance and runtime details.

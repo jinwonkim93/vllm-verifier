@@ -31,6 +31,15 @@ async def run(args):
     async with httpx.AsyncClient(
         base_url=args.url.rstrip("/"), headers=headers, timeout=args.timeout
     ) as client:
+        warmup_slots = asyncio.Semaphore(args.concurrency)
+
+        async def warmup(case):
+            async with warmup_slots:
+                response = await client.post("/v1/systemone", json=case["request"])
+                response.raise_for_status()
+
+        for _ in range(args.warmup):
+            await asyncio.gather(*(warmup(case) for case in cases))
 
         async def worker():
             while not queue.empty():
@@ -101,6 +110,7 @@ async def run(args):
             "dataset": str(args.dataset),
             "concurrency": args.concurrency,
             "repeat": args.repeat,
+            "warmup": args.warmup,
             "run_label": args.run_label,
             "models": sorted({row["model"] for row in successful}),
             "demo": any(row.get("demo") for row in rows),
@@ -147,12 +157,13 @@ def main():
     parser.add_argument("--dataset", type=Path, default=Path("examples/evaluation.jsonl"))
     parser.add_argument("--concurrency", type=int, default=4)
     parser.add_argument("--repeat", type=int, default=1)
+    parser.add_argument("--warmup", type=int, default=0)
     parser.add_argument("--timeout", type=float, default=65)
     parser.add_argument("--run-label", default="unspecified hardware/runtime")
     parser.add_argument("--output", type=Path, default=Path("benchmark-results.json"))
     args = parser.parse_args()
-    if args.concurrency < 1 or args.repeat < 1 or args.timeout <= 0:
-        parser.error("concurrency, repeat and timeout must be positive")
+    if args.concurrency < 1 or args.repeat < 1 or args.timeout <= 0 or args.warmup < 0:
+        parser.error("concurrency, repeat and timeout must be positive; warmup nonnegative")
     raise SystemExit(asyncio.run(run(args)))
 
 

@@ -5,7 +5,7 @@ build-backend = "hatchling.build"
 [project]
 name = "vllm-verifier"
 version = "0.1.0"
-description = "Jev-compatible typed decisions backed by DiffusionGemma and vLLM"
+description = "Jev-compatible candidate scoring and typed decisions on Mac and vLLM"
 readme = "README.md"
 requires-python = ">=3.11"
 license = "Apache-2.0"
@@ -16,10 +16,17 @@ dependencies = [
 ]
 
 [project.optional-dependencies]
+decision = [
+  "torch>=2.8,<3", "transformers==4.57.6", "safetensors>=0.6,<1",
+  "huggingface-hub>=0.34,<1", "numpy<2.5",
+]
 mac = [
   "mlx-vlm==0.7.2; sys_platform == 'darwin' and platform_machine == 'arm64'",
   "numpy<2.5; sys_platform == 'darwin' and platform_machine == 'arm64'",
 ]
+
+[tool.uv]
+conflicts = [[{ extra = "mac" }, { extra = "decision" }]]
 
 [project.scripts]
 vllm-verifier = "vllm_verifier.cli:main"

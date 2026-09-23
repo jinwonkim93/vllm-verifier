@@ -40,6 +40,7 @@ async def matrix(args):
                 config = argparse.Namespace(
                     dataset=dataset,
                     repeat=repeat,
+                    warmup=0,
                     concurrency=concurrency,
                     url=args.url,
                     timeout=args.timeout,

@@ -1,0 +1,337 @@
+{
+  "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+  "revision": "7185f514f54b8f93c55998b1e8f9c5cc67f0d029",
+  "device": "mps",
+  "dtype": "float32",
+  "platform": "macOS-26.6.2-arm64-arm-64bit",
+  "python": "3.12.12",
+  "torch": "2.14.0",
+  "dataset": "benchmarks/decision-smoke.jsonl",
+  "batch_size": 1,
+  "batch_tokens": 4096,
+  "requests_per_submission": 8,
+  "decisions_per_submission": 24,
+  "load_seconds": 20.140695750014856,
+  "warmup": 1,
+  "repeat": 5,
+  "submission_seconds": [
+    0.5403880421072245,
+    0.551098374882713,
+    0.5501892080064863,
+    0.5411138751078397,
+    0.5417587920092046
+  ],
+  "median_seconds": 0.5417587920092046,
+  "classification": {
+    "correct": 15,
+    "total": 16
+  },
+  "score_mae": 0.7482473850250244,
+  "responses": [
+    {
+      "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+      "answers": {
+        "team": {
+          "type": "choice",
+          "choice": "billing",
+          "probabilities": {
+            "billing": 0.9764525294303894,
+            "delivery": 0.017599113285541534,
+            "technical": 0.005948343779891729
+          },
+          "confidence": 0.9764525294303894
+        },
+        "refund": {
+          "type": "noul",
+          "noul": 0.5186760425567627
+        },
+        "urgency": {
+          "type": "score",
+          "score": 1.0003043711185455,
+          "probabilities": {
+            "0": 0.33463597297668457,
+            "1": 0.3304238021373749,
+            "2": 0.3349402844905853
+          },
+          "confidence": 0.3349402844905853,
+          "legend": {
+            "0": "No immediate action needed; next month is fine",
+            "1": "Action requested this week",
+            "2": "Action requested today or immediately"
+          }
+        }
+      },
+      "usage": {
+        "input_tokens": 167,
+        "output_tokens": 0
+      }
+    },
+    {
+      "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+      "answers": {
+        "team": {
+          "type": "choice",
+          "choice": "delivery",
+          "probabilities": {
+            "billing": 0.015809202566742897,
+            "delivery": 0.9750561714172363,
+            "technical": 0.009134585969150066
+          },
+          "confidence": 0.9750561714172363
+        },
+        "refund": {
+          "type": "noul",
+          "noul": 0.10917441546916962
+        },
+        "urgency": {
+          "type": "score",
+          "score": 1.0005765557289124,
+          "probabilities": {
+            "0": 0.33391085267066956,
+            "1": 0.33160173892974854,
+            "2": 0.3344874083995819
+          },
+          "confidence": 0.3344874083995819,
+          "legend": {
+            "0": "No immediate action needed; next month is fine",
+            "1": "Action requested this week",
+            "2": "Action requested today or immediately"
+          }
+        }
+      },
+      "usage": {
+        "input_tokens": 179,
+        "output_tokens": 0
+      }
+    },
+    {
+      "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+      "answers": {
+        "team": {
+          "type": "choice",
+          "choice": "technical",
+          "probabilities": {
+            "billing": 0.002048591850325465,
+            "delivery": 0.00257958029396832,
+            "technical": 0.9953717589378357
+          },
+          "confidence": 0.9953717589378357
+        },
+        "refund": {
+          "type": "noul",
+          "noul": 0.1258775293827057
+        },
+        "urgency": {
+          "type": "score",
+          "score": 1.003490924835205,
+          "probabilities": {
+            "0": 0.3319813013076782,
+            "1": 0.3325464725494385,
+            "2": 0.3354722261428833
+          },
+          "confidence": 0.3354722261428833,
+          "legend": {
+            "0": "No immediate action needed; next month is fine",
+            "1": "Action requested this week",
+            "2": "Action requested today or immediately"
+          }
+        }
+      },
+      "usage": {
+        "input_tokens": 185,
+        "output_tokens": 0
+      }
+    },
+    {
+      "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+      "answers": {
+        "team": {
+          "type": "choice",
+          "choice": "billing",
+          "probabilities": {
+            "billing": 0.754653811454773,
+            "delivery": 0.17385321855545044,
+            "technical": 0.07149291038513184
+          },
+          "confidence": 0.754653811454773
+        },
+        "refund": {
+          "type": "noul",
+          "noul": 0.16725148260593414
+        },
+        "urgency": {
+          "type": "score",
+          "score": 0.9949283599853516,
+          "probabilities": {
+            "0": 0.3378273546695709,
+            "1": 0.32941681146621704,
+            "2": 0.33275577425956726
+          },
+          "confidence": 0.3378273546695709,
+          "legend": {
+            "0": "No immediate action needed; next month is fine",
+            "1": "Action requested this week",
+            "2": "Action requested today or immediately"
+          }
+        }
+      },
+      "usage": {
+        "input_tokens": 176,
+        "output_tokens": 0
+      }
+    },
+    {
+      "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+      "answers": {
+        "team": {
+          "type": "choice",
+          "choice": "delivery",
+          "probabilities": {
+            "billing": 0.04495224729180336,
+            "delivery": 0.9278824925422668,
+            "technical": 0.027165237814188004
+          },
+          "confidence": 0.9278824925422668
+        },
+        "refund": {
+          "type": "noul",
+          "noul": 0.39717960357666016
+        },
+        "urgency": {
+          "type": "score",
+          "score": 1.0001500844955444,
+          "probabilities": {
+            "0": 0.334298700094223,
+            "1": 0.33125245571136475,
+            "2": 0.33444881439208984
+          },
+          "confidence": 0.33444881439208984,
+          "legend": {
+            "0": "No immediate action needed; next month is fine",
+            "1": "Action requested this week",
+            "2": "Action requested today or immediately"
+          }
+        }
+      },
+      "usage": {
+        "input_tokens": 164,
+        "output_tokens": 0
+      }
+    },
+    {
+      "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+      "answers": {
+        "team": {
+          "type": "choice",
+          "choice": "billing",
+          "probabilities": {
+            "billing": 0.9784324169158936,
+            "delivery": 0.015043898485600948,
+            "technical": 0.0065236943773925304
+          },
+          "confidence": 0.9784324169158936
+        },
+        "refund": {
+          "type": "noul",
+          "noul": 0.511910080909729
+        },
+        "urgency": {
+          "type": "score",
+          "score": 1.003641813993454,
+          "probabilities": {
+            "0": 0.3331776559352875,
+            "1": 0.33000287413597107,
+            "2": 0.33681946992874146
+          },
+          "confidence": 0.33681946992874146,
+          "legend": {
+            "0": "No immediate action needed; next month is fine",
+            "1": "Action requested this week",
+            "2": "Action requested today or immediately"
+          }
+        }
+      },
+      "usage": {
+        "input_tokens": 203,
+        "output_tokens": 0
+      }
+    },
+    {
+      "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+      "answers": {
+        "team": {
+          "type": "choice",
+          "choice": "technical",
+          "probabilities": {
+            "billing": 0.02008281648159027,
+            "delivery": 0.015746822580695152,
+            "technical": 0.9641703367233276
+          },
+          "confidence": 0.9641703367233276
+        },
+        "refund": {
+          "type": "noul",
+          "noul": 0.20757772028446198
+        },
+        "urgency": {
+          "type": "score",
+          "score": 1.0043491423130035,
+          "probabilities": {
+            "0": 0.3315248191356659,
+            "1": 0.3326012194156647,
+            "2": 0.33587396144866943
+          },
+          "confidence": 0.33587396144866943,
+          "legend": {
+            "0": "No immediate action needed; next month is fine",
+            "1": "Action requested this week",
+            "2": "Action requested today or immediately"
+          }
+        }
+      },
+      "usage": {
+        "input_tokens": 215,
+        "output_tokens": 0
+      }
+    },
+    {
+      "model": "llm-semantic-router/Decision-1.0-Kai-0.6B",
+      "answers": {
+        "team": {
+          "type": "choice",
+          "choice": "delivery",
+          "probabilities": {
+            "billing": 0.03214019536972046,
+            "delivery": 0.9539244174957275,
+            "technical": 0.013935407623648643
+          },
+          "confidence": 0.9539244174957275
+        },
+        "refund": {
+          "type": "noul",
+          "noul": 0.2500786781311035
+        },
+        "urgency": {
+          "type": "score",
+          "score": 1.0062877833843231,
+          "probabilities": {
+            "0": 0.3318890929222107,
+            "1": 0.3299339711666107,
+            "2": 0.3381769061088562
+          },
+          "confidence": 0.3381769061088562,
+          "legend": {
+            "0": "No immediate action needed; next month is fine",
+            "1": "Action requested this week",
+            "2": "Action requested today or immediately"
+          }
+        }
+      },
+      "usage": {
+        "input_tokens": 188,
+        "output_tokens": 0
+      }
+    }
+  ],
+  "measurement": "Local scoring includes tokenization, scheduling, GPU transfer and readout; excludes HTTP and model loading. No cached answers. Small authored smoke set, not a representative quality benchmark."
+}
