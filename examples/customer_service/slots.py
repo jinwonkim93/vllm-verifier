@@ -5,6 +5,8 @@ import json
 import re
 from pathlib import Path
 
+from .catalog import INTENTS
+
 FIXTURES = json.loads(Path(__file__).with_name("fixtures.json").read_text())
 PREFIXES = {
     "reason": "사유",
@@ -21,6 +23,35 @@ TASK_CUE = re.compile(
 
 def normalize(text: str) -> str:
     return re.sub(r"[\s.!?。]+", "", text).lower()
+
+
+def is_request(text: str) -> bool:
+    """Keep questions and named tasks out of implicit free-text slot filling."""
+    command = normalize(text)
+    return bool(
+        TASK_CUE.search(text)
+        or re.search(
+            r"[?？]|(?:뭐|무엇|어떻게|얼마|몇시|몇 시|혹시)"
+            r"|(?:인가요|나요|까요|있어|없어|돼요|되나요|가능해|궁금|하고 싶|해주세요)",
+            text,
+        )
+        or command in {normalize(intent.label) for intent in INTENTS.values()}
+    )
+
+
+def invalid_slot_attempt(text: str, expected: str) -> bool:
+    """Reprompt only recognizable malformed values, never arbitrary new utterances."""
+    if is_request(text):
+        return False
+    patterns = {
+        "order_id": r"(?:ORD[- ]?)?[0-9-]+",
+        "quantity": r"-?\d+\s*(?:개)?",
+        "date": r"\d{4}[-/.]\d{1,2}[-/.]\d{1,2}",
+        "email": r"\S*@\S*",
+        "phone": r"[+\d][\d -]{5,}",
+    }
+    pattern = patterns.get(expected)
+    return bool(pattern and re.fullmatch(pattern, text.strip(), re.I))
 
 
 def extract(text: str, expected: str | None = None) -> dict[str, str]:
@@ -100,7 +131,7 @@ def extract(text: str, expected: str | None = None) -> dict[str, str]:
         query = re.sub(r"^(?:혹시|그럼|저는|나는)\s*", "", match[1]).strip()
         if query not in {"상품", "제품", "다른 상품", "다른 제품"}:
             result["query"] = query[:100]
-    if expected in PREFIXES and expected not in result and not TASK_CUE.search(text):
+    if expected in PREFIXES and expected not in result and not is_request(text):
         if 1 <= len(text.strip()) <= 100 and normalize(text) not in {
             "네",
             "아니",
@@ -118,4 +149,4 @@ def is_slot_reply(text: str, expected: str, values: dict[str, str]) -> bool:
     # Explicitly prefixed fields and bare entities are answers, not new tasks.
     if expected in PREFIXES and re.match(PREFIXES[expected] + r"\s*[:：]", text):
         return True
-    return not TASK_CUE.search(text)
+    return not is_request(text)

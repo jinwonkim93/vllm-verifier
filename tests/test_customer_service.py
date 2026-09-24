@@ -294,3 +294,76 @@ async def test_independent_new_request_does_not_inherit_old_model_context():
     await bot.turn(state, "주문 수량 변경해줘")
     assert model.calls[-1][1] == ""
     assert state.active.intent == "order_quantity"
+
+
+@pytest.mark.parametrize("new_question", ["쿠폰 있어?", "결제 수단은?", "고객센터 전화번호"])
+async def test_new_question_escapes_order_slot_prompt(new_question):
+    model = ScriptedClassifier("delivery_eta", "payment_methods")
+    bot, state = Dialogue(model), Conversation()
+    await bot.turn(state, "상품 언제 도착해?")
+    result = await bot.turn(state, new_question)
+    assert model.calls[-1] == (new_question, "")
+    assert state.last_completed.intent == "payment_methods"
+    assert state.suspended[-1].intent == "delivery_eta"
+    assert "입력 형식" not in result["reply"]["text"]
+    await bot.turn(state, "이어서")
+    assert state.active.intent == "delivery_eta"
+    await bot.turn(state, "ORD-1001")
+    assert state.last_completed.slots["order_id"] == "ORD-1001"
+
+
+@pytest.mark.parametrize(
+    "intent,initial",
+    [
+        ("return_request", "ORD-1001 반품하고 싶어"),
+        ("product_search", "상품 검색"),
+    ],
+)
+async def test_new_question_is_not_swallowed_as_free_text_slot(intent, initial):
+    model = ScriptedClassifier(intent, "payment_methods")
+    bot, state = Dialogue(model), Conversation()
+    await bot.turn(state, initial)
+    await bot.turn(state, "결제 수단은?")
+    assert state.last_completed.intent == "payment_methods"
+    assert state.suspended[-1].intent == intent
+    assert "결제 수단은?" not in state.suspended[-1].slots.values()
+
+
+async def test_pending_clarification_cannot_fill_old_task_slot():
+    model = ScriptedClassifier(
+        "delivery_eta",
+        Classification(None, [{"id": "payment_methods", "label": "결제 수단", "probability": 0.2}]),
+        "event_list",
+    )
+    bot, state = Dialogue(model), Conversation()
+    await bot.turn(state, "상품 언제 도착해?")
+    await bot.turn(state, "결제 수단은?")
+    assert state.active is None
+    assert state.choices == ["payment_methods"]
+    await bot.turn(state, "오늘 행사 뭐야?")
+    assert state.last_completed.intent == "event_list"
+    assert state.suspended[-1].intent == "delivery_eta"
+
+
+async def test_malformed_order_value_still_reprompts_without_model():
+    model = ScriptedClassifier("delivery_eta")
+    bot, state = Dialogue(model), Conversation()
+    await bot.turn(state, "상품 언제 도착해?")
+    result = await bot.turn(state, "ORD-123")
+    assert "입력 형식" in result["reply"]["text"]
+    assert len(model.calls) == 1
+
+
+async def test_uncertain_category_cannot_auto_route_confident_child():
+    router = SystemOneClassifier("http://engine")
+
+    async def choose(state, criteria):
+        if "promotions" in criteria:
+            return [("promotions", 0.28), ("payments", 0.27)], "test-model"
+        return [("coupon_apply", 0.9), ("coupon_list", 0.1)], "test-model"
+
+    router._choose = choose
+    result = await router.classify("쿠폰 있어?", "")
+    assert result.intent is None
+    assert result.trace["needs_clarification"]
+    await router.close()

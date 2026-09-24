@@ -6,7 +6,7 @@ from typing import Any
 from .actions import DemoStore, execute
 from .catalog import INTENTS, SLOTS
 from .classifier import Classifier
-from .slots import TASK_CUE, extract, is_slot_reply, normalize
+from .slots import extract, invalid_slot_attempt, is_request, is_slot_reply, normalize
 
 YES = {"네", "예", "응", "좋아", "확인", "진행", "진행해", "진행해줘", "동의", "yes", "확인했어"}
 NO = {"아니", "아니요", "아냐", "안할래", "취소", "그만", "cancel"}
@@ -91,7 +91,7 @@ class Dialogue:
                 return self.activate(state, chosen, state.clarification_text)
         if state.active and command in {"고마워", "감사합니다", "고마워요", "감사", "thanks"}:
             return self.reply(state, "천만에요. 진행 중인 문의는 그대로 유지할게요.")
-        if state.active:
+        if state.active and not state.choices:
             frame = state.active
             if frame.phase == "confirming" and command in YES:
                 intent = INTENTS[frame.intent]
@@ -100,8 +100,12 @@ class Dialogue:
             expected = frame.missing[0] if frame.missing else None
             values = extract(text, expected)
             useful = {k: v for k, v in values.items() if k in INTENTS[frame.intent].required_slots}
-            correction = command.startswith(("아니", "정정", "수정")) and bool(useful)
-            bare = bool(useful) and not TASK_CUE.search(text)
+            correction = (
+                command.startswith(("아니", "정정", "수정"))
+                and bool(useful)
+                and not is_request(text)
+            )
+            bare = bool(useful) and not is_request(text)
             if correction or bare or (expected and is_slot_reply(text, expected, values)):
                 frame.slots.update(useful)
                 frame.phase = "collecting"
@@ -109,7 +113,7 @@ class Dialogue:
                 return self.advance(state, prefix="수정했어요. " if correction else "")
             if command in YES:
                 return self.advance(state)
-            if expected and self.invalid_slot(text, expected):
+            if expected and invalid_slot_attempt(text, expected):
                 return self.reply(
                     state,
                     "입력 형식을 확인해주세요. " + SLOTS[expected][1],
@@ -117,7 +121,7 @@ class Dialogue:
                 )
         # A bare product after search is an explicit result selection, not a fresh intent guess.
         values = extract(text)
-        if not state.active and not TASK_CUE.search(text) and state.last_completed:
+        if not state.active and not is_request(text) and state.last_completed:
             last = state.last_completed.intent
             if "product" in values and INTENTS[last].category == "products":
                 target = last if INTENTS[last].handler == "product" else "product_detail"
@@ -141,6 +145,10 @@ class Dialogue:
         result = await self.classifier.classify(text, reference_context)
         state.trace = {**result.trace, "candidates": result.candidates}
         if result.intent is None:
+            if state.active and is_request(text):
+                state.suspended.append(state.active)
+                state.suspended = state.suspended[-8:]
+                state.active = None
             state.clarification_text = text
             state.choices = [candidate["id"] for candidate in result.candidates]
             return self.reply(
@@ -153,24 +161,6 @@ class Dialogue:
                 or ["배송 도착 예정", "상품 검색", "상담사 연결"],
             )
         return self.activate(state, result.intent, text)
-
-    @staticmethod
-    def invalid_slot(text: str, expected: str) -> bool:
-        if TASK_CUE.search(text):
-            return False
-        return expected in {
-            "order_id",
-            "quantity",
-            "date",
-            "email",
-            "phone",
-            "coupon",
-            "channel",
-            "option",
-            "device",
-            "product",
-            "event",
-        }
 
     def activate(self, state: Conversation, intent_id: str, text: str) -> dict:
         prior = state.active or state.last_completed

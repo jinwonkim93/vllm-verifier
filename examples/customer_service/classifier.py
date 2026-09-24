@@ -105,7 +105,12 @@ class SystemOneClassifier:
             for key, probability in ranked[:3]
         ]
         # These are conservative routing heuristics, not calibrated correctness probabilities.
-        uncertain = ranked[0][1] < 0.30 or ranked[0][1] - ranked[1][1] < 0.05
+        uncertain = (
+            category_probability < 0.30
+            or ranked_groups[0][1] - ranked_groups[1][1] < 0.05
+            or ranked[0][1] < 0.30
+            or ranked[0][1] - ranked[1][1] < 0.05
+        )
         trace["needs_clarification"] = uncertain
         return Classification(None if uncertain else ranked[0][0], top, trace)
 
